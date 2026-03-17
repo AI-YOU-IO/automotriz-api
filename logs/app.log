@@ -1,0 +1,147 @@
+{"level":"error","message":"[server.js] ⚠️ MySQL no disponible: [dbConnection.js] ❌ Error verificando conexión a MySQL:","timestamp":"10-02-2026 / 15:35:38"}
+{"level":"info","message":"[server.js] 🚀 Server running on http://localhost:3020","timestamp":"10-02-2026 / 15:35:38"}
+{"level":"error","message":"[server.js] ⚠️ MySQL no disponible: [dbConnection.js] ❌ Error verificando conexión a MySQL:","timestamp":"10-02-2026 / 15:36:16"}
+{"level":"info","message":"[server.js] 🚀 Server running on http://localhost:3020","timestamp":"10-02-2026 / 15:36:16"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: viva","timestamp":"10-02-2026 / 15:40:47"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"10-02-2026 / 15:40:47"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"10-02-2026 / 15:40:47"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: viva","timestamp":"10-02-2026 / 16:13:21"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"10-02-2026 / 16:13:21"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"10-02-2026 / 16:13:21"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:13:50"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:13:55"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:15:42"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:24:15"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:24:51"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:24:54"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:24:54"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:24:55"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:24:55"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:25:06"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:25:07"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:25:07"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:25:07"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:25:07"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:25:07"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:25:08"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:25:08"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:25:30"}
+{"level":"error","message":"[usuario.controller.js] Error al procesar usuario: WHERE parameter \"usuario\" has invalid \"undefined\" value","timestamp":"10-02-2026 / 16:29:36"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: viva","timestamp":"10-02-2026 / 16:32:07"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"10-02-2026 / 16:32:07"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"10-02-2026 / 16:32:07"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: viva","timestamp":"06-03-2026 / 14:16:39"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"06-03-2026 / 14:16:39"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"06-03-2026 / 14:16:39"}
+{"level":"error","message":"[redis.js] Error de conexión Redis: connect ECONNREFUSED 127.0.0.1:6379","timestamp":"06-03-2026 / 14:16:39"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 1s (intento 1/10)","timestamp":"06-03-2026 / 14:16:39"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 2s (intento 2/10)","timestamp":"06-03-2026 / 14:16:40"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: viva","timestamp":"06-03-2026 / 14:17:00"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"06-03-2026 / 14:17:00"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"06-03-2026 / 14:17:00"}
+{"level":"error","message":"[redis.js] Error de conexión Redis: connect ECONNREFUSED 127.0.0.1:6379","timestamp":"06-03-2026 / 14:17:00"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 1s (intento 1/10)","timestamp":"06-03-2026 / 14:17:00"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 2s (intento 2/10)","timestamp":"06-03-2026 / 14:17:01"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 3s (intento 3/10)","timestamp":"06-03-2026 / 14:17:03"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 4s (intento 4/10)","timestamp":"06-03-2026 / 14:17:06"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 5s (intento 5/10)","timestamp":"06-03-2026 / 14:17:10"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 6s (intento 6/10)","timestamp":"06-03-2026 / 14:17:15"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 7s (intento 7/10)","timestamp":"06-03-2026 / 14:17:21"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 8s (intento 8/10)","timestamp":"06-03-2026 / 14:17:28"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: viva","timestamp":"06-03-2026 / 14:17:46"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"06-03-2026 / 14:17:46"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"06-03-2026 / 14:17:46"}
+{"level":"error","message":"[redis.js] Error de conexión Redis: connect ECONNREFUSED 127.0.0.1:6379","timestamp":"06-03-2026 / 14:17:46"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 1s (intento 1/10)","timestamp":"06-03-2026 / 14:17:46"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 2s (intento 2/10)","timestamp":"06-03-2026 / 14:17:47"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: viva","timestamp":"06-03-2026 / 14:18:21"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"06-03-2026 / 14:18:21"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"06-03-2026 / 14:18:21"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"06-03-2026 / 14:18:21"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"06-03-2026 / 14:18:21"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"06-03-2026 / 14:18:21"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: viva","timestamp":"06-03-2026 / 14:20:52"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"06-03-2026 / 14:20:52"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"06-03-2026 / 14:20:53"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"06-03-2026 / 14:20:53"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"06-03-2026 / 14:20:53"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"06-03-2026 / 14:20:53"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: viva","timestamp":"06-03-2026 / 14:21:47"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"06-03-2026 / 14:21:47"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"06-03-2026 / 14:21:47"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"06-03-2026 / 14:21:48"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"06-03-2026 / 14:21:48"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"06-03-2026 / 14:21:48"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: viva","timestamp":"06-03-2026 / 14:24:23"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"06-03-2026 / 14:24:23"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"06-03-2026 / 14:24:23"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"06-03-2026 / 14:24:24"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"06-03-2026 / 14:24:24"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"06-03-2026 / 14:24:24"}
+{"level":"info","message":"[loginAttempts.service] Intentos limpiados para viva123","timestamp":"06-03-2026 / 14:24:38"}
+{"level":"info","message":"[loginAttempts.service] Intentos limpiados para viva123","timestamp":"06-03-2026 / 14:42:27"}
+{"level":"info","message":"[cron] Ejecutando detección de conversaciones abandonadas...","timestamp":"06-03-2026 / 15:00:00"}
+{"level":"info","message":"[cron] Detección finalizada. Prospectos actualizados: 0","timestamp":"06-03-2026 / 15:00:00"}
+{"level":"error","message":"[redis.js] Error de conexión Redis: read ECONNRESET","timestamp":"06-03-2026 / 15:12:49"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"06-03-2026 / 15:12:49"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"06-03-2026 / 15:12:49"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: viva","timestamp":"11-03-2026 / 16:12:00"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"11-03-2026 / 16:12:00"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-03-2026 / 16:12:00"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"11-03-2026 / 16:12:00"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"11-03-2026 / 16:12:00"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"11-03-2026 / 16:12:00"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: viva","timestamp":"11-03-2026 / 16:21:43"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"11-03-2026 / 16:21:43"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-03-2026 / 16:21:43"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"11-03-2026 / 16:21:44"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"11-03-2026 / 16:21:44"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"11-03-2026 / 16:21:44"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: viva","timestamp":"11-03-2026 / 16:55:42"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"11-03-2026 / 16:55:42"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-03-2026 / 16:55:42"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"11-03-2026 / 16:55:42"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"11-03-2026 / 16:55:42"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"11-03-2026 / 16:55:42"}
+{"level":"info","message":"[cron] Ejecutando detección de conversaciones abandonadas...","timestamp":"11-03-2026 / 17:00:00"}
+{"level":"info","message":"[cron] Detección finalizada. Prospectos actualizados: 0","timestamp":"11-03-2026 / 17:00:00"}
+{"level":"error","message":"[redis.js] Error de conexión Redis: read ETIMEDOUT","timestamp":"11-03-2026 / 17:43:56"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"11-03-2026 / 17:43:56"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-03-2026 / 17:43:56"}
+{"level":"info","message":"[cron] Ejecutando detección de conversaciones abandonadas...","timestamp":"11-03-2026 / 18:00:00"}
+{"level":"info","message":"[cron] Detección finalizada. Prospectos actualizados: 0","timestamp":"11-03-2026 / 18:00:00"}
+{"level":"error","message":"[redis.js] Error de conexión Redis: read ECONNRESET","timestamp":"11-03-2026 / 18:09:14"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"11-03-2026 / 18:09:14"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-03-2026 / 18:09:14"}
+{"level":"error","message":"[redis.js] Error de conexión Redis: read ETIMEDOUT","timestamp":"11-03-2026 / 18:34:13"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"11-03-2026 / 18:34:13"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"11-03-2026 / 18:34:13"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 1s (intento 1/10)","timestamp":"11-03-2026 / 18:34:13"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 2s (intento 2/10)","timestamp":"11-03-2026 / 18:34:14"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 3s (intento 3/10)","timestamp":"11-03-2026 / 18:50:09"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 4s (intento 4/10)","timestamp":"11-03-2026 / 18:50:12"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 5s (intento 5/10)","timestamp":"11-03-2026 / 19:01:14"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-03-2026 / 19:01:19"}
+{"level":"error","message":"[redis.js] Error de conexión Redis: read ETIMEDOUT","timestamp":"11-03-2026 / 19:03:25"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"11-03-2026 / 19:03:25"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"11-03-2026 / 19:03:25"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 1s (intento 1/10)","timestamp":"11-03-2026 / 19:03:25"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-03-2026 / 19:03:26"}
+{"level":"error","message":"[redis.js] Error de conexión Redis: read ETIMEDOUT","timestamp":"11-03-2026 / 19:26:50"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"11-03-2026 / 19:26:50"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-03-2026 / 19:26:50"}
+{"level":"error","message":"[redis.js] Error de conexión Redis: read ETIMEDOUT","timestamp":"11-03-2026 / 19:43:20"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"11-03-2026 / 19:43:20"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-03-2026 / 19:43:20"}
+{"level":"error","message":"[redis.js] Error de conexión Redis: read ETIMEDOUT","timestamp":"11-03-2026 / 20:02:56"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"11-03-2026 / 20:02:56"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-03-2026 / 20:02:56"}
+{"level":"error","message":"[redis.js] Error de conexión Redis: read ETIMEDOUT","timestamp":"11-03-2026 / 21:01:58"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"11-03-2026 / 21:01:58"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-03-2026 / 21:01:58"}
+{"level":"error","message":"[redis.js] Error de conexión Redis: read ECONNRESET","timestamp":"11-03-2026 / 21:12:19"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"11-03-2026 / 21:12:19"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-03-2026 / 21:12:19"}
+{"level":"error","message":"[redis.js] Error de conexión Redis: read ETIMEDOUT","timestamp":"11-03-2026 / 21:25:26"}
+{"level":"info","message":"[redis.js] Reintentando conexión Redis en 0s (intento 0/10)","timestamp":"11-03-2026 / 21:25:26"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-03-2026 / 21:25:26"}

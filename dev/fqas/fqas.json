@@ -1,0 +1,612 @@
+[
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "¿Quién es el Censista?",
+    "respuesta": "El/La Censista es la persona encargada de solicitar información a través de una entrevista presencial en la que debe asegurar la completitud y calidad de los datos recopilados."
+  },
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "¿Cómo identifico al Censista asignado a mi zona?",
+    "respuesta": "Todos los/las Censistas portan credencial oficial del INEI con código QR y cuentan con chaleco, gorro y moral institucional. Para verificar su identidad, puede escanear el código QR o llamar al Call center para confirmar."
+  },
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "¿En qué horarios trabajan los/las Censistas?",
+    "respuesta": "Los/las Censistas laboran desde tempranas horas del día hasta la noche y se adaptan a los horarios de los residentes. También trabajan fines de semana y feriados para asegurar que todas las viviendas sean visitadas."
+  },
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "¿Qué pasa si no estoy en casa cuando me visite el censista?",
+    "respuesta": "El/La Censista de no encontrar a los residentes habituales de la vivienda, tiene la obligación de regresar a la vivienda, las veces que sean necesarias, para poder culminar su labor. Si después de tres visitas en la que no encontró a nadie dejará una Nota de Visita con un número de Call Center para que pueda coordinar la ejecución de la entrevista."
+  },
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "¿Puedo solicitar que el/la Censista venga en un horario específico?",
+    "respuesta": "El/La Censista tiene una ruta programada de visitas, agradeceré que espere su visita durante el periodo censal que es de agosto a octubre de este año."
+  },
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "El Censista no ha venido y ya pasaron días desde que han censado las otras viviendas de mi zona ¿Debo esperarlo o hay alguna oficina para ir a censarme?",
+    "respuesta": "El/La Censista tiene una ruta programada de visitas, agradeceré que espere su visita durante el periodo censal que es de agosto a octubre de este año. Igualmente registraré su caso para comunicarlo al área operativa. Para ello, podría facilitarme su dirección completa, su DNI como persona que está realizando la consulta y un teléfono de contacto."
+  },
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "Mi vecino fue censado, pero a mi vivienda no han venido ¿Ya no me van a censar?",
+    "respuesta": "Sí, el/la Censista retornará a su vivienda para censarlo/a, lo que puede haber sucedido es que como los Censistas trabajan por rutas programadas y en diferentes días asignados, cuando han pasado por su vivienda no lo han encontrado. Igualmente registraré su caso para comunicarlo al área operativa. Para ello, podría facilitarme su dirección completa, su DNI como persona que está realizando la consulta y un teléfono de contacto."
+  },
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "¿Cómo sé si el/la Censista ya pasó por mi vivienda?",
+    "respuesta": "El/La Censista tiene una ruta programada de visitas, agradeceré que espere su visita durante el periodo censal que es de agosto a octubre de este año. Igualmente registraré su caso para comunicarlo al área operativa. Para ello, podría facilitarme su dirección completa, su DNI como persona que está realizando la consulta y un teléfono de contacto."
+  },
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "No me han censado / Mi vivienda no fue visitada",
+    "respuesta": "El/La Censista tiene una ruta programada de visitas, agradeceré que espere su visita durante el periodo censal que es de agosto a octubre de este año. Igualmente registraré su caso para comunicarlo al área operativa. Para ello, podría facilitarme su dirección completa, su DNI como persona que está realizando la consulta y un teléfono de contacto."
+  },
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "¿Mi vivienda aún no ha sido censada? ¿Qué debo hacer?",
+    "respuesta": "El/La Censista tiene una ruta programada de visitas, agradeceré que espere su visita durante el periodo censal que es de agosto a octubre de este año. Igualmente registraré su caso para comunicarlo al área operativa. Para ello, podría facilitarme su dirección completa, su DNI como persona que está realizando la consulta y un teléfono de contacto."
+  },
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "¿Cómo sé si el Censista ya pasó por mi vivienda o las viviendas de mi zona?",
+    "respuesta": "Si usted observa que la vivienda anterior y posterior a su vivienda tiene la etiqueta adhesiva de VIVIENDA CENSADA, es probable que el/la Censista haya tratado de contactar con los residentes habituales de su vivienda. Si no observa estas etiquetas, comunicarle que el/la Censista tiene una ruta programada de visitas, por lo que le agradeceré que espere su visita durante el periodo censal que es de agosto a octubre de este año. Igualmente registraré su caso para comunicarlo al área operativa. Para ello, podría facilitarme su dirección completa, su DNI como persona que está realizando la consulta y un teléfono de contacto."
+  },
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "El Censista fue a mi vivienda y nos censó, pero no pegó la etiqueta en mi vivienda ¿Era necesario que pegue la etiqueta?",
+    "respuesta": "Si es necesario para identificar que su Vivienda fue Censada, siempre que se haya completado de registrar todos los datos de su vivienda, hogar y residentes habituales de la vivienda. Si no lo pegaron, puede indicar que el censo quedó incompleto y el/la Censista regresará. Igualmente registraré su caso para comunicarlo al área operativa. Para ello, podría facilitarme su dirección completa, su DNI como persona que está realizando la consulta y un teléfono de contacto."
+  },
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "¿Es posible que vengan más de una vez a censar mi vivienda?",
+    "respuesta": "El/La Censista de no encontrar a los residentes habituales de la vivienda, tiene la obligación de regresar a la vivienda, las veces que sean necesarias, para poder culminar su labor. Si después de tres visitas en la que no encontró a nadie dejará una Nota de Visita con un número de Call Center para que pueda coordinar la ejecución de la entrevista."
+  },
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "¿Puedo ir a una oficina censal para ser censado?",
+    "respuesta": "La modalidad de recojo de información es la visita del/de la Censista a la vivienda. Las oficinas censales funcionan principalmente para apoyo logístico y coordinación operativa. Igualmente registraré su caso para comunicarlo al área operativa. Para ello, podría facilitarme su dirección completa, su DNI como persona que está realizando la consulta y un teléfono de contacto."
+  },
+  {
+    "tema": "¿CUÁNDO ME CENSAN?",
+    "pregunta": "¿Dónde queda la oficina censal más cercana?",
+    "respuesta": "Para indicarle la dirección de la oficina de la subsede departamental censal más cercana a su domicilio por favor indíqueme su dirección exacta por favor. Ahí podrá acercarse y consultar sobre las fechas de ejecución del Censo en su zona."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Cuál es la Institución que ejecuta los Censos Nacionales 2025?",
+    "respuesta": "Es el Instituto Nacional de Estadística e Informática – INEI."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Qué son los Censos Nacionales?",
+    "respuesta": "Es el conjunto de actividades destinadas a realizar el recuento completo de todas las viviendas, hogares y los habitantes del territorio nacional, de los que se recopilará información sobre sus principales características; así como de las comunidades indígenas (nativas y campesinas).\n\nEs la investigación estadística de mayor envergadura de un país por la magnitud y el despliegue de personal censal para en el recojo de la información y por la participación de toda la población al brindar sus datos.\n\nEn el año 2025, se realizarán los Censos Nacionales: XIII de Población, VIII de Vivienda y IV de Comunidades Indígenas."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Cuál es la justificación para ejecutar los Censos Nacionales en el año 2025?",
+    "respuesta": "Entre las principales razones tenemos:\n\n  a. Impacto de la pandemia del COVID-19 a nivel demográfico y socioeconómico en la población: alta mortalidad, migración (a junio de 2024, 1.5 millones de venezolanos viven en Perú), cambios en las condiciones laborales (por ejemplo, nuevos rubros, teletrabajo) y educativas (deserción, clases virtuales).\n\n  b. Incremento de la migración internacional: impacto sobre los servicios de salud, educación, vivienda y el incremento en la oferta laboral en el país.\n\n  c. Actualizar datos estadísticos para la focalización de políticas y distribución de fondos públicos: con la mayor desagregación geográfica (provincias, distritos, centros poblados urbanos y rurales hasta nivel manzanas) y de los sectores más vulnerables.\n\n  d. Modificación de la demarcación territorial: la creación de nuevos distritos y la reubicación de centros poblados a lo largo y ancho del país, afecta el volumen poblacional y la necesidad de vivienda con impacto en los recursos económicos que requieren los gobiernos locales y regionales."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Por qué se realizan los Censos Nacionales en el año 2025?",
+    "respuesta": "Entre las principales razones tenemos:\n\n  a. Impacto de la pandemia del COVID-19 a nivel demográfico y socioeconómico en la población: alta mortalidad, migración (a junio de 2024, 1.5 millones de venezolanos viven en Perú), cambios en las condiciones laborales (por ejemplo, nuevos rubros, teletrabajo) y educativas (deserción, clases virtuales).\n\n  b. Incremento de la migración internacional: impacto sobre los servicios de salud, educación, vivienda y el incremento en la oferta laboral en el país.\n\n  c. Actualizar datos estadísticos para la focalización de políticas y distribución de fondos públicos: con la mayor desagregación geográfica (provincias, distritos, centros poblados urbanos y rurales hasta nivel manzanas) y de los sectores más vulnerables.\n\n  d. Modificación de la demarcación territorial: la creación de nuevos distritos y la reubicación de centros poblados a lo largo y ancho del país, afecta el volumen poblacional y la necesidad de vivienda con impacto en los recursos económicos que requieren los gobiernos locales y regionales."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Cuál es el tiempo de ejecución operativo de los Censos Nacionales 2025?",
+    "respuesta": "Los Censos Nacionales 2025 se ejecutarán entre el 04 de agosto hasta el 31 de octubre, tres (3) meses, en el caso del componente operativo de Población y Vivienda.\n\nEn el caso de los componentes operativos de Viviendas Colectivas, Personas sin Vivienda y Comunidades Indígenas, tendrá una duración de dos (2) meses, de setiembre a octubre de 2025."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Cuándo se van a realizar los Censos Nacionales 2025?",
+    "respuesta": "Se van a realizar entre agosto y octubre, es decir, van a durar tres meses."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Qué es un Censo de Población?",
+    "respuesta": "Es el conteo de todos los residentes habituales que se encuentran en el Perú, sin omitir a ninguna persona, peruano o extranjera; ya sean ancianos, adultos, jóvenes, niños o recién nacidos, sean hombres o mujeres.\n\nEl resultado de este conteo será conocer cuántos habitantes tiene el país y dónde viven permanentemente a nivel de centros poblados, distritos, provincias y regiones del país, así como sobre sus principales características.\n\nEn este conteo, se incluye a la población que residen en las viviendas colectivas como los cuarteles, conventos, asilos, cárceles, entre otras, donde las personas hacen vida en común."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "En el Censo de Población ¿Qué tipo de censo se ejecutará?",
+    "respuesta": "Se ejecutará un Censo de Derecho, es decir, que las personas serán censadas en la vivienda o lugar donde viven permanente o habitualmente, es decir donde son Residentes Habituales.\n\nEl tipo de censo que se ejecuta en el año 2025 es diferente a los ejecutados en censos anteriores que fueron un Censo de Hecho, donde las personas eran censadas en el lugar donde habían pasado la noche anterior al Día del Censo y se ejecutaba un (1) solo día."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Qué es un Censo de Viviendas?",
+    "respuesta": "Es el conteo de todas las viviendas que existen en el país (ocupadas o desocupadas), ubicadas en el área urbana o rural, sean casas independientes, departamentos en edificios, en condominios, quintas, callejones o solares, chozas o cabañas, así como locales no destinados para habitación humana pero que están siendo usadas para tal fin; y conocer sus principales características."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Qué es un Censo de Comunidades Indígenas?",
+    "respuesta": "Es el conteo de espacios territoriales denominados como comunidades nativas y comunidades campesinas asentadas a lo largo del territorio nacional para obtener información estadística de sus principales características que sirvan para la elaboración de planes integrales de desarrollo en estas comunidades.\n\nSe censarán a las Comunidades Nativas de la Amazonía Peruana, asentadas mayoritariamente en la región de la Selva, así como a las Comunidades Campesinas que generalmente se encuentran en la región de los Andes."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Cuáles son los objetivos de los Censos Nacionales 2025?",
+    "respuesta": "Entre los principales objetivos tenemos:\n\n  a. Censo Nacional de Población y Vivienda\n    i. Conocer cuántas personas viven en el país y cómo están distribuidas, tanto en la Costa, Sierra y Selva, como a nivel departamental, provincial, distrital y centro poblado.\n    ii. Proporcionar información sobre las principales características de la población, tales como: sexo, edad, lugar donde nacieron, si presentan discapacidad, cómo se autoidentifican étnicamente, con qué lenguas aprendieron hablar, qué nivel educativo tienen, si trabajan o no, el número de hijos/as, entre otras.\n    iii. Disponer de información sobre los materiales con las que están construidas las viviendas, si cuentan con el servicio de agua y con qué frecuencia; si tienen servicio de desagüe, energía eléctrica, entre otras características.\n    iv. Conocer con qué equipos y artefactos cuentan los hogares para desarrollar sus actividades diarias y saber su nivel de bienestar; así como, la forma de eliminar los residuos sólidos y si algún miembro del hogar emigró a otro país.\n    v. Actualizar las estimaciones y proyecciones del crecimiento de la población a futuro hasta realizar otro Censo Nacional de Población.\n    vi. Contar con un directorio censal actualizado de viviendas y población para la ejecución de futuras encuestas y estudios especializados.\n\n  b. Censo Nacional de Comunidades Indígenas (Comunidades Nativas y Campesinas)\n    i. Actualizar el directorio de comunidades nativas y campesinas existentes en el territorio nacional a nivel de Costa, Sierra y Selva, así como departamental, provincial y distrital.\n    ii. Caracterizar a las comunidades según los pueblos y las lenguas indígenas u originarias a las que pertenecen y hablan, respectivamente.\n    iii. Disponer de información sobre su organización comunal, situación de las tierras, acceso a recursos naturales, infraestructura y equipamiento.\n    iv. Recopilar información sobre las actividades económicas que realizan en la comunidad y los servicios de salud, educación y comunicación con los que cuentan.\n    v. Brindar información sobre las vías de acceso y medios de transporte existentes en la comunidad."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Cuáles son las unidades de investigación de los Censos Nacionales 2025?",
+    "respuesta": "Las unidades de investigación según el tipo de censo a realizar son las siguientes:\n\n  a. En el XIII Censo Nacional de Población:\n    • Las personas, Residentes Habituales, en viviendas particulares; así como los hogares que conforman.\n    • Las personas, Residentes Habituales, en viviendas colectivas.\n    • Las personas sin vivienda.\n\n  b. En el VIII Censo Nacional de Vivienda:\n    Las viviendas que existan en el territorio del país.\n\n  c. En el IV Censo Nacional de Comunidades Indígenas:\n    Las Comunidades Nativas y las Comunidades Campesinas."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Quiénes serán censados en el Censo Nacional de Población?",
+    "respuesta": "Todos los residentes habituales en el territorio nacional."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Para qué sirven los Censos Nacionales 2025?",
+    "respuesta": "La información censal permite a los tomadores de decisión conocer la evolución de la población, diseñar políticas públicas y tomar decisiones a partir del conocimiento que nos da sobre las necesidades de la población con relación a vivienda, educación, salud, entre otras importantes cuestiones socioeconómicas. Además, ayuda a definir políticas y acciones que tiendan a mejorar las condiciones de vida de los habitantes.\n\nEn el ámbito privado posibilita la realización de estudios de mercado, identificar oportunidades de inversión, planificar estrategias de marketing, comprender las necesidades de los consumidores, y desarrollar nuevos productos y servicios.\n\nA los estudiantes e investigadores, les permite acceder a la información que puede servirles para estudiar las principales características demográficas y sociales de un área determinada, analizar la evolución de los indicadores (por ejemplo, de pobreza, de salud, etc.) y hacer diagnósticos sobre la situación socio demográfico."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Por qué son importantes los Censos Nacionales 2025?",
+    "respuesta": "Los Censos Nacionales son importantes porque constituyen la única fuente de información que proporciona datos al menor nivel de desagregación geográfica de todo el país. De esta manera, es posible la elaboración de programas y planes focalizados de desarrollo social y económico por las autoridades locales, regionales y de nivel nacional, según las necesidades de la población."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Con qué frecuencia se realizan los Censos Nacionales?",
+    "respuesta": "Según la Ley N° 13248, Ley de Censos, se establece una periodicidad de diez (10) años para los Censos Nacionales de Población y Vivienda, y de cinco (5) años para los Censos Económicos, Agropecuarios, de Industria, Comercial y de Servicios."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿En los Censos Nacionales 2025 la participación de la población es obligatoria?",
+    "respuesta": "Sí, constituye una actividad cívica en la que el/la ciudadano debe contribuir con brindar información al/a la Censista para saber cuántos somos, cómo vivimos y dónde estamos y qué características tienen nuestras viviendas. Esta información es importante para diseñar políticas y programas públicos para el desarrollo y beneficio de la población."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Por qué es importante la participación de la población en el proceso censal?",
+    "respuesta": "Porque son los que brindarán información para conocer sus principales características sociales, educativas, económicas, que es esencial para planificar políticas públicas efectivas, asignar recursos de manera equitativa, promover la investigación y el análisis."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Los Censos Nacionales 2025 son gratuitos?",
+    "respuesta": "La participación es completamente gratuita. No se debe pagar ninguna cantidad a los funcionarios/as censales que visiten las viviendas para realizar los Censos Nacionales."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Los Censos Nacionales 2025 ayudarán para recibir un bono o algún crédito económico?",
+    "respuesta": "Con los Censos Nacionales 2025, los/las ciudadanas no serán beneficiados monetariamente mediante un bono o algún crédito económico; los datos recopilados servirán para la formulación, implementación y evaluación de políticas, planes, programas, proyectos públicos."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Cuál es la normatividad legal de los Censos Nacionales 2025?",
+    "respuesta": "a. Ley N° 13248 - Ley de Censos, en el Artículo 1, dispone que el levantamiento periódico de los censos nacionales de población y vivienda se realice cada 10 años mientras que, los censos agropecuario y económico, industrial, de servicios se harían cada cinco años. Promulgada el 24 de agosto de 1959.\n\nb. Decreto Supremo N° 063-2024-PCM, que declara de interés y prioridad nacional la ejecución de los Censos Nacionales 2025: XIII de Población, VIII de Vivienda y IV de Comunidades Indígenas, del 22 de junio del 2024.\n\nc. Ley N° 29733, Ley de Protección de Datos Personales que garantiza que los datos personales están protegidos y que se respeten los derechos de los/las ciudadanos/as."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Cuáles son las innovaciones en los Censos Nacionales 2025?",
+    "respuesta": "a. Ejecución de un Censo de Derecho o Jure: el dato estadístico de una persona debe estar ligado a su ámbito de residencia desde el cual es sujeto de deberes y derecho.\n\nb. Uso de dispositivo móviles de captura de datos (tabletas): uso de cuestionarios electrónicos para la recolección da datos, dejando el uso de cuestionarios impresos.\n\nc. Período de recolección ampliado: con una duración de tres (3) meses.\n\nd. Personal operativo contratado: dejando sin efecto el trabajo censal por voluntariado como en censos anteriores que garantice obtener un perfil más adecuado para el cargo de Censistas.\n\ne. Capacitación multimodal: basada en el uso de las tecnologías de la información y comunicación mediante el uso de plataformas de capacitación en web, el uso de Internet y plataformas digitales como videoconferencias.\n\nf. Implementación del INEI SOS: es un aplicativo de alerta de emergencia instalado en la tableta para ser utilizado por el personal de campo durante la operación censal. Esta herramienta permite al censista emitir alerta de forma inmediata, silenciosa, al equipo de trabajo y la geolocalización del censista, ante cualquier eventualidad."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Qué medidas o estrategias de Seguridad se implementarán en los Censos nacionales 2025?",
+    "respuesta": "a. A la ciudadanía: se ha previsto la verificación de los antecedentes policiales de los funcionarios censales, la identificación del funcionario censal con indumentaria institucional y credencial con código QR que permitirá verificar su identidad en la página web institucional del INEI. Además, el personal del INEI por protocolo no ingresará a las viviendas; la entrevista con el/la Informante Calificado/a se realizará desde la puerta de la vivienda.\n\nb. Al funcionario censal: contará con un seguro personal contra accidentes, será capacitado en protocolos para situaciones de emergencia y peligro. Asimismo, se implementará, por primera vez, un aplicativo informático INEI SOS que, en tiempo real, se podrá activar para informar a su equipo de trabajo y autoridades competentes que se encuentra en situación de peligro. Asimismo, se realizará el seguimiento al personal mediante la geolocalización de su recorrido en el sistema de Monitoreo a través de la tableta.\n\nc. Datos censales: la información que se recopile en campo se mantendrá en estricta reserva dando cumplimiento con lo establecido la Ley N° 13248 Ley de Censos en su artículo 7°, donde señala que “Tales datos e informaciones tienen carácter secreto; el Decreto Supremo Nº 043-2001-PCM, en el artículo 97°, así como la Ley N° 29733 Ley de Protección de Datos Personales. Los datos recopilados no podrán ser revelados en forma individualizada, aunque mediare orden judicial. La información censal sólo podrá ser divulgada o publicada en forma “innominada”; esto significa, que los datos recopilados, al ser publicados, no se pondrán nombre, apellido o cualquier elemento de distinción.\n\nAdemás, en el recojo de la información, las tabletas tienen control remoto para evitar accesos no autorizados, incluso en caso de pérdida o robo. Los datos que se transmiten de la tableta a un servidor o “Nube”, van a estar encriptados y resguardados en un espacio o lugar seguro."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Cualquier persona natural o jurídica tendrá acceso a la información que brinde mi hogar?",
+    "respuesta": "No. Nadie puede tener acceso a la información individual de la Cédula Censal, solo se darán a conocer datos innominados.\n\nLa información que se recopile en campo se mantendrá en estricta reserva dando cumplimiento con lo establecido la Ley N° 13248 Ley de Censos en su artículo 7°; el Decreto Supremo Nº 043-2001-PCM, en el artículo 97°, así como la Ley N° 29733 Ley de Protección de Datos Personales."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Van a publicar mi nombre o el de mi familia en los resultados del censo?",
+    "respuesta": "No. Los datos censales nunca se publican con nombres, apellidos, direcciones exactas ni ningún dato que permita identificar a personas o familias específicas. Su identidad y la de su familia están protegidas por ley.\n\nLa información que se recopile en campo se mantendrá en estricta reserva dando cumplimiento con lo establecido la Ley N° 13248 Ley de Censos en su artículo 7°; el Decreto Supremo Nº 043-2001-PCM, en el artículo 97°, así como la Ley N° 29733 Ley de Protección de Datos Personales."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Mis datos dados al Censista estarán protegidos?",
+    "respuesta": "Absolutamente SI.\n\nLa información que se recopile en campo se mantendrá en estricta reserva dando cumplimiento con lo establecido la Ley N° 13248 Ley de Censos en su artículo 7°; el Decreto Supremo Nº 043-2001-PCM, en el artículo 97°, así como la Ley N° 29733 Ley de Protección de Datos Personales."
+  },
+  {
+    "tema": "ACERCA DE LOS CENSOS NACIONALES 2025",
+    "pregunta": "¿Los datos de los Censos Nacionales 2025 recopilados estarán protegidos?",
+    "respuesta": "Todos los datos e información que se recopile tienen carácter secreto, solo se divulgarán con resultados estadísticos, en forma innominada como lo establece la Ley N° 13248 Ley de Censos en su artículo 7°, y el Decreto Supremo Nº 043-2001-PCM, en el artículo 97°, así como la Ley N° 29733 Ley de Protección de Datos Personales."
+  },
+  {
+    "tema": "PRINCIPALES DEFINICIONES BÁSICAS",
+    "pregunta": "¿Qué es un Censo de Derecho o de Jure?",
+    "respuesta": "En un Censo de Derecho o de Jure las personas serán censadas en sus viviendas o lugares donde viven permanente o habitualmente (residencia habitual), incluyendo aquellas personas que se encuentran temporalmente ausentes durante el periodo del Censo; siempre que esta ausencia no exceda los seis (6) meses de forma ininterrumpida."
+  },
+  {
+    "tema": "PRINCIPALES DEFINICIONES BÁSICAS",
+    "pregunta": "¿Qué se entiende por Residencia Habitual?",
+    "respuesta": "Es el lugar donde una persona ha vivido permanentemente la mayor parte de los últimos doce (12) meses (al menos los últimos 6 meses y un (1) día) o que, teniendo menos tiempo, tiene la intención de seguir viviendo permanentemente, es decir, es el lugar donde tiene ánimo de permanencia."
+  },
+  {
+    "tema": "PRINCIPALES DEFINICIONES BÁSICAS",
+    "pregunta": "¿Quién es un residente habitual?",
+    "respuesta": "Es la persona que será censada en su RESIDENCIA HABITUAL, es decir en el lugar donde vive permanentemente o tiene ánimo de permanencia, es decir, la intención de seguir viviendo allí.\n\nTambién es Residente Habitual aquella persona que se encuentra ausente en la vivienda por motivos de estudio, trabajo, salud, turismo, entre otros, siempre que esta ausencia no exceda los seis (6) meses."
+  },
+  {
+    "tema": "PRINCIPALES DEFINICIONES BÁSICAS",
+    "pregunta": "¿A quiénes no se le considera residente habitual?",
+    "respuesta": "No es un residente se considera residente habitual la persona que está de visita en la vivienda y vive en otra vivienda, al personal diplomático extranjero y sus familias, así como al trabajador del hogar que no duerme en la vivienda porque reside en otra vivienda, entre otros casos."
+  },
+  {
+    "tema": "PRINCIPALES DEFINICIONES BÁSICAS",
+    "pregunta": "¿Qué es una Vivienda?",
+    "respuesta": "Es una edificación o unidad de una edificación independiente, la cual ha sido construida, adaptada o convertida para ser habitada por una o más personas en forma permanente o temporal.\n\nDebe tener acceso directo e independiente desde una vía de acceso público (avenida, calle, jirón, pasaje, carretera u otros) o desde espacios de uso común para la circulación, tales como: pasillos, patios o escaleras que llegan a la"
+  },
+  {
+    "tema": "PRINCIPALES DEFINICIONES BÁSICAS",
+    "pregunta": "¿Qué es una Vivienda Particular?",
+    "respuesta": "Es una edificación o unidad de una edificación independiente, la cual ha sido construida, adaptada o convertida para ser habitada por una o más personas con vínculo consanguíneo o sin él, quienes viven bajo normas de convivencia familiar. Puede albergar uno (1) o más hogares."
+  },
+  {
+    "tema": "PRINCIPALES DEFINICIONES BÁSICAS",
+    "pregunta": "¿Qué es una Vivienda Colectiva?",
+    "respuesta": "Es aquella destinada para ser habitada por personas usualmente sin vínculos familiares, sujetas a normas administrativas y que hacen vida en común por razones de estudio, salud, religión, trabajo, turismo, entre otros."
+  },
+  {
+    "tema": "PRINCIPALES DEFINICIONES BÁSICAS",
+    "pregunta": "¿Qué es un Hogar?",
+    "respuesta": "Es la persona o conjunto de personas, sean parientes o no, que ocupan en su totalidad o en parte una vivienda; comparten al menos las comidas principales y/o atienden en común otras necesidades básicas, con cargo a un presupuesto común, es decir, que comen de una “misma olla”.\n\nEn una vivienda, pueden existir más de un grupo de personas que comen de una misma olla, donde cada grupo es un hogar."
+  },
+  {
+    "tema": "PRINCIPALES DEFINICIONES BÁSICAS",
+    "pregunta": "¿Qué se entiende por Comunidades Nativas?",
+    "respuesta": "Tienen origen en los grupos tribales de la Selva y Ceja de Selva, y están constituidas por conjuntos de familias vinculadas por los siguientes elementos principales: idioma o dialecto, características culturales y sociales, tenencia y usufructo común y permanente de un mismo territorio, con asentamiento nucleado o disperso (Decreto Ley Nº 22175 Ley de Comunidades Nativas y de Desarrollo Agrario de la Selva y Ceja de Selva. Art 8°)."
+  },
+  {
+    "tema": "PRINCIPALES DEFINICIONES BÁSICAS",
+    "pregunta": "¿Qué se entiende por Comunidades Campesinas?",
+    "respuesta": "Son organizaciones de interés público, con existencia legal y personería jurídica, integradas por familias que habitan y controlan determinados territorios, ligadas por vínculos ancestrales, sociales, económicos y culturales, expresados en la propiedad comunal de la tierra, el trabajo comunal, la ayuda mutua, el gobierno democrático y el desarrollo de actividades multisectoriales cuyos fines se orientan a la realización plena de sus miembros y del país (Ley Nº 24656 Ley General de Comunidades Campesinas. Art. 2)."
+  },
+  {
+    "tema": "PRINCIPALES DEFINICIONES BÁSICAS",
+    "pregunta": "¿Quién es el Presidente/a, Jefe/a o Apu de la Comunidad?",
+    "respuesta": "Es la máxima autoridad comunal, elegida por los propios miembros de las comunidades indígenas (nativas y campesinas) de acuerdo con sus normas, usos y costumbres.\n\nRepresenta oficialmente a la comunidad ante entidades externas, dirige las asambleas comunales, coordina el trabajo colectivo y toma decisiones importantes junto con otros líderes y la población comunal. Además, es quien brinda la información sobre la comunidad durante el Censo."
+  },
+  {
+    "tema": "PRINCIPALES DEFINICIONES BÁSICAS",
+    "pregunta": "¿Qué se entiende por pueblo indígena u originario?",
+    "respuesta": "Según el Reglamento de la Ley N°29785, Ley de Derecho a la Consulta Previa a los Pueblos Indígenas u Originarios, reconocida en el Convenio Nº 169 de la Organización Internacional del Trabajo (OIT), artículo 3, literal K, se tiene la siguiente definición:\n\nPueblo que desciende de poblaciones que habitaban en el país en la época de la colonización y que, cualquiera que sea su situación jurídica, conserven sus propias instituciones sociales, económicas, culturales y políticas, o parte de ellas; y que, al mismo tiempo, se autoreconozcan como tal. Los criterios establecidos en el artículo 7° de la Ley deben ser interpretados en el marco de lo señalado en el artículo 1 del convenio Nº 169 de la OIT.\n\nLa población que vive organizada en comunidades campesinas y comunidades nativas podrá ser identificada como pueblos indígenas, o parte de ellos, conforme a dichos criterios. Las denominaciones empleadas para designar a los pueblos indígenas no alteran su naturaleza, ni sus derechos colectivos."
+  },
+  {
+    "tema": "PRINCIPALES DEFINICIONES BÁSICAS",
+    "pregunta": "¿Qué se entiende por lengua indígena u originaria?",
+    "respuesta": "Se entiende por lenguas indígenas u originarias del Perú todas aquellas que son anteriores a la difusión del idioma castellano o español y que se preservan y emplean en el ámbito del territorio nacional."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Qué es la Cédula Censal?",
+    "respuesta": "Es el documento más importante en la Operación de Campo de los Censos Nacionales. La Cédula o cuestionario censal contiene las preguntas a formular a los Informantes calificados y sirve para registrar en forma ordenada y preclasificada, cada una de las respuestas que otorguen los Informantes calificados al Censista. Es decir, es el instrumento principal que permite obtener datos sobre la población de un país o región en un momento determinado."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Cuántas cédulas o cuestionarios se utilizarán en los Censos Nacionales 2025?",
+    "respuesta": "Se utilizarán dos (2) cédulas o cuestionarios censales, las mismas que se aplicarán para censar:\n a. A las viviendas y la población (residentes habituales). Incluye a los residentes habituales de viviendas colectivas y a las personas sin vivienda.\n b. A las Comunidades Indígenas (Nativas y Campesinas)."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Cuántas preguntas tiene la Cédula Censal de Población y Vivienda?",
+    "respuesta": "La Cédula Censal de Población y Vivienda tiene 67 preguntas distribuidas en cinco (5) secciones."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Qué se investigará en la Cédula Censal de Población y Vivienda?",
+    "respuesta": "La Cédula Censal de Población y Vivienda se divide en cinco (5) secciones y en cada una de ellas se investigará:\n\nSección I: Localización Censal, Condición de Ocupación y Número de Hogares de la Vivienda\nIncluye campos sobre la ubicación geográfica, ubicación censal y dirección de la vivienda, así como preguntas sobre el tipo de vivienda, la condición de ocupación y el número de hogares que alberga.\n\nSección II: Características y Servicios de la Vivienda\nInvestiga sobre las características de los materiales de construcción predominante de la vivienda, la cantidad de habitaciones que tiene y los servicios básicos de agua, desagüe, energía eléctrica con las que cuenta.\n\nSección III: Características del Hogar\nRecopila datos sobre el régimen de tenencia de la vivienda, el tipo de energía o combustible utilizado para cocinar, la tenencia de equipamiento y Tics, la eliminación de residuos sólidos y la migración internacional de algún miembro del hogar.\n\nSección IV: Personas que Conforman el Hogar (Vivienda Particular)\nRegistra la relación de residentes habituales del hogar. Incluye las preguntas sobre relación de parentesco con el/la Responsable del Hogar, sexo y edad.\n\nSección V: Características de la Población\nEsta sección se investiga las características sociodemográficas y económicas de los/las residentes habituales del hogar: fecha de nacimiento, nivel educativo, migración, afiliación a algún seguro de salud, discapacidad, identidad, identificación étnica, idiomas o lenguas materna aprendidas en la niñez, empleo, ocupación, actividad económica, fecundidad y estado civil."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Qué preguntas me harán sobre mi Vivienda?",
+    "respuesta": "Serán nueve (9) preguntas:\n\nPregunta 1: En la vivienda, el material de construcción predominante en las paredes exteriores es:\nBusca caracterizar a las viviendas según el tipo de material de construcción predominante de las paredes exteriores y conocer si son precarias o inadecuadas para vivir en estas.\n\nPregunta 2: En la vivienda, el material de construcción predominante en los techos es:\nEl objetivo es caracterizar a las viviendas según el tipo de material de construcción predominante de los techos y conocer si son precarias o no aptas para vivir en ellas.\n\nPregunta 3: En la vivienda, el material de construcción predominante en los pisos es:\nBusca caracterizar a las viviendas según el tipo de material de construcción predominante de los pisos y conocer si son precarias o inadecuadas para vivir en estas.\n\nPregunta 4: ¿Cuántas habitaciones en total tiene la vivienda, sin contar el baño, la cocina, lavandería, los pasadizos ni el garaje?\nEl objetivo es recopilar información acerca del número total de habitaciones utilizadas por el hogar u hogares que ocupan la vivienda para conocer el nivel de hacinamiento existente.\n\nPregunta 5: El agua que utilizan en la vivienda, procede principalmente de:\nEn esta pregunta, se quiere conocer el principal tipo de procedencia del agua de la que se abastecen las viviendas e identificar las necesidades de cobertura de una red pública de agua y de un abastecimiento de agua con calidad.\n\nPregunta 6: ¿Cuánto tiempo demoran en ir, recoger agua y volver a la vivienda?\nSe busca conocer el tiempo que demoran los residentes de las viviendas en recoger agua, cuando estas no cuentan con el servicio de agua por red pública, lo que afecta el uso del tiempo, el cual podría estar siendo utilizado para el desarrollo de otras actividades personales o familiares.\n\nPregunta 7: La vivienda ¿tiene el servicio de agua todos los días de la semana?\nBusca conocer si la disponibilidad del agua que tienen las viviendas es diaria cuando esta proviene de una red pública.\n\nPregunta 8: El baño o servicio higiénico que tiene la vivienda, está conectado a:\nEl objetivo es conocer si las viviendas disponen o no de un baño o servicio higiénico, así como la ubicación y el tipo de conexión con el que cuenta para la eliminación de las excretas, que permitirá conocer la calidad de vida de la población y si es un factor de riesgo para la salud de las personas y la contaminación del entorno.\n\nPregunta 9: La energía eléctrica utilizada en la vivienda proviene principalmente de:\nSe busca identificar la fuente principal de abastecimiento de energía eléctrica que utiliza la vivienda; conocer las necesidades de cobertura de red pública, así como el uso de otras fuentes utilizadas para sustituirla."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Qué preguntas me harán sobre mi Hogar?",
+    "respuesta": "Serán seis (6) preguntas:\n\nPregunta 1: La vivienda que ocupa su hogar es:\nEl objetivo es conocer el tipo de propiedad que tiene el hogar con relación a la vivienda que ocupa; así como identificar a la población con necesidad de vivienda propia que les ofrezca seguridad jurídica, bienestar y calidad de vida.\n\nPregunta 2: ¿El baño o servicio higiénico es de uso exclusivo del hogar?\nEn esta pregunta se quiere conocer el tipo de uso que tiene el hogar con relación al baño o servicio higiénico para identificar las carencias sanitarias y de privacidad de la población.\n\nPregunta 3: En su hogar, la energía o combustible que utilizan para cocinar los alimentos es:\nSe busca caracterizar a los hogares según el o los tipos de combustible que utilizan para la preparación de sus alimentos e identificar condiciones que pueden afectar la salubridad de la población.\n\nPregunta 4: Su hogar tiene:\nEl objetivo es conocer la tenencia de equipos y servicios tecnológicos de comunicación con los que cuenta el hogar, que permita identificar necesidades de aquellos bienes que brinden confort y calidad de vida.\n\nPregunta 5: En su hogar, ¿Cómo desechan la basura o residuos sólidos?\nPermite identificar la forma en que los hogares gestionan la eliminación de basura o residuos sólidos, puesto que tiene implicancias importantes para la salud pública y la protección del medio ambiente.\n\nPregunta 6: En los últimos 5 años, desde (….) del año 2020 a la fecha, ¿Alguna persona que era miembro de este hogar, se fue a vivir permanentemente a otro país?\nSe busca conocer el total de personas que pertenecían al hogar, pero que en la actualidad viven de manera permanente en el extranjero, datos que son importantes para el seguimiento de la emigración de los connacionales.\n\nAdemás, se formularán dos (2) preguntas más al hogar:\n\nPregunta 1: ¿Cuántas personas viven permanentemente en este hogar, estén o no presente en este momento?\nNo olvide considerar a los recién nacidos/as y ancianos/as y a las personas que recién han llegado a vivir permanentemente aquí.\nPermite conocer el total de personas que conforman el hogar, hombres y mujeres.\n\nPregunta 2: ¿Cuáles son los nombres y apellidos de cada una de las personas que viven permanentemente en este hogar?\nSirve para determinar la composición y estructura de la población por sexo y edad, así como la estructura familiar según la relación de parentesco. Asimismo, llevar un orden de registro de las personas para luego realizar el diligenciamiento de la Sección V: Características de la Población."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Qué preguntas se realizarán de las personas?",
+    "respuesta": "Serán 29 preguntas, que se formularán por cortes de edad:\n\nA TODAS LAS PERSONAS:\n\nPregunta 1: ¿Cuál es la relación de parentesco que tiene (……) con el/la Responsable del hogar?\nPermitirá conocer la forma de constitución de los hogares respecto a las diferentes uniones alrededor de los cónyuges con o sin hijos, caracterizando a los hogares en: unipersonal, nuclear, extendido y compuesto.\n\nPregunta 2: Sexo\nEsta variable censal es una de las más importantes e indispensable en cualquier estudio sociodemográfico, bien como sujeto de investigación o como variable de clasificación en la presentación de resultados censales.\n\nPregunta 3: Edad\nEsta variable censal es una de las más importantes e indispensable en cualquier estudio sociodemográfico, y como variable de corte o clasificación en la presentación de resultados censales.\n\nPregunta 4: ¿Cuál es la fecha de nacimiento de (……)?\nEl objetivo es obtener datos precisos sobre la distribución por edades de la población a fin de diseñar políticas públicas fundamentadas en sus características etarias.\n\nPregunta 5: Hace 5 años, desde (….) del año 2020, ¿en qué distrito vivía (….)?\nSirve para conocer los patrones de migración de la población dentro y fuera del país. Conocer el número y distribución espacial de la población según la migración reciente.\n\nPregunta 6: Cuando (…) nació ¿en qué distrito vivía su madre?\nEl objetivo es conocer los patrones de migración de la población dentro y fuera del país. Permite identificar a la población nacida en el exterior y residente en el país.\n\nPregunta 7: ¿(…) Se encuentra afiliado/a al:\nSirve para conocer la cobertura de servicios de salud a la que está afiliada la población; asimismo, conocer el tipo de seguro a la que se encuentra afiliada.\n\nPregunta 8: Las siguientes preguntas buscan conocer las dificultades permanentes que puede tener una persona para realizar sus actividades diarias. Por cada pregunta responda según las opciones que le voy a leer:\nIdentificar cuántas personas presentan algún tipo de discapacidad y dónde están ubicadas espacialmente, asimismo con marcos de viviendas que permita ejecutar estudios especializados.\n\nPregunta 9: ¿Cuál es el número de DNI (Documento Nacional de Identidad) de (…)?\nEl objetivo es conocer a la población que cuenta con un documento que le permita ejercer su derecho a la identidad y poder realizar cualquier trámite que necesite con la presentación del mismo.\n\nPARA PERSONAS DE 3 AÑOS Y MÁS DE EDAD:\n\nPregunta 10: Por sus antepasados, costumbres o tradiciones, (…….) se siente o considera:\nPermite conocer el número de personas que se reconocen como parte de un pueblo indígena, pueblo afroperuano u otro grupo étnico, para conocer la diversidad étnica del país.\n\nPregunta 11: Actualmente (…) ¿asiste a una institución educativa, instituto superior o universidad?\nIdentificar el volumen y características de la población que se encuentra asistiendo a un centro de enseñanza, como también de aquellos que no asisten.\n\nPregunta 12: La institución educativa, instituto superior o universidad a la que asiste (…), ¿está ubicada:\nPermite identificar los patrones de movilidad educativa, es decir, si los estudiantes se desplazan dentro o fuera de su distrito o país para acceder a la educación. Además, analizar la relación entre lugar de residencia y lugar de estudio.\n\nPregunta 13: ¿Cuál fue el último nivel y grado o año de estudios que aprobó (……)?\nEl objetivo es conocer el nivel educativo alcanzado por la población, lo que permite analizar el perfil educativo y los niveles de escolaridad en diferentes sectores de la sociedad. Esto contribuye a evaluar el acceso a la educación y detectar posibles brechas educativas.\n\nPregunta 14: (….), ¿Sabe leer y escribir?\nPermite identificar el nivel de alfabetización de la población peruana.\n\nPregunta 15: (….) En los últimos 3 meses, ¿ha utilizado:\nMedir el uso de dispositivos tecnológicos y del servicio de internet en los últimos tres meses para identificar las brechas digitales.\n\nPregunta 16: ¿Los idiomas o lenguas con los que aprendió a hablar (…….) en su niñez fueron:\nEl objetivo es identificar grupos etnolingüísticos al conocer con qué idiomas o lenguas la persona aprendió a hablar en su niñez, así como distinguir áreas geográficas monolingües y multilingües para la implementación de programa de educación bilingüe.\n\nPARA PERSONAS DE 5 AÑOS Y MÁS DE EDAD:\n\nPregunta 17: (……) La semana pasada ¿trabajó para obtener un ingreso, ganancia o ayudó en el negocio o empresa de su hogar?\nConocer la situación laboral de la población para determinar las necesidades de trabajo.\n\nPregunta 18: (….) la semana pasada:\nSirve para identificar las diferentes actividades económicas no formales o esporádicas realizadas por las personas.\n\nPregunta 19: (….) en las últimas cuatro semanas estuvo:\nEl objetivo es obtener información sobre el comportamiento de la población desocupada.\n\nPregunta 20: La semana pasada ¿Cuál es el trabajo u ocupación principal que desempeñó (….)?\nPermite conocer el tipo de trabajo que realiza la Población Económicamente Activa ocupada, el grado de especialización y calificación que han alcanzado los trabajadores, es decir, el nivel de desarrollo y la complejidad alcanzada en la división del trabajo.\n\nPregunta 21: La semana pasada ¿a qué actividad se dedicó el negocio, organismo o empresa en la que trabajó (……)?\nEl objetivo es identificar los sectores de la actividad económica dónde laboran los ocupados y con ello determinar los sectores económicos que generan el mayor número de empleos en el país y aquellos que son menos dinámicos.\n\nPregunta 22: La semana pasada (…….) en su centro de trabajo se desempeñó como:\nPermite recopilar información detallada sobre las funciones y roles que las personas desempeñan en sus lugares de trabajo.\n\nPregunta 23: La semana pasada, en el centro de trabajo de (…….) incluyéndolo/a, ¿Cuántas personas laboraron:\nSirve para determinar el volumen de la fuerza de trabajo según el tamaño del establecimiento.\n\nPregunta 24: El centro de trabajo de (…….), ¿está ubicado:\nEl objetivo es conocer los patrones de movilidad y desplazamiento por motivos laborales.\n\nSOLO PARA MUJERES DE 12 AÑOS Y MÁS DE EDAD:\n\nPregunta 25: ¿Cuántas hijas e hijos nacidos vivos en total ha tenido (…)?\nPermite recopilar información sobre la fecundidad de las mujeres para evaluar la tendencia de crecimiento de la población.\n\nPregunta 26: ¿Cuántas de las hijas e hijos de (……) están actualmente vivos?\nEl objetivo es recabar información sobre la supervivencia de los hijos nacidos vivos y conocer más de los patrones de mortalidad infantil.\n\nPregunta 27: ¿A qué edad tuvo (…….) su primera hija o hijo nacido vivo?\nSirve para recopilar información para conocer los patrones de fecundidad y evaluar los riesgos asociados con la salud materna e infantil en diferentes edades.\n\nPregunta 28: ¿En qué mes y año nació la última hija o hijo nacido vivo de (…….)?\nSe busca conocer las tendencias actuales de natalidad para planificar servicios de salud materno-infantil.\n\nSOLO PARA PERSONAS DE 12 AÑOS Y MÁS DE EDAD:\n\nPregunta 29: Actualmente, ¿Cuál es el estado civil o conyugal de (……)?\nEl objetivo es obtener información sobre el estado civil o conyugal de la persona. Esta información permitirá conocer la estructura familiar y social de la población."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Qué variables o preguntas nuevas se investigarán en la cédula censal de población?",
+    "respuesta": "Respecto al último operativo censal del año 2017, existen variables o preguntas nuevas de investigación, tales como:\n\n1. A nivel de vivienda:\n   - Georreferenciación de la vivienda.\n   - El tiempo de acarreo del agua, cuando esta no se distribuye por red pública en la vivienda.\n   - Fuentes de abastecimiento de la energía eléctrica utilizada en la vivienda.\n   - El uso exclusivo o compartido del suministro eléctrico en la vivienda.\n\n2. A nivel del hogar:\n   - Exclusividad del uso del servicio higiénico por el hogar.\n   - Forma de eliminación de los residuos sólidos o basura por el hogar.\n   - Datos demográficos y lugar de residencia de las personas del hogar que han emigrado al exterior de forma permanente.\n\n3. A nivel de población:\n   - Año de llegada al Perú, si el lugar de residencia de la madre al momento del nacimiento de la persona fue un país extranjero.\n   - Nivel de severidad de la discapacidad que puede presentar la persona.\n   - Número y tipo del documento de identidad de la población extranjera.\n   - Uso de las TIC en los últimos tres (3) meses (a partir de los tres años).\n   - Actividades de la población desocupada en las últimas cuatro semanas.\n   - Fecundidad: edad de la mujer cuando tuvo su primer hijo/a."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Cómo se censan los hijos y las hijas de padres separados?",
+    "respuesta": "El menor de edad con patria potestad compartida debe ser censado en el lugar donde vive la mayor parte del tiempo, es decir, donde es su residencia habitual.\nSi habitualmente pasa la misma cantidad de días en los dos hogares, debe incluirse solo en uno de ellos y no en el otro para evitar duplicaciones, de acuerdo a la declaración del/de la Informante/a calificado/a."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Cómo declaro si tengo doble nacionalidad o documentos de identidad de dos países?",
+    "respuesta": "En las preguntas sobre migración debe declarar según:\n1. El lugar donde vivía hace 5 años (residencia habitual).\n2. El lugar donde su madre vivía cuando usted nació.\nEsto independientemente de su nacionalidad.\nEn la pregunta sobre el número de DNI:\n- Si cuenta con este documento, debe brindar la información correspondiente.\n- Si no lo tiene, puede brindar su número de carné de extranjería o de Permiso Temporal de Permanencia (PTP)."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Qué preguntas me harán sobre mi origen?",
+    "respuesta": "La Cédula Censal incluye preguntas sobre:\n1. Lugar de nacimiento.\n2. Si nació fuera del Perú y es extranjero, se preguntará en qué año llegó a vivir al país.\n3. Identificación étnica (quechua, aimara, pueblos amazónicos, afroperuano, nikkei, tusan, blanco, mestizo, entre otros) para conocer la diversidad étnica y cultural del país."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Cómo declaro si estudié en el extranjero o tengo títulos no reconocidos en Perú?",
+    "respuesta": "Debe declarar el nivel educativo que alcanzó, aunque haya sido en el extranjero o no esté convalidado en Perú, haciendo la equivalencia respectiva.\nPor ejemplo, si tiene una carrera universitaria completa, debe declararla como tal."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Debo declarar ingresos informales o trabajos ocasionales que no están en planilla?",
+    "respuesta": "No se solicitará información sobre ingresos.\nSolamente se preguntará sobre la ocupación principal que desarrolle para obtener un ingreso.\nEsta información es confidencial y tiene fines exclusivamente estadísticos, no tributarios ni de fiscalización laboral."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Qué respondo si convivo, pero no estoy casado legalmente?",
+    "respuesta": "En las opciones de estado civil del censo está contemplada la 'unión libre' o 'convivencia' como una categoría específica.\nDebe declarar su situación real de convivencia, no su estado civil legal.\nEl censo busca conocer la realidad de las estructuras familiares actuales del país."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿En los Censos Nacionales 2025 se van a contar a mis mascotas / animales domésticos?",
+    "respuesta": "No se incluye un registro de mascotas o animales domésticos, ya que el censo se enfoca exclusivamente en contar personas y características de las viviendas y de los hogares.\nSin embargo, a partir del segundo semestre de 2025, el INEI recogerá esta información en la Encuesta Nacional de Hogares (ENAHO), que es una encuesta especializada diferente al censo."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Puedo tomar fotos de las preguntas mientras el Censista las hace?",
+    "respuesta": "Por la confidencialidad y protección de los datos, no está permitido fotografiar o grabar el proceso de llenado de la cédula censal.\nSi desea conocer las preguntas que se realizan en el censo, puede consultarlas completas en la página web www.censos2025.pe."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Qué pasa si no sé responder alguna pregunta sobre otro miembro de mi hogar?",
+    "respuesta": "Como Informante calificado, debe conocer la información de todos los miembros del hogar.\nSi tiene dudas sobre datos específicos de algún miembro (nivel educativo, trabajo, entre otros), puede contactar a esa persona por teléfono durante la entrevista o solicitar al Censista que regrese cuando tenga la información completa.\nEs importante que las respuestas sean precisas."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Puedo exigir leer la cédula censal antes y después de haber brindado mis datos?",
+    "respuesta": "Si desea conocer las preguntas de la cédula censal, puede visitar la página web www.censos2025.pe.\nAdemás, el/la Informante calificado/a puede hacer seguimiento al/la Censista conforme se diligencia el cuestionario electrónico."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Puedo pedirle al Censista que me muestre las preguntas que me hace y las respuestas que he dado?",
+    "respuesta": "Si desea conocer las preguntas de la cédula censal, puede visitar la página web www.censos2025.pe.\nAdemás, el/la Informante calificado/a puede hacer seguimiento al/la Censista conforme se diligencia el cuestionario electrónico."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Qué preguntas NO SE INVESTIGARÁN en los Censos Nacionales?",
+    "respuesta": "Los/las Censistas no preguntarán sobre:\n1. Situación tributaria.\n2. Datos bancarios o claves de cualquier tipo.\n3. Ingresos económicos.\nTodas las respuestas brindadas por el/la Informante calificado/a serán confidenciales."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Qué comunidades comprende el IV Censo de Comunidades Indígenas?",
+    "respuesta": "Se censarán:\n1. Comunidades Nativas de la Amazonía Peruana, asentadas mayoritariamente en la región de la Selva.\n2. Comunidades Campesinas, que generalmente se encuentran en la región de los Andes y en la Costa."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Quién brinda la información en una comunidad nativa o campesina?",
+    "respuesta": "La información será brindada por el/la Presidente/a y/o Jefe/a de la Comunidad o Apu."
+  },
+  {
+    "tema": "CÉDULA CENSAL",
+    "pregunta": "¿Qué se investigará en la Cédula Censal de Comunidades Indígenas?",
+    "respuesta": "La Cédula Censal de Comunidades Indígenas se divide en doce (12) secciones:\n\n1. Sección I: Localización, lugar de empadronamiento y tipo de Comunidad. Presenta información geográfica y censal sobre la localidad, el lugar donde se realizará el Censo, así como el tipo y nombre de la Comunidad.\n\n2. Sección II: Datos de la autoridad de la Comunidad. Incluye datos personales del/la Presidente/a, Jefe/a o Apu, años en el cargo, residencia y participación en proyectos comunales.\n\n3. Sección III: Características de la Comunidad. Idiomas o lenguas habladas, pueblos indígenas a los que pertenece, localidades que la conforman, sitios arqueológicos o lugares sagrados, y problemas sociales presentes.\n\n4. Sección IV: Organización de la Comunidad. Reconocimiento por organismos del Estado, inscripción en registros públicos, existencia y vigencia de la junta directiva, estatutos comunales, padrón comunal, autoridades tradicionales y afiliación a organizaciones representativas.\n\n5. Sección V: Situación de Tierras de la Comunidad. Título de propiedad de tierras comunales, georreferenciación del territorio, procesos de ampliación territorial, y conflictos por posesión de tierras o manejo de agua.\n\n6. Sección VI: Recursos Naturales, Equipamiento, Servicios, Infraestructura, Otros Servicios y Medios de Transporte. Recursos naturales disponibles, equipamiento, infraestructura, servicios de comunicación, medios de transporte y frecuencia de traslado.\n\n7. Sección VII: Organizaciones de Base y Programas Sociales. Existencia de organizaciones comunales (comités, clubes, rondas, etc.) y acceso a programas sociales.\n\n8. Sección VIII: Educación. Instituciones educativas en la Comunidad, niveles que brindan, idioma o lengua de enseñanza, características de docentes, disponibilidad de servicios básicos y casos de violencia.\n\n9. Sección IX: Salud y Medicina Tradicional. Disponibilidad de establecimientos de salud, sector al que pertenecen, servicios básicos, personal de salud, campañas, enfermedades comunes, mortalidad y prácticas ancestrales.\n\n10. Sección X: Características Económicas de la Comunidad. Actividades productivas, principales productos, problemas y asistencia técnica recibida.\n\n11. Sección XI: Migración de la Comunidad. Migraciones y retornos, causas de migración, familias con segunda residencia y pérdida de prácticas tradicionales.\n\n12. Sección XII: Datos del/de los Informante/s. Datos de las personas que brindaron la información censal."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Cuál será la modalidad de recolección de información en los censos nacionales 2025?",
+    "respuesta": "Se ejecutará un Censo Presencial, es decir, que los/las Censistas visitarán todas las viviendas del país y entrevistarán a un/una Informante calificado/a del hogar para diligenciar las preguntas de la Cédula Censal. También existirá una modalidad para la recolección de información que será el Censo en Línea (eCenso) o por internet, para los casos de ausencias u otros en las viviendas."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Cuál es el horario de trabajo del Censista?",
+    "respuesta": "El horario de visitas a las viviendas de la carga de trabajo diaria del Censista es flexible, cuyo objetivo es recopilar y completar la cobertura y los datos de las viviendas y de los residentes habituales que las ocupan."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Cuánto tiempo durará la entrevista?",
+    "respuesta": "En promedio la entrevista tiene una duración de 35 minutos aproximadamente."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Quién es el/la Informante calificado/a?",
+    "respuesta": "El/La Informante calificado/a será el/la Responsable del hogar, cónyuge o persona de 18 años y más de edad, los mismos que deben conocer la información a requerir de la vivienda y de los demás miembros del hogar. Es importante que conozca las preguntas de la Cédula censal para que pueda contar con los datos que le solicitarán y que puede revisar en la página web de los Censos Nacionales 2025: www.censos2025.pe."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Quién es el Responsable del hogar?",
+    "respuesta": "Es la persona a quien los demás miembros del hogar reconocen como tal y que vive permanentemente en la vivienda. Si no se puede determinar, debe tener en cuenta los siguientes criterios: que sea el sostén económico del hogar y/o el responsable de las decisiones en el hogar."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Qué tipo de información estoy obligado a brindar en los Censos Nacionales 2025?",
+    "respuesta": "La información que debe brindar es exclusivamente referida a las preguntas que figuran en la Cédula Censal, sobre vivienda, hogar y personas que residen habitualmente en el hogar."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Hay alguna multa o sanción si proporciono información incorrecta sin darme cuenta?",
+    "respuesta": "No existe sanción por errores involuntarios en la información proporcionada. La ley establece la obligación de participar y brindar información veraz según su conocimiento. Si después del censo se da cuenta de algún error, puede indicarlo y volver a coordinar con el Censista para la corrección o acercarse a la Oficina."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Qué sucede si me niego a contestar las preguntas del Censo?",
+    "respuesta": "Participar en el censo es obligatorio para todas las personas residentes habituales en el país (peruanos y extranjeros). Es un deber cívico que contribuye a la planificación nacional."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Hay una multa por no participar en el censo?",
+    "respuesta": "No hay multa alguna. No obstante, participar en el censo es obligatorio para todas las personas residentes habituales en el país (peruanos y extranjeros). Es un deber cívico que contribuye a la planificación nacional."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Qué documentos necesito para censarme?",
+    "respuesta": "No se requieren documentos específicos, pero es recomendable tener a mano el número de DNI de los miembros del hogar."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Por qué algunos vecinos dicen que les tomó 15 minutos y a mí me tomó más tiempo?",
+    "respuesta": "El tiempo de la entrevista varía según el número de personas en el hogar y si hay necesidad de aclarar algunas respuestas. En promedio una entrevista puede tomar 35 minutos. Por ello, es importante que el/la Informante calificado/a conozca previamente la Cédula censal y los datos de los miembros del hogar."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Puedo pedirle al/a la Censista que avance más rápido porque estoy apurado/a?",
+    "respuesta": "Es importante que el/la Censista complete todas las preguntas correctamente sin apresurarse, ya que la información debe ser precisa. Si tiene prisa, es mejor reprogramar la visita para un momento en que se pueda dedicar el tiempo necesario. Apresurarse puede llevar a errores en la información registrada."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "Trabajo todo el día, ¿Pueden venir en la noche?",
+    "respuesta": "Los/Las Censistas también trabajan los fines de semana. Si usted tiene disponibilidad los fines de semana o algún día que no trabaje, es recomendable que programe una cita específicamente para ese día, ya que le dará mayor flexibilidad de horarios. Puede coordinar esto directamente cuando el/la Censista visite su vivienda. Igualmente registraré su caso para comunicarlo al área operativa. Para ello, podría facilitarme su dirección completa, su DNI como persona que está realizando la consulta y un teléfono de contacto."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "Me mudé recientemente y no sé si debo censarme en esta nueva casa",
+    "respuesta": "Es importante que sea censado donde vive o reside actualmente. Si el/la Censista ya censó en la zona a la que se ha mudado, registraré su caso para coordinar con el área operativa. Para ello, podría facilitarme su dirección completa, su DNI como persona que está realizando la consulta y un teléfono de contacto."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "Mi familia ya fue censada pero no dieron mi nombre porque estaba de viaje y acabo de volver",
+    "respuesta": "Si usted es residente habitual de la vivienda censada y estaba ausente temporalmente por viaje, debió haber sido incluido en el censo. Coordinaremos con el área operativa para que el/la Censista regrese y complete su información. Para ello, podría facilitarme su dirección completa, su DNI como persona que está realizando la consulta y un teléfono de contacto."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "Mi vivienda tiene dos hogares, solo censaron uno",
+    "respuesta": "Todos los hogares que existan en una vivienda deben ser censados. Si el/la Censista que censó la vivienda aún se encuentra por la manzana, puede contactarlo para que complete la información. Reportaré su caso para comunicarlo al área operativa. Para ello, podría facilitarme su dirección completa, su DNI como persona que está realizando la consulta y un teléfono de contacto."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Qué hago si la etiqueta se despegó o se dañó después de que me censaron?",
+    "respuesta": "Si la etiqueta se despegó o dañó después de haber sido censada la vivienda, no es necesario reemplazarla. Lo importante es que su vivienda ya fue censada. Si otros Censistas pasan por su zona y preguntan, puede informarles que ya fue censado mencionando la fecha."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Qué pasa si mi vivienda tiene la etiqueta de vivienda censada pero nunca vino ningún Censista?",
+    "respuesta": "Es posible que haya ocurrido una omisión involuntaria por parte del/de la Censista. Reportaré su caso para comunicarlo al área operativa. Para ello, podría facilitarme su dirección completa, su DNI como persona que está realizando la consulta y un teléfono de contacto."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "No recibí comprobante de haber sido censado",
+    "respuesta": "En el censo no se entrega comprobante, pero el/la Censista debe haber colocado una etiqueta de “Vivienda Censada” en el frontis de su vivienda, en un lugar visible."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿El Censista puede usar mi celular o computadora para censarme?",
+    "respuesta": "No, el/la Censista cuenta con su propia tableta oficial del INEI con el aplicativo CENSOS2025 instalado para realizar la entrevista. No necesita usar ningún otro dispositivo móvil."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿El/La Censista puede llenar la cédula censal sin hacerme las preguntas directamente?",
+    "respuesta": "NO. El/La Censista debe hacerle todas las preguntas directamente al/a la Informante calificado/a y registrar las respuestas en tiempo real. Si un Censista intenta llenar la cédula sin realizar la entrevista completa, registraré su caso como una irregularidad que debe ser investigada por la supervisión de campo."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Al momento que el censista visite una vivienda, deben estar todos los miembros de la familia presentes?",
+    "respuesta": "NO, ya que el/la Informante calificado/a es la persona encargada de brindar la información de todos los miembros del hogar."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Solo se censarán a los peruanos o también a los extranjeros?",
+    "respuesta": "En los Censos Nacionales se recogerá información de todas las personas que vivan en el territorio nacional, tanto peruanos como extranjeros; en tanto cumplan con ser residentes habituales."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "Vivo en una zona rural alejada, ¿mi vivienda será censada?",
+    "respuesta": "El censo tiene cobertura nacional, lo que incluye las zonas rurales alejadas. Los/Las Censistas tienen rutas específicas para estas áreas y pueden tardar más tiempo, pero definitivamente llegará a su vivienda."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "Vivo en zona afectada por desastres, ¿será mi vivienda censada?",
+    "respuesta": "El INEI coordina con las autoridades locales para acceder a zonas afectadas. Si temporalmente no es posible el acceso, se reprogramará la visita cuando las condiciones lo permitan. Su seguridad y la del/de la Censista es prioritaria."
+  },
+  {
+    "tema": "CONSULTAS SOBRE LA ENTREVISTA",
+    "pregunta": "¿Cuáles son los componentes operativos de los censos nacionales 2025?",
+    "respuesta": "Los componentes que tendrán su propio personal, Censistas, para la recolección de información en los Censos Nacionales 2025 son los siguientes: a) Población y Vivienda, b) Viviendas Colectivas, c) Personas sin vivienda y d) Comunidades Indígenas."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "1. ¿Qué es el Censo en línea?",
+    "respuesta": "Es una modalidad de recolección de información digital complementaria que permite a un/a Residente Habitual de la vivienda censar a todos los miembros del hogar mediante una plataforma web, utilizando dispositivos electrónicos como computadoras, laptops, tabletas o smartphones con acceso a internet. Se utiliza cuando, después de varias visitas, los censistas no logran encontrar a los residentes habituales o por otros motivos."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "2. ¿Cuál es el objetivo del Censo en línea?",
+    "respuesta": "Servir como modalidad de recolección complementaria (Recuperación) al Censo presencial para obtener información de viviendas cuyos informantes estén ausentes tras varias visitas o que rechacen ser censados. El/la censista entregará un Código Único de Vivienda (CUV) mediante una Nota de Visita; sin este código no es posible autocensarse."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "3. ¿En qué casos se ejecutará el Censo en línea?",
+    "respuesta": "Se aplicará en los siguientes casos:\n1. Vivienda Ausente: Tras reiteradas visitas no se encuentra a los residentes habituales, pero se confirma que la vivienda está ocupada. Se deja el CUV mediante una Nota de Visita.\n2. Vivienda que no desea censarse (Rechazo): Tras varias visitas, los residentes se niegan a censarse. Se les entrega el CUV mediante una Nota de Visita.\n3. Vivienda que solicitó autocensarse: El informante calificado pide realizar el e-Censo voluntariamente. Se le entrega el CUV mediante una Nota de Visita."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "4. ¿Qué es el Código Único de Vivienda (CUV)?",
+    "respuesta": "Es un identificador de ocho caracteres (letras mayúsculas y/o números) que permite ubicar geográficamente la vivienda. Lo entrega el censista mediante una Nota de Visita. Si hay más de un hogar en la vivienda, todos usan el mismo CUV."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "5. ¿Qué es la Nota de Visita?",
+    "respuesta": "Es un documento oficial utilizado por el censista para invitar a los informantes calificados a autocensarse en caso de ausencia o rechazo. Contiene el CUV para acceder a la plataforma digital. Si en la vivienda hay más de un hogar, todos usan el mismo CUV."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "6. ¿Quién debe contestar el Censo en línea?",
+    "respuesta": "Debe responderlo un/a Informante Calificado/a elegido por el hogar, quien proporciona la información sobre la vivienda, el hogar o los hogares y los residentes habituales mediante el Cuestionario Electrónico."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "7. ¿Cualquier persona podrá acceder al Censo en línea?",
+    "respuesta": "Solo el informante calificado, siempre y cuando tenga acceso a internet y el CUV, podrá autocensar a todos los integrantes de su hogar o de los hogares que ocupen la vivienda."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "¿Qué herramientas debo tener para acceder al Censo en Línea?",
+    "respuesta": "El hogar o algún miembro del hogar debe contar con un dispositivo electrónico con acceso a internet tal como una computadora, laptop o celular."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "¿Por qué se solicita el DNI para responder el Censo en Línea?",
+    "respuesta": "El DNI se solicita para ingresar a la aplicación de Censo en Línea a efecto de corroborar que quien responde es una persona con este documento de identidad y mayor de 18 años. Una vez validado, se habilita el ingreso a la página del Censo en Línea."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "¿Cuánto tiempo lleva responder el Censo en Línea?",
+    "respuesta": "Se requieren alrededor de 35 minutos para censar la vivienda, el hogar y las personas."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "Se me perdió el Código Único de Vivienda (CUV) ¿Cómo puedo recuperarlo?",
+    "respuesta": "Puede contactar al/la censista que dejó la Nota de Visita. También puede proporcionar su dirección, DNI y un teléfono para que el área operativa verifique la información y le devuelva la llamada."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "El Código Único de Vivienda (CUV) que me dieron no funciona, ¿qué hago?",
+    "respuesta": "Debe facilitar su dirección, DNI y teléfono para derivar el caso al área de sistemas, quienes verificarán la información y le devolverán la llamada."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "Empecé el Censo en Línea, pero no pude terminarlo, ¿puedo continuarlo después?",
+    "respuesta": "Sí. El Censo en Línea puede completarse en diferentes momentos y las respuestas se guardan automáticamente."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "¿Se puede completar el Censo en Línea en diferentes momentos?",
+    "respuesta": "Sí. El Censo en Línea puede completarse en diferentes momentos y las respuestas se guardan automáticamente."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "Ya completé el e-Censo, pero no he recibido comprobante, ¿qué debo hacer?",
+    "respuesta": "Debe ingresar nuevamente a la plataforma para verificar si sus datos fueron registrados. Si no encuentra el comprobante, proporcione el CUV, dirección, DNI y teléfono para derivar su caso al área de sistemas."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "¿Puedo hacer el Censo en Línea desde el celular de otra persona?",
+    "respuesta": "Sí, es posible usar cualquier dispositivo móvil. Sin embargo, se recomienda hacerlo desde un dispositivo personal para proteger la privacidad y confidencialidad de la información."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "El Censo en Línea no me permite avanzar en ciertas preguntas, ¿qué hago?",
+    "respuesta": "Proporcione su CUV, nombre, DNI, dirección y teléfono para que el área de sistemas verifique su caso y le devuelva la llamada."
+  },
+  {
+    "tema": "CENSO EN LÍNEA (e-Censo)",
+    "pregunta": "¿Puedo modificar mis respuestas después de enviar el Censo en Línea?",
+    "respuesta": "No. Una vez finalizado y mostrada la pantalla de finalización, la información queda registrada de manera definitiva y no puede modificarse."
+  }
+]

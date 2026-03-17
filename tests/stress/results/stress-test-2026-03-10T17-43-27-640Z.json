@@ -1,0 +1,203 @@
+{
+  "root_group": {
+    "id": "d41d8cd98f00b204e9800998ecf8427e",
+    "groups": [],
+    "checks": [],
+    "name": "",
+    "path": ""
+  },
+  "options": {
+    "summaryTrendStats": [
+      "avg",
+      "min",
+      "med",
+      "max",
+      "p(90)",
+      "p(95)"
+    ],
+    "summaryTimeUnit": "",
+    "noColor": false
+  },
+  "state": {
+    "isStdOutTTY": true,
+    "isStdErrTTY": true,
+    "testRunDurationMs": 15962.5444
+  },
+  "metrics": {
+    "http_req_duration": {
+      "values": {
+        "avg": 1.8849500000000001,
+        "min": 1.5116,
+        "med": 1.8849500000000001,
+        "max": 2.2583,
+        "p(90)": 2.18363,
+        "p(95)": 2.220965
+      },
+      "thresholds": {
+        "p(95)<2000": {
+          "ok": true
+        },
+        "p(99)<5000": {
+          "ok": true
+        }
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "http_req_duration{expected_response:true}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 2.220965,
+        "avg": 1.8849500000000001,
+        "min": 1.5116,
+        "med": 1.8849500000000001,
+        "max": 2.2583,
+        "p(90)": 2.18363
+      }
+    },
+    "http_req_failed": {
+      "thresholds": {
+        "rate<0.01": {
+          "ok": true
+        }
+      },
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 2
+      }
+    },
+    "data_received": {
+      "type": "counter",
+      "contains": "data",
+      "values": {
+        "count": 2199,
+        "rate": 137.75999269890832
+      }
+    },
+    "http_req_waiting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 1.459,
+        "avg": 1.0314999999999999,
+        "min": 0.5565,
+        "med": 1.0314999999999999,
+        "max": 1.5065,
+        "p(90)": 1.4115
+      }
+    },
+    "http_req_receiving": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 0.85345,
+        "min": 0.7518,
+        "med": 0.85345,
+        "max": 0.9551,
+        "p(90)": 0.93477,
+        "p(95)": 0.944935
+      }
+    },
+    "http_req_blocked": {
+      "contains": "time",
+      "values": {
+        "avg": 0.2557,
+        "min": 0,
+        "med": 0.2557,
+        "max": 0.5114,
+        "p(90)": 0.46026,
+        "p(95)": 0.48582999999999993
+      },
+      "type": "trend"
+    },
+    "data_sent": {
+      "type": "counter",
+      "contains": "data",
+      "values": {
+        "count": 204,
+        "rate": 12.779917467292996
+      }
+    },
+    "http_reqs": {
+      "values": {
+        "count": 2,
+        "rate": 0.1252933085028725
+      },
+      "type": "counter",
+      "contains": "default"
+    },
+    "http_req_tls_handshaking": {
+      "contains": "time",
+      "values": {
+        "max": 0,
+        "p(90)": 0,
+        "p(95)": 0,
+        "avg": 0,
+        "min": 0,
+        "med": 0
+      },
+      "type": "trend"
+    },
+    "http_req_connecting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 0.5114,
+        "p(90)": 0.46026,
+        "p(95)": 0.48582999999999993,
+        "avg": 0.2557,
+        "min": 0,
+        "med": 0.2557
+      }
+    },
+    "vus_max": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "min": 50,
+        "max": 50,
+        "value": 50
+      }
+    },
+    "http_req_sending": {
+      "values": {
+        "avg": 0,
+        "min": 0,
+        "med": 0,
+        "max": 0,
+        "p(90)": 0,
+        "p(95)": 0
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "vus": {
+      "values": {
+        "max": 0,
+        "value": 0,
+        "min": 0
+      },
+      "type": "gauge",
+      "contains": "default"
+    },
+    "errors": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 0
+      },
+      "thresholds": {
+        "rate<0.05": {
+          "ok": true
+        }
+      }
+    }
+  },
+  "setup_data": {}
+}

@@ -1,0 +1,115 @@
+PS C:\Users\Diego Iwasaki\Documents\Maravia\viva-api\tests\stress> k6 run --out json=resultados.json test-bot.js
+
+         /\      Grafana   /‾‾/
+    /\  /  \     |\  __   /  /
+   /  \/    \    | |/ /  /   ‾‾\
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: test-bot.js
+        output: json (resultados.json)
+
+     scenarios: (100.00%) 1 scenario, 100 max VUs, 15m30s max duration (incl. graceful stop):
+              * funnel_inmobiliaria: Up to 100 looping VUs for 15m0s over 7 stages (gracefulRampDown: 30s, gracefulStop: 30s)       
+
+INFO[0000] Servidor de stress test reseteado             source=console
+INFO[0911]                                               source=console
+INFO[0911] ╔══════════════════════════════════════════════════════════════╗  source=console
+INFO[0911] ║          RESULTADOS DEL SERVIDOR (procesamiento real)       ║  source=console
+INFO[0911] ╠══════════════════════════════════════════════════════════════╣  source=console
+INFO[0911] ║                                                              ║  source=console
+INFO[0911] ║  RESUMEN GENERAL                                            ║  source=console
+INFO[0911] ║    Requests totales:    17796               source=console
+INFO[0911] ║    Exitosos:            15682               source=console
+INFO[0911] ║    Errores:             0 (0.00%)           source=console
+INFO[0911] ║    Req/s:               19.54               source=console
+INFO[0911] ║                                                              ║  source=console
+INFO[0911] ║  LATENCIA DE INFERENCIA (tiempo total de respuesta)          ║  source=console
+INFO[0911] ║    avg: 16656ms | p50: 1128ms | p95: 113069ms | p99: 124737ms  source=console
+INFO[0911] ║                                                              ║  source=console
+INFO[0911] ║  RENDIMIENTO DE TOKENS                                      ║  source=console
+INFO[0911] ║    Tokens prompt:       12197860            source=console
+INFO[0911] ║    Tokens completion:   699530              source=console
+INFO[0911] ║    Tokens/segundo avg:  100                 source=console
+INFO[0911] ║                                                              ║  source=console
+INFO[0911] ║  ESTABILIDAD DE CONCURRENCIA                                ║  source=console
+INFO[0911] ║    Max concurrentes:    2751                source=console
+INFO[0911] ║    Evaluación:          sin datos suficientes  source=console
+INFO[0911] ║                                                              ║  source=console
+INFO[0911] ║  LATENCIA DE DEPENDENCIAS                                   ║  source=console
+INFO[0911] ║    BD:     avg 15386ms | p95 97078ms | p99 104307ms  source=console
+INFO[0911] ║    LLM:    avg 433ms | p95 648ms            source=console
+INFO[0911] ║    WA:     avg 2295ms | p95 13397ms         source=console
+INFO[0911] ║                                                              ║  source=console
+INFO[0911] ║  FUNNEL CONVERSACIONAL (Vera)                               ║  source=console
+INFO[0911] ║    saludo: 2742 msgs | avg 299ms | p95 354ms  source=console
+INFO[0911] ║    nombre: 2796 msgs | avg 397ms | p95 471ms  source=console
+INFO[0911] ║    proposito: 2759 msgs | avg 448ms | p95 530ms  source=console
+INFO[0911] ║    distrito: 2737 msgs | avg 599ms | p95 708ms  source=console
+INFO[0911] ║    autorizacion: 2688 msgs | avg 500ms | p95 591ms  source=console
+INFO[0911] ║    completado: 2539 msgs | avg 351ms | p95 414ms  source=console
+INFO[0911] ║                                                              ║  source=console
+INFO[0911] ║  Conversaciones activas: 2742               source=console
+INFO[0911] ║  Mensajes WA simulados:  16261              source=console
+INFO[0911] ╚══════════════════════════════════════════════════════════════╝  source=console
+      █ 1. Saludo
+
+        ✓ saludo: status 200
+        ✓ saludo: received
+
+      █ 2. Nombre
+
+        ✓ nombre: status 200
+        ✓ nombre: received
+
+      █ 3. Propósito
+
+        ✓ proposito: status 200
+        ✓ proposito: received
+
+      █ 4. Distrito
+
+        ✓ distrito: status 200
+        ✓ distrito: received
+
+      █ 5. Autorización
+
+        ✓ autorizacion: status 200
+        ✓ autorizacion: received
+
+      █ 6. Cierre
+
+        ✓ completado: status 200
+        ✓ completado: received
+
+      checks.........................: 100.00% ✓ 35592     ✗ 0
+      conversaciones_completadas.....: 2966    3.256069/s
+      data_received..................: 5.3 MB  5.8 kB/s
+      data_sent......................: 5.5 MB  6.0 kB/s
+    ✓ errors.........................: 0.00%   ✓ 0         ✗ 17796
+      group_duration.................: avg=82µs     min=0s     med=0s     max=3.7ms   p(90)=139.65µs p(95)=625.52µs
+      http_req_blocked...............: avg=761ns    min=0s     med=0s     max=3.06ms  p(90)=0s       p(95)=0s
+      http_req_connecting............: avg=316ns    min=0s     med=0s     max=512.2µs p(90)=0s       p(95)=0s
+    ✓ http_req_duration..............: avg=67.7µs   min=0s     med=0s     max=18.43ms p(90)=128.03µs p(95)=234.23µs
+        { expected_response:true }...: avg=67.7µs   min=0s     med=0s     max=18.43ms p(90)=128.03µs p(95)=234.23µs
+    ✓ http_req_failed................: 0.00%   ✓ 0         ✗ 17798
+      http_req_receiving.............: avg=13µs     min=0s     med=0s     max=1.11ms  p(90)=0s       p(95)=0s
+      http_req_sending...............: avg=178ns    min=0s     med=0s     max=691.2µs p(90)=0s       p(95)=0s
+      http_req_tls_handshaking.......: avg=0s       min=0s     med=0s     max=0s      p(90)=0s       p(95)=0s
+      http_req_waiting...............: avg=54.52µs  min=0s     med=0s     max=17.62ms p(90)=125.7µs  p(95)=186µs
+      http_reqs......................: 17798   19.538609/s
+      iteration_duration.............: avg=15.44s   min=10.02s med=15.44s max=20.44s  p(90)=17.57s   p(95)=18.11s
+      iterations.....................: 2966    3.256069/s
+      mensajes_totales_enviados......: 17796   19.536413/s
+      paso_autorizacion_duration.....: avg=0.061999 min=0      med=0      max=2.0235  p(90)=0.12545  p(95)=0.198775
+      paso_completado_duration.......: avg=0.061947 min=0      med=0      max=1.727   p(90)=0.1132   p(95)=0.180975
+      paso_distrito_duration.........: avg=0.056677 min=0      med=0      max=2.7908  p(90)=0.11555  p(95)=0.179375
+      paso_nombre_duration...........: avg=0.061621 min=0      med=0      max=2.0607  p(90)=0.11475  p(95)=0.1748
+      paso_proposito_duration........: avg=0.06566  min=0      med=0      max=1.9976  p(90)=0.1265   p(95)=0.195125
+      paso_saludo_duration...........: avg=0.091945 min=0      med=0      max=2.2716  p(90)=0.1591   p(95)=0.667675
+      vus............................: 0       min=0       max=100
+
+running (15m10.9s), 000/100 VUs, 2966 complete and 0 interrupted iterations
+funnel_inmobiliaria ✓ [======================================] 000/100 VUs  15m0s

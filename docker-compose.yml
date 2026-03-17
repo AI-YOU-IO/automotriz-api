@@ -1,0 +1,54 @@
+services:
+  # API REST Node.js - Bot Bitel Portabilidad
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 3020:3020
+    environment:
+      NODE_ENV: production
+      PORT: 3020
+      DB_HOST: mysql
+      DB_USER: user_bot_bitel
+      DB_PASSWORD: hcXy7&D121snUz
+      DB_NAME: db_bot_bitel
+      DB_PORT: 3306
+      QDRANT_URL: http://qdrant:6333
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      NUM_LAST_INPUTS_MESSAGES: 10
+      MAX_COUNT_VALUE: 5
+      PATH_LOG_DIR: ./logs
+      USER_API_KEY: 4798d8360969047c6072cb160fad77829288f528f6aa41d35c48134d0a30772a
+      DEV_API_KEY: 697d76055d2f65eef40059b7de6b076fb826b479a6ff4822ba62ba8fdec6e73a
+    depends_on:
+      - mysql
+      - qdrant
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    restart: always
+    ports:
+      - 6333:6333
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 8#KFKoAIziBitel
+      MYSQL_DATABASE: db_bot_bitel
+      MYSQL_USER: user_bot_bitel
+      MYSQL_PASSWORD: hcXy7&D121snUz
+      TZ: America/Lima
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  mysql_data:
+  qdrant_data:

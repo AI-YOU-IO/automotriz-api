@@ -1,0 +1,48 @@
+{
+  "name": "chatbot_ai_core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "swagger": "node src/config/swagger.js",
+    "dev": "npm run swagger && nodemon src/server.js",
+    "webhook": "node webhook/ws_trigger_baileys.js",
+    "send-ws": "node webhook/ws_send_whatsapp.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1007.0",
+    "@qdrant/js-client-rest": "^1.15.0",
+    "axios": "^1.11.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "exceljs": "^4.4.0",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "mysql2": "^3.14.2",
+    "node-cron": "^4.2.1",
+    "nodemon": "^3.1.11",
+    "openai": "^5.10.1",
+    "pg": "^8.18.0",
+    "pg-hstore": "^2.3.4",
+    "redis": "^5.10.0",
+    "sequelize": "^6.37.7",
+    "sharp": "^0.34.5",
+    "winston": "^3.17.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "install": "^0.13.0",
+    "npm": "^11.8.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
