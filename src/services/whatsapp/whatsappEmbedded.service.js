@@ -48,7 +48,7 @@ class WhatsappEmbeddedService {
    * Procesa el token del Embedded Signup
    * Si es flujo Coexistence, primero intercambia el código por access_token
    */
-  async procesarToken(codeOrToken, eventType = 'FINISH', idPlataforma = 2, idEmpresa, usuarioId = null) {
+  async procesarToken(codeOrToken, eventType = 'FINISH', idPlataforma = 7, idEmpresa, usuarioId = null) {
     logger.info(`[WhatsappEmbedded] Procesando token para empresa ${idEmpresa}, eventType: ${eventType}`);
 
     let accessToken = codeOrToken;
@@ -72,7 +72,7 @@ class WhatsappEmbeddedService {
   /**
    * Obtiene la configuración del Embedded Signup
    */
-  async obtenerConfiguracion(idPlataforma = 1, idEmpresa) {
+  async obtenerConfiguracion(idPlataforma = 7, idEmpresa) {
     logger.info(`[WhatsappEmbedded] Obteniendo configuración para empresa ${idEmpresa}`);
 
     return maraviaApi.request('ws_whatsapp_embedded.php', {
@@ -85,7 +85,7 @@ class WhatsappEmbeddedService {
   /**
    * Desconecta el Embedded Signup
    */
-  async desconectar(idPlataforma = 1, idEmpresa, usuarioId) {
+  async desconectar(idPlataforma = 7, idEmpresa, usuarioId) {
     logger.info(`[WhatsappEmbedded] Desconectando para empresa ${idEmpresa}`);
 
     return maraviaApi.request('ws_whatsapp_embedded.php', {
@@ -99,7 +99,7 @@ class WhatsappEmbeddedService {
   /**
    * Verifica el estado de la conexión
    */
-  async verificarEstado(idPlataforma = 1, idEmpresa) {
+  async verificarEstado(idPlataforma = 7, idEmpresa) {
     logger.info(`[WhatsappEmbedded] Verificando estado para empresa ${idEmpresa}`);
 
     return maraviaApi.request('ws_whatsapp_embedded.php', {
@@ -112,7 +112,7 @@ class WhatsappEmbeddedService {
   /**
    * Suscribe el WABA a webhooks
    */
-  async suscribirWebhook(idPlataforma = 1, idEmpresa) {
+  async suscribirWebhook(idPlataforma = 7, idEmpresa) {
     logger.info(`[WhatsappEmbedded] Suscribiendo webhook para empresa ${idEmpresa}`);
 
     return maraviaApi.request('ws_whatsapp_embedded.php', {
@@ -125,7 +125,7 @@ class WhatsappEmbeddedService {
   /**
    * Suscribe webhooks para Coexistence
    */
-  async suscribirWebhooksCoexistence(idPlataforma = 1, idEmpresa) {
+  async suscribirWebhooksCoexistence(idPlataforma = 7, idEmpresa) {
     logger.info(`[WhatsappEmbedded] Suscribiendo webhooks Coexistence para empresa ${idEmpresa}`);
 
     return maraviaApi.request('ws_whatsapp_embedded.php', {
@@ -138,7 +138,7 @@ class WhatsappEmbeddedService {
   /**
    * Sincroniza datos SMB (contactos e historial)
    */
-  async sincronizarSMBData(idPlataforma = 1, idEmpresa, syncType = 'all') {
+  async sincronizarSMBData(idPlataforma = 7, idEmpresa, syncType = 'all') {
     logger.info(`[WhatsappEmbedded] Sincronizando SMB data (${syncType}) para empresa ${idEmpresa}`);
 
     return maraviaApi.request('ws_whatsapp_embedded.php', {
