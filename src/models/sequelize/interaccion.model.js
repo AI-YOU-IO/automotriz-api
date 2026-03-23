@@ -17,14 +17,37 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    id_proyecto: {
+    id_marca: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'proyecto',
+        model: 'marca',
         key: 'id'
       }
     },
+    modelo: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'modelo',
+        key: 'id'
+      } 
+    },
+
+    version:{
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'version',
+        key: 'id'
+      }
+    },
+
+    preguntas_resumen: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    
     id_usuario: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -37,14 +60,6 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    id_unidad: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'unidad',
-        key: 'id'
-      }
-    },
     id_prospecto: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -53,52 +68,14 @@ module.exports = (sequelize) => {
         key: 'id'
       }
     },
-    utm_content: {
-      type: DataTypes.STRING(100),
-      allowNull: true
-    },
-    utm_term: {
-      type: DataTypes.STRING(100),
-      allowNull: true
-    },
-    utm_campaign: {
-      type: DataTypes.STRING(100),
-      allowNull: true
-    },
-    utm_medium: {
-      type: DataTypes.STRING(100),
-      allowNull: true
-    },
-    utm_source: {
-      type: DataTypes.STRING(100),
-      allowNull: true
-    },
     observaciones: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.TEXT,
       allowNull: true
     },
-    id_motivo_desistimiento: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    id_canal_entrada: {
+    motivo_desistimiento: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    id_medio_captacion: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    estado_registro: {
-      type: DataTypes.INTEGER,
-      defaultValue: 1,
-      allowNull: false
-    },
-    usuario_actualizacion: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 1,
-    }
   }, {
     tableName: 'interaccion',
     ...commonOptions,
@@ -115,9 +92,8 @@ module.exports = (sequelize) => {
 
   Interaccion.associate = (models) => {
     Interaccion.belongsTo(models.Prospecto, { foreignKey: 'id_prospecto', as: 'prospecto' });
-    Interaccion.belongsTo(models.Proyecto, { foreignKey: 'id_proyecto', as: 'proyecto' });
     Interaccion.belongsTo(models.Usuario, { foreignKey: 'id_usuario', as: 'usuario' });
-    Interaccion.belongsTo(models.Unidad, { foreignKey: 'id_unidad', as: 'unidad' });
+    Interaccion.belongsTo(models.Marca, { foreignKey: 'id_marca', as: 'marca' });
   };
 
   return Interaccion;

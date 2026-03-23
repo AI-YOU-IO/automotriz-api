@@ -59,7 +59,7 @@ module.exports = (sequelize) => {
     Empresa.hasMany(models.Faq, { foreignKey: 'id_empresa', as: 'faqs' });
     Empresa.hasMany(models.PeriodicidadRecordatorio, { foreignKey: 'id_empresa', as: 'periodicidades' });
     Empresa.hasMany(models.Plantilla, { foreignKey: 'id_empresa', as: 'plantillas' });
-    Empresa.hasMany(models.Proyecto, { foreignKey: 'id_empresa', as: 'proyectos' });
+    Empresa.hasMany(models.Marca, {foreignKey: 'id_empresa', as: 'marcas'});
     Empresa.hasMany(models.EstadoCita, { foreignKey: 'id_empresa', as: 'estadosCita' });
     Empresa.hasMany(models.EstadoProspecto, { foreignKey: 'id_empresa', as: 'estadosProspecto' });
     Empresa.hasMany(models.EstadoLlamada, { foreignKey: 'id_empresa', as: 'estadosLlamada' });

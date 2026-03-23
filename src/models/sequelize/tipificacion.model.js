@@ -24,15 +24,35 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(50),
       allowNull: true
     },
+    duracion_cita: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
     fecha_hora_cita: {
       type: DataTypes.DATE,
       allowNull: true
     },
-    id_proyecto: {
+    id_marca: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'proyecto',
+        model: 'marca',
+        key: 'id'
+      }
+    },
+    id_version: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'version',
+        key: 'id'
+      }
+    },
+    id_modelo: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'modelo',
         key: 'id'
       }
     },
@@ -43,36 +63,6 @@ module.exports = (sequelize) => {
         model: 'prospecto',
         key: 'id'
       }
-    },
-    num_habitaciones: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      defaultValue: 0
-    },
-    piso_referidos: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      defaultValue: 0
-    },
-    precio_indicado: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-      defaultValue: 0
-    },
-    descuento: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-      defaultValue: 0
-    },
-    cuota_crediticia: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-      defaultValue: 0
-    },
-    score_crediticio: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-      defaultValue: 0
     },
     resumen: {
       type: DataTypes.TEXT,
@@ -94,7 +84,9 @@ module.exports = (sequelize) => {
   });
 
   Tipificacion.associate = (models) => {
-    Tipificacion.belongsTo(models.Proyecto, { foreignKey: 'id_proyecto', as: 'proyecto' });
+    Tipificacion.belongsTo(models.Marca, { foreignKey: 'id_marca', as: 'marca' });
+    Tipificacion.belongsTo(models.Version, { foreignKey: 'id_version', as: 'version' });
+    Tipificacion.belongsTo(models.Modelo, { foreignKey: 'id_modelo', as: 'modelo' });
     Tipificacion.belongsTo(models.Prospecto, { foreignKey: 'id_prospecto', as: 'prospecto' });
   };
 

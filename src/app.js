@@ -40,13 +40,10 @@ const mensajeRoutes = require("./routes/mensaje.route.js");
 const mensajeVistoUsuarioRoutes = require("./routes/mensajeVistoUsuario.route.js");
 const prospectoRoutes = require("./routes/prospecto.route.js");
 const prospectoRecordatorioRoutes = require("./routes/prospectoRecordatorio.route.js");
-const proyectoRoutes = require("./routes/proyecto.route.js");
 const rolModuloRoutes = require("./routes/rolModulo.route.js");
 const speakerRoutes = require("./routes/speaker.route.js");
-const tipologiaRoutes = require("./routes/tipologia.route.js");
 const formatoRoutes = require("./routes/formato.route.js");
 const transcripcionRoutes = require("./routes/transcripcion.route.js");
-const unidadRoutes = require("./routes/unidad.route.js");
 const diaDescansoRoutes = require("./routes/diaDescanso.route.js");
 const conversacionRoutes = require("./routes/conversacion.route.js");
 const plantillaWhatsappRoutes = require("./routes/plantillaWhatsapp.route.js");
@@ -61,7 +58,6 @@ const n8nChatRoutes = require("./routes/n8nChat.route.js");
 const n8nCitaRoutes = require("./routes/n8nCita.route.js");
 const n8nRecuperacionRoutes = require("./routes/n8nRecuperacion.route.js");
 const n8nEmpresaRoutes = require("./routes/n8nEmpresa.route.js");
-const n8nProyectoRoutes = require("./routes/n8nProyecto.route.js");
 const whatsappMensajeRoutes = require("./routes/whatsappMensaje.route.js");
 const tipoCampaniaRoutes = require("./routes/tipoCampania.route.js");
 const estadoCampaniaRoutes = require("./routes/estadoCampania.route.js");
@@ -117,8 +113,8 @@ app.use("/api/crm", authMiddleware, rolRoutes, usuarioRoutes, moduloRoutes, sucu
   empresaRoutes, campaniaEjecucionRoutes, campaniaProspectosRoutes, chatRoutes, citaRoutes,
   estadoCitaRoutes, estadoLlamadaRoutes, estadoProspectoRoutes, interaccionRoutes, llamadaRoutes,
   mensajeRoutes, mensajeVistoUsuarioRoutes, prospectoRoutes, prospectoRecordatorioRoutes,
-  proyectoRoutes, rolModuloRoutes, speakerRoutes, tipologiaRoutes, formatoRoutes,
-  transcripcionRoutes, unidadRoutes, leadsRoutes, diaDescansoRoutes, conversacionRoutes,
+  rolModuloRoutes, speakerRoutes, formatoRoutes,
+  transcripcionRoutes, leadsRoutes, diaDescansoRoutes, conversacionRoutes,
   plantillaWhatsappRoutes, whatsappEmbeddedRoutes, configuracionWhatsappRoutes,
   envioMasivoWhatsappRoutes, enviosProspectosRoutes,
   tipoCampaniaRoutes, estadoCampaniaRoutes, recursoRoutes, tipoRecursoRoutes, distritoRoutes,
@@ -134,7 +130,6 @@ app.use('/api/n8n/prospectos', n8nProspectoRoutes);
 app.use('/api/n8n/mensajes', n8nMensajeRoutes);
 app.use('/api/n8n/chats', n8nChatRoutes);
 app.use('/api/n8n/citas', n8nCitaRoutes);
-app.use('/api/n8n/proyectos', n8nProyectoRoutes);
 app.use('/api/n8n/recuperacion', n8nRecuperacionRoutes);
 app.use('/api/n8n/empresa', n8nEmpresaRoutes);
 

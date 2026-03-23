@@ -20,9 +20,5 @@ module.exports = (sequelize) => {
     timestamps: false
   });
 
-  Distrito.associate = (models) => {
-    Distrito.hasMany(models.Proyecto, { foreignKey: 'id_distrito', as: 'proyectos' });
-  };
-
   return Distrito;
 };

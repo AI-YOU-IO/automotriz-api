@@ -1,1 +1,43 @@
+# Dependencies
 node_modules/
+
+# Environment files (keep only sample templates in git)
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime / temp files
+pids/
+*.pid
+*.pid.lock
+tmp/
+temp/
+
+# Test / coverage outputs
+coverage/
+.nyc_output/
+
+# Build artifacts
+dist/
+build/
+
+# Cache
+.cache/
+.eslintcache
+
+# Optional runtime uploads (uncomment if you do not want uploads in git)
+# uploads/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

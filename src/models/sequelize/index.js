@@ -12,7 +12,6 @@ db.FormatoCampo = require('./formatoCampo.model')(sequelize);
 db.Speaker = require('./speaker.model')(sequelize);
 db.Voz = require('./voz.model')(sequelize);
 db.EstadoLlamada = require('./estadoLlamada.model')(sequelize);
-db.Tipologia = require('./tipologia.model')(sequelize);
 db.TipoRecurso = require('./tipoRecurso.model')(sequelize);
 db.Distrito = require('./distrito.model')(sequelize);
 db.DistritoAdyacente = require('./distritoAdyacente.model')(sequelize);
@@ -20,6 +19,7 @@ db.DistritoAdyacente = require('./distritoAdyacente.model')(sequelize);
 // Cargar modelos - Fase 2: Dependencias de Empresa
 db.TipoCampania = require('./tipoCampania.model')(sequelize);
 db.EstadoCampania = require('./estadoCampania.model')(sequelize);
+db.Marca = require('./marca.model')(sequelize);
 db.Sucursal = require('./sucursal.model')(sequelize);
 db.EstadoCita = require('./estadoCita.model')(sequelize);
 db.EstadoProspecto = require('./estadoProspecto.model')(sequelize);
@@ -28,7 +28,6 @@ db.CampaniaEjecucion = require('./campaniaEjecucion.model')(sequelize);
 db.ConfiguracionLlamada = require('./configuracionLlamada.model')(sequelize);
 db.PeriodicidadRecordatorio = require('./periodicidadRecordatorio.model')(sequelize);
 db.Faq = require('./faq.model')(sequelize);
-db.Proyecto = require('./proyecto.model')(sequelize);
 db.Plantilla = require('./plantilla.model')(sequelize);
 db.PlantillaWhatsapp = require('./plantillaWhatsapp.model')(sequelize);
 
@@ -43,8 +42,11 @@ db.DiaDescanso = require('./diaDescanso.model')(sequelize);
 db.HorarioAtencion = require('./horarioAtencion.model')(sequelize);
 
 // Cargar modelos - Fase 5: Dependencias de Proyecto, Tipologia
-db.Unidad = require('./unidad.model')(sequelize);
 db.Recurso = require('./recurso.model')(sequelize);
+
+//Cargar modelos - Fase 5.1: Dependencias de Marca
+db.Modelo = require('./modelo.model')(sequelize);
+db.Version = require('./version.model')(sequelize);
 
 // Cargar modelos - Fase 6: Tipificacion (depende de Empresa)
 db.Tipificacion = require('./tipificacion.model')(sequelize);

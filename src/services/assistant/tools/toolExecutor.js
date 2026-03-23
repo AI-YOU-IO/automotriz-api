@@ -1,7 +1,5 @@
 const faqVectorService = require("../../faq/faqVector.service");
 const ProspectoRepository = require("../../../repositories/prospecto.repository");
-const ProyectoRepository = require("../../../repositories/proyecto.repository");
-const UnidadRepository = require("../../../repositories/unidad.repository");
 const CitaRepository = require("../../../repositories/cita.repository");
 const DiaDescansoRepository = require("../../../repositories/diaDescanso.repository");
 const InteraccionRepository = require("../../../repositories/interaccion.repository");
@@ -27,12 +25,6 @@ class ToolExecutor {
                 return this._crearNuevoLead(args);
             case "actualizarLead":
                 return this._actualizarLead(args);
-            case "obtenerProyectosDisponibles":
-                return this._obtenerProyectosDisponibles(args);
-            case "buscarProyectoPorNombre":
-                return this._buscarProyectoPorNombre(args);
-            case "obtenerProyecto":
-                return this._obtenerProyecto(args);
             case "obtenerUnidades":
                 return this._obtenerUnidades(args);
             case "obtenerUnidad":
@@ -47,16 +39,10 @@ class ToolExecutor {
                 return this._obtenerDiasDescanso(args);
             case "obtenerHorariosOcupados":
                 return this._obtenerHorariosOcupados(args);
-            case "crearCitaSperant":
-                return this._crearCitaSperant(args);
-            case "crearInteraccionesSperant":
-                return this._crearInteraccionesSperant(args);
             case "crearInteracciones":
                 return this._crearInteracciones(args);
             case "enviarLeadLlamada":
                 return this._enviarLeadLlamada(args);
-            case "crearClienteSperant":
-                return this._crearClienteSperant(args);
             case "obtenerUnidadesPorDormitorio":
                 return this._obtenerUnidadesPorDormitorio(args);
             case "buscarFaqs":

@@ -20,9 +20,13 @@ module.exports = (sequelize) => {
       type: DataTypes.DATE,
       allowNull: false
     },
-    lugar: {
-      type: DataTypes.STRING(60),
-      allowNull: true
+    id_sucursal: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'sucursal',
+        key: 'id'
+      }
     },
     descripcion: {
       type: DataTypes.STRING(100),
@@ -36,19 +40,27 @@ module.exports = (sequelize) => {
         key: 'id'
       }
     },
-    id_proyecto: {
+    id_marca: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'proyecto',
+        model: 'marca',
         key: 'id'
       }
     },
-    id_unidad: {
+    id_modelo: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'unidad',
+        model: 'modelo',
+        key: 'id'
+      }
+    },
+    id_version: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'version',
         key: 'id'
       }
     },
@@ -85,8 +97,10 @@ module.exports = (sequelize) => {
 
   Cita.associate = (models) => {
     Cita.belongsTo(models.Prospecto, { foreignKey: 'id_prospecto', as: 'prospecto' });
-    Cita.belongsTo(models.Proyecto, { foreignKey: 'id_proyecto', as: 'proyecto' });
-    Cita.belongsTo(models.Unidad, { foreignKey: 'id_unidad', as: 'unidad' });
+    Cita.belongsTo(models.Version, { foreignKey: 'id_version', as: 'version' });
+    Cita.belongsTo(models.Sucursal, { foreignKey: 'id_sucursal', as: 'sucursal' });
+    Cita.belongsTo(models.Marca, { foreignKey: 'id_marca', as: 'marca' });
+    Cita.belongsTo(models.Modelo, { foreignKey: 'id_modelo', as: 'modelo' });
     Cita.belongsTo(models.EstadoCita, { foreignKey: 'id_estado_cita', as: 'estadoCita' });
     Cita.belongsTo(models.Usuario, { foreignKey: 'id_usuario', as: 'usuario' });
   };

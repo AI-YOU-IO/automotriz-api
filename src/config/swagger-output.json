@@ -3325,6 +3325,59 @@
           "400": {
             "description": "Bad Request"
           },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/crm/campania-ejecuciones/{id}/iniciar-llamadas": {
+      "post": {
+        "tags": [
+          "Campania"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -3705,7 +3758,7 @@
         }
       }
     },
-    "/api/crm/campania-ejecuciones/{idEjecucion}/prospectos": {
+    "/api/crm/voces": {
       "get": {
         "tags": [
           "Campania"
@@ -3713,7 +3766,45 @@
         "description": "",
         "parameters": [
           {
-            "name": "idEjecucion",
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/crm/campanias/{idCampania}/prospectos": {
+      "get": {
+        "tags": [
+          "Campania"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "idCampania",
             "in": "path",
             "required": true,
             "type": "string"
@@ -3755,7 +3846,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "idEjecucion",
+            "name": "idCampania",
             "in": "path",
             "required": true,
             "type": "string"
@@ -6181,7 +6272,7 @@
                 "id_campania": {
                   "example": "any"
                 },
-                "id_provider_call": {
+                "provider_call_id": {
                   "example": "any"
                 },
                 "id_estado_llamada": {
@@ -6233,6 +6324,97 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/crm/llamadas/provider/{providerCallId}": {
+      "get": {
+        "tags": [
+          "Llamada"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "providerCallId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/crm/llamadas/ejecucion/{idCampaniaEjecucion}": {
+      "get": {
+        "tags": [
+          "Llamada"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "idCampaniaEjecucion",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
           },
           "500": {
             "description": "Internal Server Error"
@@ -6312,7 +6494,7 @@
                 "id_campania": {
                   "example": "any"
                 },
-                "id_provider_call": {
+                "provider_call_id": {
                   "example": "any"
                 },
                 "id_estado_llamada": {
@@ -7588,392 +7770,6 @@
         }
       }
     },
-    "/api/crm/proyectos": {
-      "get": {
-        "tags": [
-          "Proyecto"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Proyecto"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nombre": {
-                  "example": "any"
-                },
-                "estado_proyecto": {
-                  "example": "any"
-                },
-                "direccion": {
-                  "example": "any"
-                },
-                "pais": {
-                  "example": "any"
-                },
-                "ciudad": {
-                  "example": "any"
-                },
-                "id_distrito": {
-                  "example": "any"
-                },
-                "sperant_id": {
-                  "example": "any"
-                },
-                "url_google_maps": {
-                  "example": "any"
-                },
-                "descripcion": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/crm/proyectos/nombre": {
-      "get": {
-        "tags": [
-          "Proyecto"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "nombre",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "distrito",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/crm/proyectos/distrito": {
-      "get": {
-        "tags": [
-          "Proyecto"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "distrito",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/crm/proyectos/{id}": {
-      "get": {
-        "tags": [
-          "Proyecto"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Proyecto"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nombre": {
-                  "example": "any"
-                },
-                "estado_proyecto": {
-                  "example": "any"
-                },
-                "direccion": {
-                  "example": "any"
-                },
-                "pais": {
-                  "example": "any"
-                },
-                "ciudad": {
-                  "example": "any"
-                },
-                "id_distrito": {
-                  "example": "any"
-                },
-                "url_google_maps": {
-                  "example": "any"
-                },
-                "descripcion": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Proyecto"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
     "/api/crm/rol-modulos": {
       "get": {
         "tags": [
@@ -8425,289 +8221,6 @@
       "delete": {
         "tags": [
           "Speaker"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/crm/tipologias": {
-      "get": {
-        "tags": [
-          "Tipologia"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Tipologia"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nombre": {
-                  "example": "any"
-                },
-                "area": {
-                  "example": "any"
-                },
-                "numero_banios": {
-                  "example": "any"
-                },
-                "numero_dormitorios": {
-                  "example": "any"
-                },
-                "total_unidades": {
-                  "example": "any"
-                },
-                "unidades_disponibles": {
-                  "example": "any"
-                },
-                "precio_minimo": {
-                  "example": "any"
-                },
-                "sperant_id": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/crm/tipologias/{id}": {
-      "get": {
-        "tags": [
-          "Tipologia"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Tipologia"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nombre": {
-                  "example": "any"
-                },
-                "area": {
-                  "example": "any"
-                },
-                "numero_banios": {
-                  "example": "any"
-                },
-                "numero_dormitorios": {
-                  "example": "any"
-                },
-                "total_unidades": {
-                  "example": "any"
-                },
-                "unidades_disponibles": {
-                  "example": "any"
-                },
-                "precio_minimo": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Tipologia"
         ],
         "description": "",
         "parameters": [
@@ -9540,398 +9053,6 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/crm/unidades": {
-      "get": {
-        "tags": [
-          "Unidad"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "id_proyecto",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Unidad"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "estado_comercial": {
-                  "example": "any"
-                },
-                "precio": {
-                  "example": "any"
-                },
-                "precio_venta": {
-                  "example": "any"
-                },
-                "estado_unidad": {
-                  "example": "any"
-                },
-                "area_total": {
-                  "example": "any"
-                },
-                "moneda": {
-                  "example": "any"
-                },
-                "area_construida": {
-                  "example": "any"
-                },
-                "area_lote": {
-                  "example": "any"
-                },
-                "id_proyecto": {
-                  "example": "any"
-                },
-                "id_tipologia": {
-                  "example": "any"
-                },
-                "sperant_id": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/crm/unidades/{id}": {
-      "get": {
-        "tags": [
-          "Unidad"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Unidad"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "estado_comercial": {
-                  "example": "any"
-                },
-                "precio": {
-                  "example": "any"
-                },
-                "precio_venta": {
-                  "example": "any"
-                },
-                "estado_unidad": {
-                  "example": "any"
-                },
-                "area_total": {
-                  "example": "any"
-                },
-                "moneda": {
-                  "example": "any"
-                },
-                "area_construida": {
-                  "example": "any"
-                },
-                "area_lote": {
-                  "example": "any"
-                },
-                "id_proyecto": {
-                  "example": "any"
-                },
-                "id_tipologia": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Unidad"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/crm/tool/unidades": {
-      "get": {
-        "tags": [
-          "Unidad"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "id_proyecto",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/crm/tool/unidades/dormitorios": {
-      "get": {
-        "tags": [
-          "Unidad"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "num",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
           },
           "500": {
             "description": "Internal Server Error"
@@ -13927,6 +13048,98 @@
         }
       }
     },
+    "/api/crm/prompt-asistente": {
+      "get": {
+        "tags": [
+          "PromptAsistente"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "PromptAsistente"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "prompt_sistema": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/assistant/message": {
       "post": {
         "tags": [
@@ -15232,273 +14445,6 @@
         }
       }
     },
-    "/api/n8n/proyectos/buscar/nombre": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "cron_key",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "nombre",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "distrito",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/n8n/proyectos/buscar/distrito": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "cron_key",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "distrito",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/n8n/proyectos/sperant/{sperant_id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "sperant_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "cron_key",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/n8n/proyectos/": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "cron_key",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "id_empresa",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "estado_proyecto",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/n8n/proyectos/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "cron_key",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
     "/api/n8n/recuperacion/chats-sin-respuesta": {
       "get": {
         "description": "",
@@ -15716,7 +14662,7 @@
                 "id_mensaje_visto": {
                   "example": "any"
                 },
-                "id_mensaje_plantilla": {
+                "mensaje_personalizado": {
                   "example": "any"
                 }
               }
@@ -15972,6 +14918,130 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/ultravox/upload-audio": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "provider_call_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/ultravox/transcripcion": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "provider_call_id": {
+                  "example": "any"
+                },
+                "id_ultravox_call": {
+                  "example": "any"
+                },
+                "metadata_ultravox_call": {
+                  "example": "any"
+                },
+                "metadata": {
+                  "example": "any"
+                },
+                "transcripcion": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
