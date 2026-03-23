@@ -487,3 +487,10 @@
 {"level":"info","message":"[auth.route.js] Sesión cerrada para usuario 1","timestamp":"23-03-2026 / 10:40:56"}
 {"level":"info","message":"[cron] Ejecutando detección de conversaciones abandonadas...","timestamp":"23-03-2026 / 11:00:00"}
 {"level":"info","message":"[cron] Detección finalizada. Prospectos actualizados: 0","timestamp":"23-03-2026 / 11:00:00"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: aiyou_automotriz","timestamp":"23-03-2026 / 11:05:23"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"23-03-2026 / 11:05:23"}
+{"level":"error","message":"[server.js] Vector DB no disponible: ","timestamp":"23-03-2026 / 11:05:23"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"23-03-2026 / 11:05:24"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"23-03-2026 / 11:05:24"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"23-03-2026 / 11:05:24"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"23-03-2026 / 11:05:24"}
