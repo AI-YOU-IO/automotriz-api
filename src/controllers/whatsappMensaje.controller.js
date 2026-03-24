@@ -8,7 +8,7 @@ class WhatsappMensajeController {
   async enviarMensaje(req, res) {
     try {
       const {
-        id_empresa,
+        phone_number_id,
         phone,
         type = 'text',
         message,
@@ -21,10 +21,10 @@ class WhatsappMensajeController {
       } = req.body;
 
       // Validar campos requeridos
-      if (!id_empresa) {
+      if (!phone_number_id) {
         return res.status(400).json({
           success: false,
-          error: 'id_empresa es requerido'
+          error: 'phone_number_id es requerido'
         });
       }
 
