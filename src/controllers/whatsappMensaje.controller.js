@@ -8,6 +8,7 @@ class WhatsappMensajeController {
   async enviarMensaje(req, res) {
     try {
       const {
+        id_empresa,
         phone_number_id,
         phone,
         type = 'text',

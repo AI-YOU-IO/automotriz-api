@@ -1,10 +1,11 @@
-const AssistantService = require("../services/assistant/asistant.service");
+const AgenteGqm = require("../services/agente_gqm/agente_gqm.service");
 const Prospecto = require("../repositories/prospecto.repository");
 const Usuario = require("../repositories/usuario.repository");
 const Chat = require("../repositories/chat.repository");
 const Mensaje = require("../repositories/mensaje.repository");
 const whatsappGraphService = require("../services/whatsapp/whatsappGraph.service");
 const logger = require("../config/logger/loggerClient");
+const configuracionWhatsappRepository = require("../repositories/configuracionWhatsapp.repository");
 
 // Simple objeto en memoria para trackear errores únicos enviados
 const erroresUnicosEnviados = {};
@@ -158,15 +159,23 @@ class MessageProcessingController {
                 phone,
                 question,
                 wid,
-                id_empresa,
+                phone_number_id,
                 messageType,
+                messageTypes,
+                messageCount,
                 files
             } = req.body;
-
+            
+            try{
+            id_empresa = await configuracionWhatsappRepository.findByPhoneNumberId(phone_number_id)
+            }
+            catch(error){
+                logger.error(`[messageProcessing.controller.js] Error buscando configuración por phone_number_id: ${error.message}`);
+                throw new Error(`Error buscando configuración por phone_number_id: ${error.message}`);
+            }
             phone = phone?.trim() || '';
             question = question?.trim() || '';
             wid = wid ? wid.trim() : null;
-            id_empresa = id_empresa ? parseInt(id_empresa, 10) : null;
             messageType = messageType || 'text';
             files = files || [];
 
@@ -227,15 +236,27 @@ class MessageProcessingController {
             });
 
             // 4. Procesar con el asistente
-            paso = 'procesar con asistente (AssistantService.runProcess)';
-            const respuestaTexto = await AssistantService.runProcess({
-                chatId: chat.id,
-                message: question,
-                prospecto,
-                id_empresa
+            const bodyMessage ={
+                id_empresa,
+                phone,
+                question,
+                phone_number_id,
+                id_chat: chat.id,
+            }
+            logger.info('[DEBUG] Tipos de bodyMessage:', {
+                id_empresa: typeof id_empresa,
+                phone: typeof phone,
+                question: typeof question,
+                phone_number_id: typeof phone_number_id,
+                id_chat: typeof chat.id
             });
+            try{
+                await AgenteGqm.enviarMensaje(bodyMessage);
+            }catch(error){
+                logger.error(`[messageProcessing.controller.js] Error en procesamiento con asistente: ${error.message}`);
+            }
 
-            logger.info(`[messageProcessing] Respuesta IA original: ${respuestaTexto}`);
+            
 
             // 5. Procesar URLs
             paso = 'procesar URLs de respuesta';

@@ -17,6 +17,11 @@ class ConfiguracionWhatsappRepository {
       where: { id_empresa, estado_registro: 1 }
     });
   }
+  async findByPhoneNumberId(phone_number_id) {
+    return ConfiguracionWhatsapp.findOne({
+      where: { numero_telefono_id: phone_number_id, estado_registro: 1 }
+    });
+  }
 
   async create(data) {
     return ConfiguracionWhatsapp.create(data);
