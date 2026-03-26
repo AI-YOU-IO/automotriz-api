@@ -260,7 +260,16 @@ class MessageProcessingController {
                 logger.error(`[messageProcessing.controller.js] Error en procesamiento con asistente: ${error.message}`);
             }
 
-            
+
+        } catch (error) {
+            // Loguear el error con contexto específico del paso donde falló
+            logger.error(`[ERROR en paso: "${paso}"] phone: ${req.body?.phone || 'N/A'} | ${error.message}`);
+            logger.error(`[ERROR Stack] ${error.stack}`);
+            // Enviar mensaje de error único al usuario por WhatsApp
+            await enviarErrorUnico(req.body);
+        }
+    }
+    async receiveMessage(req,res){
 
             // 5. Procesar URLs
             paso = 'procesar URLs de respuesta';
@@ -292,6 +301,8 @@ class MessageProcessingController {
                     }
                 }
             }
+
+
 
             // Enviar cada archivo
             for (const urlInfo of urlsEncontradas) {
@@ -346,19 +357,15 @@ class MessageProcessingController {
                 }
             }
 
+            
+
+
             // 7. Marcar prospecto como contactado
             paso = 'marcar prospecto como contactado';
             if (prospecto?.id && !prospecto.fue_contactado) {
                 await Prospecto.update(prospecto.id, { fue_contactado: 1 });
             }
-
-        } catch (error) {
-            // Loguear el error con contexto específico del paso donde falló
-            logger.error(`[ERROR en paso: "${paso}"] phone: ${req.body?.phone || 'N/A'} | ${error.message}`);
-            logger.error(`[ERROR Stack] ${error.stack}`);
-            // Enviar mensaje de error único al usuario por WhatsApp
-            await enviarErrorUnico(req.body);
-        }
+        
     }
 }
 
