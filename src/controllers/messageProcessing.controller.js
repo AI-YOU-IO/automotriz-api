@@ -166,11 +166,14 @@ class MessageProcessingController {
                 files
             } = req.body;
             
-            try{
-            id_empresa = await configuracionWhatsappRepository.findByPhoneNumberId(phone_number_id)
-            id_empresa = id_empresa.id_empresa;
-            }
-            catch(error){
+            let id_empresa;
+            try {
+                const config = await configuracionWhatsappRepository.findByPhoneNumberId(phone_number_id);
+                if (!config || !config.id_empresa) {
+                    throw new Error('No se encontró configuración para el phone_number_id');
+                }
+                id_empresa = config.id_empresa;
+            } catch (error) {
                 logger.error(`[messageProcessing.controller.js] Error buscando configuración por phone_number_id: ${error.message}`);
                 throw new Error(`Error buscando configuración por phone_number_id: ${error.message}`);
             }
