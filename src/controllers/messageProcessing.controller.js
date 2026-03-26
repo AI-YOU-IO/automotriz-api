@@ -189,7 +189,7 @@ class MessageProcessingController {
             paso = 'buscar/crear prospecto';
             let prospecto = await Prospecto.findByPhone(phone);
             if (!prospecto) {
-                const asesores = await Usuario.findByRol(3, id_empresa);
+                const asesores = await Usuario.findByRol(2, id_empresa);
                 const ids = asesores.map(a => a.id);
                 const ultimoAsignacion = await Prospecto.findLastAsignation();
 
