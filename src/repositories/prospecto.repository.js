@@ -39,7 +39,7 @@ class ProspectoRepository {
       include: [{
         model: Usuario,
         as: "usuario",
-        attributes: ["id", "sperant_id"]
+        attributes: ["id"]
       }]
     });
   }
