@@ -168,6 +168,7 @@ class MessageProcessingController {
             
             try{
             id_empresa = await configuracionWhatsappRepository.findByPhoneNumberId(phone_number_id)
+            id_empresa = id_empresa.id_empresa;
             }
             catch(error){
                 logger.error(`[messageProcessing.controller.js] Error buscando configuración por phone_number_id: ${error.message}`);

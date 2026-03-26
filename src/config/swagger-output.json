@@ -13168,10 +13168,16 @@
                 "wid": {
                   "example": "any"
                 },
-                "id_empresa": {
+                "phone_number_id": {
                   "example": "any"
                 },
                 "messageType": {
+                  "example": "any"
+                },
+                "messageTypes": {
+                  "example": "any"
+                },
+                "messageCount": {
                   "example": "any"
                 },
                 "files": {
@@ -15068,6 +15074,9 @@
               "type": "object",
               "properties": {
                 "id_empresa": {
+                  "example": "any"
+                },
+                "phone_number_id": {
                   "example": "any"
                 },
                 "phone": {
