@@ -147,6 +147,7 @@ async function enviarErrorUnico(body) {
 class MessageProcessingController {
 
     async processMessage(req, res) {
+        console.log('[DEBUG] Request recibido en processMessage:', JSON.stringify(req.body, null, 2));
         // Responder inmediatamente a WhatsApp
         res.status(200).json({ 
             status: "received", 
