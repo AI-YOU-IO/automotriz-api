@@ -86,7 +86,7 @@ class WhatsappMensajeController {
 
       switch (type) {
         case 'text':
-          resultado = await whatsappGraphService.enviarMensajeTexto(phone_number_id, phone, message);
+          resultado = await whatsappGraphService.enviarMensajeTexto(id_empresa,phone_number_id, phone, message);
           break;
 
         case 'image':

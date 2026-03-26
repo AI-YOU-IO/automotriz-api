@@ -238,7 +238,7 @@ class WhatsappGraphService {
   /**
    * Envía un mensaje de texto simple
    */
-  async enviarMensajeTexto(phoneNumberId, phone, message) {
+  async enviarMensajeTexto(idEmpresa,phoneNumberId, phone, message) {
     const credenciales = await this.obtenerCredenciales(idEmpresa);
     const url = `${GRAPH_API_URL}/${phoneNumberId}/messages`;
     const formattedPhone = this.formatearNumeroTelefono(phone);
