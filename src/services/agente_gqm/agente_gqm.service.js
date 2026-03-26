@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { logger } = require('sequelize/lib/utils/logger');
 
 class AgenteGQMService {
     
@@ -21,6 +22,7 @@ class AgenteGQMService {
                 timeout: 15000
             });
 
+            logger.info(`[AgenteGQMService] Mensaje enviado exitosamente a GQM para phone: ${phone}, id_chat: ${id_chat}`);
             return response.data;
         } catch (error) {
             console.error(`[AgenteGQMService] Error enviando mensaje: ${error.message}`);

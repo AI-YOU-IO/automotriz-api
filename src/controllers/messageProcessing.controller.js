@@ -248,15 +248,7 @@ class MessageProcessingController {
                 phone_number_id,
                 id_chat: chat.id,
             }
-            logger.info('[DEBUG] Tipos de bodyMessage:', {
-                id_empresa: id_empresa,
-                phone:  phone,
-                question:  question,
-                phone_number_id:  phone_number_id,
-                id_chat:  chat.id
-            });
             try{
-                console.log('[DEBUG] Enviando a AgenteGqm.enviarMensaje:', JSON.stringify(bodyMessage, null, 2));
                 await AgenteGqm.enviarMensaje(bodyMessage);
             }catch(error){
                 logger.error(`[messageProcessing.controller.js] Error en procesamiento con asistente: ${error.message}`);
