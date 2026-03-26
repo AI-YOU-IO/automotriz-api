@@ -20,26 +20,7 @@ class ProspectoRepository {
       where: {
         celular: phone,
         estado_registro: 1
-      },
-      include: [{
-        model: Interaccion,
-        as: 'interacciones',
-        attributes: ['id_proyecto'],
-        where: { estado_registro: 1, id_proyecto: { [require("sequelize").Op.ne]: null } },
-        required: false,
-        order: [['id', 'DESC']],
-        limit: 1,
-        include: [{
-          model: Proyecto,
-          as: 'proyecto',
-          attributes: ['id', 'nombre']
-        }]
-      }, {
-        model: Usuario,
-        as: "usuario",
-        attributes: ["id", "nombre_completo", "sperant_id"],
-        required: false
-      }]
+      }
     });
   }
 
