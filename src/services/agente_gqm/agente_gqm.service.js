@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { logger } = require('sequelize/lib/utils/logger');
+const logger = require('../../config/logger/loggerClient');
 
 class AgenteGQMService {
     
