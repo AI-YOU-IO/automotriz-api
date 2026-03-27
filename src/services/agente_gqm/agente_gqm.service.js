@@ -4,7 +4,7 @@ const logger = require('../../config/logger/loggerClient');
 class AgenteGQMService {
     
     constructor() {
-        this.baseURL = 'https://maravia-agente-gqm.dvmssk.easypanel.host/api/chat';
+        this.baseURL = 'https://gqm.ai-you.io/api/chat';
     }
 
     async enviarMensaje({ id_empresa, phone_number_id, phone, question, id_chat }) {

@@ -15,6 +15,11 @@ const commonFields = {
     type: DataTypes.INTEGER,
     allowNull: true,
     defaultValue: null
+  },
+  extra_fields:{
+    type: DataTypes.JSONB,
+    allowNull: true,
+    defaultValue: {}
   }
 };
 
