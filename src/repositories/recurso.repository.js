@@ -1,16 +1,15 @@
-const { Recurso, TipoRecurso, Proyecto, Tipologia } = require("../models/sequelize");
+const { Recurso, TipoRecurso, Modelo } = require("../models/sequelize");
 
 class RecursoRepository {
   async findAll(empresaId) {
     const whereClause = {};
-    if (empresaId) whereClause.empresa_id = empresaId;
+    if (empresaId) whereClause.id_empresa = empresaId;
 
     return Recurso.findAll({
       where: whereClause,
       include: [
         { model: TipoRecurso, as: 'tipoRecurso', attributes: ['id', 'nombre'], required: false },
-        { model: Proyecto, as: 'proyecto', attributes: ['id', 'nombre'], required: false },
-        { model: Tipologia, as: 'tipologia', attributes: ['id', 'nombre'], required: false }
+        { model: Modelo, as: 'modelo', attributes: ['id', 'nombre'], required: false }
       ],
       order: [['fecha_registro', 'DESC']]
     });
@@ -20,8 +19,7 @@ class RecursoRepository {
     return Recurso.findByPk(id, {
       include: [
         { model: TipoRecurso, as: 'tipoRecurso', attributes: ['id', 'nombre'], required: false },
-        { model: Proyecto, as: 'proyecto', attributes: ['id', 'nombre'], required: false },
-        { model: Tipologia, as: 'tipologia', attributes: ['id', 'nombre'], required: false }
+        { model: Modelo, as: 'modelo', attributes: ['id', 'nombre'], required: false }
       ]
     });
   }

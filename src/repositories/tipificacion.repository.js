@@ -1,4 +1,4 @@
-const { Tipificacion, Prospecto, Proyecto } = require("../models/sequelize");
+const { Tipificacion, Prospecto, Marca, Modelo, Version } = require("../models/sequelize");
 
 class TipificacionRepository {
   async findAll() {
@@ -6,7 +6,9 @@ class TipificacionRepository {
       where: { estado_registro: 1 },
       include: [
         { model: Prospecto, as: 'prospecto', attributes: ['id', 'nombre_completo', 'celular'], required: false },
-        { model: Proyecto, as: 'proyecto', attributes: ['id', 'nombre'], required: false }
+        { model: Marca, as: 'marca', attributes: ['id', 'nombre'], required: false },
+        { model: Modelo, as: 'modelo', attributes: ['id', 'nombre'], required: false },
+        { model: Version, as: 'version', attributes: ['id', 'nombre'], required: false }
       ],
       order: [['fecha_registro', 'DESC']]
     });
@@ -16,7 +18,9 @@ class TipificacionRepository {
     return Tipificacion.findByPk(id, {
       include: [
         { model: Prospecto, as: 'prospecto', attributes: ['id', 'nombre_completo', 'celular'], required: false },
-        { model: Proyecto, as: 'proyecto', attributes: ['id', 'nombre'], required: false }
+        { model: Marca, as: 'marca', attributes: ['id', 'nombre'], required: false },
+        { model: Modelo, as: 'modelo', attributes: ['id', 'nombre'], required: false },
+        { model: Version, as: 'version', attributes: ['id', 'nombre'], required: false }
       ]
     });
   }

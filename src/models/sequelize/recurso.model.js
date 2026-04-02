@@ -12,11 +12,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(100),
       allowNull: false
     },
-    id_version: {
+    id_modelo: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'version',
+        model: 'modelo',
         key: 'id'
       }
     },
@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(500),
       allowNull: true
     },
-    tipo_recurso_id: {
+    id_tipo_recurso: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
         key: 'id'
       }
     },
-    empresa_id: {
+    id_empresa: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -56,9 +56,9 @@ module.exports = (sequelize) => {
   });
 
   Recurso.associate = (models) => {
-    Recurso.belongsTo(models.Version, { foreignKey: 'id_version', as: 'version' });
-    Recurso.belongsTo(models.TipoRecurso, { foreignKey: 'tipo_recurso_id', as: 'tipoRecurso' });
-    Recurso.belongsTo(models.Empresa, { foreignKey: 'empresa_id', as: 'empresa' });
+    Recurso.belongsTo(models.Modelo, { foreignKey: 'id_modelo', as: 'modelo' });
+    Recurso.belongsTo(models.TipoRecurso, { foreignKey: 'id_tipo_recurso', as: 'tipoRecurso' });
+    Recurso.belongsTo(models.Empresa, { foreignKey: 'id_empresa', as: 'empresa' });
   };
 
   return Recurso;

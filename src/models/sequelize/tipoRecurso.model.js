@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
   });
 
   TipoRecurso.associate = (models) => {
-    TipoRecurso.hasMany(models.Recurso, { foreignKey: 'tipo_recurso_id', as: 'recursos' });
+    TipoRecurso.hasMany(models.Recurso, { foreignKey: 'id_tipo_recurso', as: 'recursos' });
   };
 
   return TipoRecurso;

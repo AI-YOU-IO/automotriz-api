@@ -73,6 +73,28 @@ class EmpresaController {
     }
   }
 
+  async toggleEstadoEmpresa(req, res) {
+    try {
+      const { id } = req.params;
+      const { estado } = req.body;
+      const usuario_actualizacion = req.user?.userId || null;
+
+      const [updated] = await empresaRepository.update(id, {
+        estado_registro: estado,
+        usuario_actualizacion
+      });
+
+      if (!updated) {
+        return res.status(404).json({ msg: "Empresa no encontrada" });
+      }
+
+      return res.status(200).json({ msg: estado === 1 ? "Empresa activada" : "Empresa desactivada" });
+    } catch (error) {
+      logger.error(`[empresa.controller.js] Error al cambiar estado: ${error.message}`);
+      return res.status(500).json({ msg: "Error al cambiar estado de empresa" });
+    }
+  }
+
   async deleteEmpresa(req, res) {
     try {
       const { id } = req.params;

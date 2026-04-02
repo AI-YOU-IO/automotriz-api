@@ -30,9 +30,7 @@ class TipificacionController {
 
   async createTipificacion(req, res) {
     try {
-      const { nombre, tipo, telefono, correo, fecha_hora_cita, id_proyecto, id_prospecto,
-        num_habitaciones, piso_referidos, precio_indicado, descuento, cuota_crediticia,
-        score_crediticio, resumen } = req.body;
+      const { nombre, tipo, telefono, correo, duracion_cita, fecha_hora_cita, id_marca, id_modelo, id_version, id_prospecto, resumen } = req.body;
 
       if (!nombre) {
         return res.status(400).json({ msg: "El nombre es requerido" });
@@ -40,9 +38,8 @@ class TipificacionController {
 
       const usuario_registro = req.user?.userId || null;
       const tipificacion = await tipificacionRepository.create({
-        nombre, tipo, telefono, correo, fecha_hora_cita, id_proyecto, id_prospecto,
-        num_habitaciones, piso_referidos, precio_indicado, descuento, cuota_crediticia,
-        score_crediticio, resumen, usuario_registro
+        nombre, tipo, telefono, correo, duracion_cita, fecha_hora_cita, id_marca, id_modelo, id_version, id_prospecto,
+        resumen, usuario_registro
       });
 
       return res.status(201).json({ msg: "Tipificación creada exitosamente", data: { id: tipificacion.id } });
@@ -55,9 +52,7 @@ class TipificacionController {
   async updateTipificacion(req, res) {
     try {
       const { id } = req.params;
-      const { nombre, tipo, telefono, correo, fecha_hora_cita, id_proyecto, id_prospecto,
-        num_habitaciones, piso_referidos, precio_indicado, descuento, cuota_crediticia,
-        score_crediticio, resumen } = req.body;
+      const { nombre, tipo, telefono, correo, duracion_cita, fecha_hora_cita, id_marca, id_modelo, id_version, id_prospecto, resumen } = req.body;
 
       if (!nombre) {
         return res.status(400).json({ msg: "El nombre es requerido" });
@@ -65,9 +60,8 @@ class TipificacionController {
 
       const usuario_actualizacion = req.user?.userId || null;
       await tipificacionRepository.update(id, {
-        nombre, tipo, telefono, correo, fecha_hora_cita, id_proyecto, id_prospecto,
-        num_habitaciones, piso_referidos, precio_indicado, descuento, cuota_crediticia,
-        score_crediticio, resumen, usuario_actualizacion
+        nombre, tipo, telefono, correo, duracion_cita, fecha_hora_cita, id_marca, id_modelo, id_version, id_prospecto,
+        resumen, usuario_actualizacion
       });
 
       return res.status(200).json({ msg: "Tipificación actualizada exitosamente" });

@@ -1,4 +1,4 @@
-const { Prospecto, Interaccion, Proyecto, Usuario } = require("../models/sequelize");
+const { Prospecto, Interaccion, Usuario } = require("../models/sequelize");
 
 class ProspectoRepository {
   async findAll(idEmpresa) {

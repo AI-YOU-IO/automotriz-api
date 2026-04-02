@@ -4,6 +4,9 @@ const CitaRepository = require("../../../repositories/cita.repository");
 const DiaDescansoRepository = require("../../../repositories/diaDescanso.repository");
 const InteraccionRepository = require("../../../repositories/interaccion.repository");
 const HorarioAtencionRepository = require("../../../repositories/horarioAtencion.repository");
+const MarcaRepository = require("../../../repositories/marca.repository");
+const ModeloRepository = require("../../../repositories/modelo.repository");
+const VersionRepository = require("../../../repositories/version.repository");
 const SperantServices = require("../../sperant/sperant.service");
 const UltravoxService = require("../../ultravox/ultravox.service");
 const logger = require("../../../config/logger/loggerClient");
@@ -25,10 +28,18 @@ class ToolExecutor {
                 return this._crearNuevoLead(args);
             case "actualizarLead":
                 return this._actualizarLead(args);
-            case "obtenerUnidades":
-                return this._obtenerUnidades(args);
-            case "obtenerUnidad":
-                return this._obtenerUnidad(args);
+            case "obtenerMarcas":
+                return this._obtenerMarcas(args);
+            case "obtenerMarca":
+                return this._obtenerMarca(args);
+            case "obtenerModelos":
+                return this._obtenerModelos(args);
+            case "obtenerModelo":
+                return this._obtenerModelo(args);
+            case "obtenerVersiones":
+                return this._obtenerVersiones(args);
+            case "obtenerVersion":
+                return this._obtenerVersion(args);
             case "crearCita":
                 return this._crearCita(args);
             case "obtenerCita":
@@ -43,8 +54,6 @@ class ToolExecutor {
                 return this._crearInteracciones(args);
             case "enviarLeadLlamada":
                 return this._enviarLeadLlamada(args);
-            case "obtenerUnidadesPorDormitorio":
-                return this._obtenerUnidadesPorDormitorio(args);
             case "buscarFaqs":
                 return this._buscarFaqs(args);
 
@@ -90,45 +99,46 @@ class ToolExecutor {
         return JSON.stringify(lead);
     }
 
-    async _obtenerProyectosDisponibles({ distrito }) {
-        logger.info(`[ToolExecutor] obtenerProyectosDisponibles: distrito=${distrito}`);
-        const proyectos = await ProyectoRepository.findByDistrito(distrito);
-        return JSON.stringify(proyectos);
+    async _obtenerMarcas() {
+        logger.info(`[ToolExecutor] obtenerMarcas`);
+        const marcas = await MarcaRepository.findAll();
+        return JSON.stringify(marcas);
     }
 
-    async _buscarProyectoPorNombre({ nombre, distrito }) {
-        logger.info(`[ToolExecutor] buscarProyectoPorNombre: nombre=${nombre}, distrito=${distrito}`);
-        const proyectos = await ProyectoRepository.findByNombre(nombre, distrito || null);
-        return JSON.stringify(proyectos);
+    async _obtenerMarca({ id }) {
+        logger.info(`[ToolExecutor] obtenerMarca: id=${id}`);
+        const marca = await MarcaRepository.findById(id);
+        if (!marca) return JSON.stringify({ error: "Marca no encontrada" });
+        return JSON.stringify(marca);
     }
 
-    async _obtenerProyecto({ id }) {
-        logger.info(`[ToolExecutor] obtenerProyecto: id=${id}`);
-        const proyecto = await ProyectoRepository.findById(id);
-        if (!proyecto) return JSON.stringify({ error: "Proyecto no encontrado" });
-        return JSON.stringify(proyecto);
+    async _obtenerModelos({ id_marca }) {
+        logger.info(`[ToolExecutor] obtenerModelos: id_marca=${id_marca}`);
+        const modelos = await ModeloRepository.findByMarca(id_marca);
+        return JSON.stringify(modelos);
     }
 
-    async _obtenerUnidades({ id_proyecto }) {
-        logger.info(`[ToolExecutor] obtenerUnidades: id_proyecto=${id_proyecto}`);
-        const unidades = await UnidadRepository.findByProyecto(id_proyecto);
-        return JSON.stringify(unidades);
+    async _obtenerModelo({ id }) {
+        logger.info(`[ToolExecutor] obtenerModelo: id=${id}`);
+        const modelo = await ModeloRepository.findById(id);
+        if (!modelo) return JSON.stringify({ error: "Modelo no encontrado" });
+        return JSON.stringify(modelo);
     }
 
-    async _obtenerUnidadesPorDormitorio({ numeroDormitorios, id_proyecto }) {
-        logger.info(`[ToolExecutor] obtenerUnidadesPorDormitorio: numeroDormitorio=${numeroDormitorios}`);
-        const unidades = await UnidadRepository.findByDormitorios(id_proyecto, numeroDormitorios);
-        return JSON.stringify(unidades);
+    async _obtenerVersiones({ id_modelo }) {
+        logger.info(`[ToolExecutor] obtenerVersiones: id_modelo=${id_modelo}`);
+        const versiones = await VersionRepository.findByModelo(id_modelo);
+        return JSON.stringify(versiones);
     }
 
-    async _obtenerUnidad({ id }) {
-        logger.info(`[ToolExecutor] obtenerUnidad: id=${id}`);
-        const unidad = await UnidadRepository.findById(id);
-        if (!unidad) return JSON.stringify({ error: "Unidad no encontrada" });
-        return JSON.stringify(unidad);
+    async _obtenerVersion({ id }) {
+        logger.info(`[ToolExecutor] obtenerVersion: id=${id}`);
+        const version = await VersionRepository.findById(id);
+        if (!version) return JSON.stringify({ error: "Versión no encontrada" });
+        return JSON.stringify(version);
     }
 
-    async _crearCita({ nombre, hora_inicio, hora_fin, lugar, id_prospecto, id_proyecto, id_unidad }) {
+    async _crearCita({ nombre, hora_inicio, hora_fin, lugar, id_prospecto, id_marca, id_modelo, id_version }) {
         logger.info(`[ToolExecutor] crearCita: ${nombre}`);
         const cita = await CitaRepository.create({
             nombre,
@@ -136,8 +146,9 @@ class ToolExecutor {
             hora_fin,
             lugar,
             id_prospecto,
-            id_proyecto,
-            id_unidad,
+            id_marca,
+            id_modelo,
+            id_version,
             id_estado_cita: 1,
             id_usuario: 1
         });

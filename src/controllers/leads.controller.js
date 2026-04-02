@@ -95,14 +95,14 @@ class LeadsController {
           i.satisfactorio,
           i.observaciones,
           i.fecha_registro,
-          p.nombre AS proyecto,
+          m.nombre AS marca,
           u.usuario AS asesor,
-          un.nombre AS unidad,
+          mo.nombre AS modelo,
           pr.nombre_completo AS prospecto
         FROM interaccion i
-        LEFT JOIN proyecto p ON p.id = i.id_proyecto
+        LEFT JOIN marca m ON m.id = i.id_marca
         LEFT JOIN usuario u ON u.id = i.id_usuario
-        LEFT JOIN unidad un ON un.id = i.id_unidad
+        LEFT JOIN modelo mo ON mo.id = i.id_modelo
         LEFT JOIN prospecto pr ON pr.id = i.id_prospecto
         WHERE i.id_prospecto = :id
           AND i.estado_registro = 1
@@ -270,40 +270,6 @@ class LeadsController {
     }
   }
 
-  async syncProjectsFromSperant(req, res) {
-    try {
-      const { userId, idEmpresa } = req.user || {};
-      logger.info(`[leads.controller.js] Sync proyectos desde Sperant solicitado por usuario ${userId}`);
-
-      const result = await sperantService.syncProjects(idEmpresa || null, userId);
-
-      return res.status(200).json({
-        msg: `Proyectos: ${result.projects.created} creados, ${result.projects.updated} actualizados. Tipologías: ${result.typologies.created} creadas, ${result.typologies.updated} actualizadas`,
-        data: result
-      });
-    } catch (error) {
-      logger.error(`[leads.controller.js] Error al sincronizar proyectos desde Sperant: ${error.message}`);
-      return res.status(500).json({ msg: "Error al sincronizar proyectos desde Sperant", debug: error.message });
-    }
-  }
-
-  async syncUnitsFromSperant(req, res) {
-    try {
-      const { userId, idEmpresa } = req.user || {};
-      logger.info(`[leads.controller.js] Sync unidades desde Sperant solicitado por usuario ${userId}`);
-
-      const result = await sperantService.syncUnits(idEmpresa || null, userId);
-
-      return res.status(200).json({
-        msg: `Unidades: ${result.created} creadas, ${result.updated} actualizadas, ${result.errors} errores`,
-        data: result
-      });
-    } catch (error) {
-      logger.error(`[leads.controller.js] Error al sincronizar unidades desde Sperant: ${error.message}`);
-      return res.status(500).json({ msg: "Error al sincronizar unidades desde Sperant", debug: error.message });
-    }
-  }
-
   async syncAllFromSperant(req, res) {
     try {
       const { userId, idEmpresa } = req.user || {};
@@ -312,7 +278,7 @@ class LeadsController {
       const result = await sperantService.syncAll(idEmpresa || null, userId);
 
       return res.status(200).json({
-        msg: `Sync completo: Clientes ${result.clients.created} creados/${result.clients.updated} actualizados, Proyectos ${result.projects.created} creados/${result.projects.updated} actualizados, Tipologías ${result.typologies.created} creadas/${result.typologies.updated} actualizadas, Unidades ${result.units.created} creadas/${result.units.updated} actualizadas`,
+        msg: `Sync completo: Clientes ${result.clients.created} creados/${result.clients.updated} actualizados`,
         data: result
       });
     } catch (error) {

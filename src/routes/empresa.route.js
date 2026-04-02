@@ -7,6 +7,7 @@ router.get("/empresas", /* #swagger.tags = ['Empresa'] */ EmpresaController.getE
 router.get("/empresas/:id", /* #swagger.tags = ['Empresa'] */ EmpresaController.getEmpresaById);
 router.post("/empresas", /* #swagger.tags = ['Empresa'] */ EmpresaController.createEmpresa);
 router.put("/empresas/:id", /* #swagger.tags = ['Empresa'] */ EmpresaController.updateEmpresa);
+router.put("/empresas/:id/estado", /* #swagger.tags = ['Empresa'] */ EmpresaController.toggleEstadoEmpresa);
 router.delete("/empresas/:id", /* #swagger.tags = ['Empresa'] */ EmpresaController.deleteEmpresa);
 
 module.exports = router;

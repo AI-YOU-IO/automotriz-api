@@ -70,22 +70,21 @@ class RecursoController {
 
   async createRecurso(req, res) {
     try {
-      const { nombre, url, tipo_recurso_id } = req.body;
-      const id_proyecto = req.body.id_proyecto ?? null;
-      const id_tipologia = req.body.id_tipologia ?? null;
-      const empresa_id = req.user?.idEmpresa || null;
+      const { nombre, url, id_tipo_recurso } = req.body;
+      const id_modelo = req.body.id_modelo ?? null;
+      const id_empresa = req.user?.idEmpresa || null;
       const usuario_registro = req.user?.userId || null;
 
       if (!nombre) {
         return res.status(400).json({ msg: "El nombre es requerido" });
       }
 
-      if (!tipo_recurso_id) {
+      if (!id_tipo_recurso) {
         return res.status(400).json({ msg: "El tipo de recurso es requerido" });
       }
 
       const recurso = await recursoRepository.create({
-        nombre, url, tipo_recurso_id, id_proyecto, id_tipologia, empresa_id,
+        nombre, url, id_tipo_recurso, id_modelo, id_empresa,
         usuario_registro, usuario_actualizacion: usuario_registro
       });
 
@@ -99,9 +98,8 @@ class RecursoController {
   async updateRecurso(req, res) {
     try {
       const { id } = req.params;
-      const { nombre, url, tipo_recurso_id } = req.body;
-      const id_proyecto = req.body.id_proyecto ?? null;
-      const id_tipologia = req.body.id_tipologia ?? null;
+      const { nombre, url, id_tipo_recurso } = req.body;
+      const id_modelo = req.body.id_modelo ?? null;
       const usuario_actualizacion = req.user?.userId || null;
 
       if (!nombre) {
@@ -109,7 +107,7 @@ class RecursoController {
       }
 
       const [updated] = await recursoRepository.update(id, {
-        nombre, url, tipo_recurso_id, id_proyecto, id_tipologia, usuario_actualizacion
+        nombre, url, id_tipo_recurso, id_modelo, usuario_actualizacion
       });
 
       if (!updated) {

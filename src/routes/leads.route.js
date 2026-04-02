@@ -64,19 +64,9 @@ router.post("/leads/sync-sperant",
     // #swagger.summary = 'Sincronizar leads desde Sperant'
     LeadsController.syncFromSperant
 );
-router.post("/projects/sync-sperant",
-    // #swagger.tags = ['Proyectos']
-    // #swagger.summary = 'Sincronizar proyectos y tipologías desde Sperant'
-    LeadsController.syncProjectsFromSperant
-);
-router.post("/units/sync-sperant",
-    // #swagger.tags = ['Unidades']
-    // #swagger.summary = 'Sincronizar unidades desde Sperant'
-    LeadsController.syncUnitsFromSperant
-);
 router.post("/sync-sperant-all",
     // #swagger.tags = ['Sperant']
-    // #swagger.summary = 'Sincronización completa desde Sperant (clientes, proyectos, tipologías)'
+    // #swagger.summary = 'Sincronización completa desde Sperant (clientes)'
     LeadsController.syncAllFromSperant
 );
 

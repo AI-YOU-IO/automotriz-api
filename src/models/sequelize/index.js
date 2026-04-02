@@ -40,6 +40,7 @@ db.Usuario = require('./usuario.model')(sequelize);
 // Cargar modelos - Fase 4.1: Dependencias de Usuario
 db.DiaDescanso = require('./diaDescanso.model')(sequelize);
 db.HorarioAtencion = require('./horarioAtencion.model')(sequelize);
+db.HorarioBloqueado = require('./horarioBloqueado.model')(sequelize);
 
 // Cargar modelos - Fase 5: Dependencias de Proyecto, Tipologia
 db.Recurso = require('./recurso.model')(sequelize);

@@ -173,52 +173,26 @@ const toolDefinitions = [
     {
         type: "function",
         function: {
-            name: "obtenerProyectosDisponibles",
-            description: "Obtiene una lista de proyectos disponibles por el distrito",
+            name: "obtenerMarcas",
+            description: "Obtiene la lista de marcas de vehículos disponibles",
             parameters: {
                 type: "object",
-                properties: {
-                    distrito: {
-                        type: "string",
-                        description: "Distrito para filtrar los proyectos"
-                    }
-                },
-                required: ["distrito"]
+                properties: {},
+                required: []
             }
         }
     },
     {
         type: "function",
         function: {
-            name: "buscarProyectoPorNombre",
-            description: "Busca proyectos disponibles por nombre del proyecto. Opcionalmente filtra por distrito.",
-            parameters: {
-                type: "object",
-                properties: {
-                    nombre: {
-                        type: "string",
-                        description: "Nombre o parte del nombre del proyecto a buscar"
-                    },
-                    distrito: {
-                        type: "string",
-                        description: "Nombre del distrito para filtrar los proyectos (opcional)"
-                    }
-                },
-                required: ["nombre"]
-            }
-        }
-    },
-    {
-        type: "function",
-        function: {
-            name: "obtenerProyecto",
-            description: "Obtiene la informacion del proyecto según el id",
+            name: "obtenerMarca",
+            description: "Obtiene la información de la marca según el id",
             parameters: {
                 type: "object",
                 properties: {
                     id: {
                         type: "integer",
-                        description: "Id del proyecto seleccionado"
+                        description: "Id de la marca seleccionada"
                     }
                 },
                 required: ["id"]
@@ -228,52 +202,65 @@ const toolDefinitions = [
     {
         type: "function",
         function: {
-            name: "obtenerUnidades",
-            description: "Obtiene la lista de unidades según el id del proyecto",
+            name: "obtenerModelos",
+            description: "Obtiene la lista de modelos según el id de la marca",
             parameters: {
                 type: "object",
                 properties: {
-                    id_proyecto: {
+                    id_marca: {
                         type: "integer",
-                        description: "ID del proyecto seleccionado"
+                        description: "ID de la marca seleccionada"
                     }
                 },
-                required: ["id_proyecto"]
+                required: ["id_marca"]
             }
         }
     },
     {
         type: "function",
         function: {
-            name: "obtenerUnidadesPorDormitorio",
-            description: "Obtiene la lista de unidades filtrado por la cantidad de dormitorios",
-            parameters: {
-                type: "object",
-                properties: {
-                    numeroDormitorios: {
-                        type: "integer",
-                        description: "Cantidad de dormitorios a buscar"
-                    },
-                     id_proyecto: {
-                        type: "integer",
-                        description: "ID del proyecto seleccionado"
-                    }
-                },
-                required: ["numeroDormitorios", "id_proyecto"]
-            }
-        }
-    },
-    {
-        type: "function",
-        function: {
-            name: "obtenerUnidad",
-            description: "Obtiene el detalle de la unidades seleccionada",
+            name: "obtenerModelo",
+            description: "Obtiene el detalle del modelo seleccionado",
             parameters: {
                 type: "object",
                 properties: {
                     id: {
                         type: "integer",
-                        description: "Id del unidad seleccionado"
+                        description: "Id del modelo seleccionado"
+                    }
+                },
+                required: ["id"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "obtenerVersiones",
+            description: "Obtiene la lista de versiones según el id del modelo",
+            parameters: {
+                type: "object",
+                properties: {
+                    id_modelo: {
+                        type: "integer",
+                        description: "ID del modelo seleccionado"
+                    }
+                },
+                required: ["id_modelo"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "obtenerVersion",
+            description: "Obtiene el detalle de la versión seleccionada",
+            parameters: {
+                type: "object",
+                properties: {
+                    id: {
+                        type: "integer",
+                        description: "Id de la versión seleccionada"
                     }
                 },
                 required: ["id"]
@@ -312,16 +299,20 @@ const toolDefinitions = [
                         type: "integer",
                         description: "ID del lead o prospecto"
                     },
-                    id_proyecto: {
+                    id_marca: {
                         type: "integer",
-                        description: "ID del proyecto seleccionado"
+                        description: "ID de la marca seleccionada"
                     },
-                    id_unidad: {
+                    id_modelo: {
                         type: "integer",
-                        description: "ID de la unidad seleccionada"
+                        description: "ID del modelo seleccionado"
+                    },
+                    id_version: {
+                        type: "integer",
+                        description: "ID de la versión seleccionada"
                     }
                 },
-                required: ["nombre", "hora_inicio", "hora_fin", "lugar", "id_prospecto", "id_proyecto", "id_unidad"]
+                required: ["nombre", "hora_inicio", "hora_fin", "lugar", "id_prospecto", "id_marca", "id_modelo", "id_version"]
             }
         }
     },
@@ -529,17 +520,21 @@ const toolDefinitions = [
             parameters: {
                 type: "object",
                 properties: {
-                    id_proyecto: {
+                    id_marca: {
                         type: "integer",
-                        description: "sperant_id del proyecto seleccionado"
+                        description: "ID de la marca seleccionada"
+                    },
+                    id_modelo: {
+                        type: "integer",
+                        description: "ID del modelo seleccionado"
+                    },
+                    id_version: {
+                        type: "integer",
+                        description: "ID de la versión seleccionada"
                     },
                     id_usuario: {
                         type: "integer",
-                        description: "sperant_id del asesor asignado al lead o prospecto"
-                    },
-                    id_unidad: {
-                        type: "integer",
-                        description: "sperant_id de la unidad seleccionada"
+                        description: "ID del asesor asignado al lead o prospecto"
                     },
                     satisfactorio: {
                         type: "integer",
@@ -594,7 +589,7 @@ const toolDefinitions = [
                         description: "ID tipo de interaccion. Valor por defecto es 1",
                     },
                 },
-                required: ["id_proyecto", "id_usuario", "id_unidad", "id_prospecto", "id_nivel_interes", "id_canal_entrada", "id_medio_captacion", "id_tipo_interaccion"]
+                required: ["id_marca", "id_modelo", "id_version", "id_usuario", "id_prospecto", "id_nivel_interes", "id_canal_entrada", "id_medio_captacion", "id_tipo_interaccion"]
             }
         }
     },

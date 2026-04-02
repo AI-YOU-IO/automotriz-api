@@ -30,17 +30,17 @@ class CitaController {
 
   async createCita(req, res) {
     try {
-      const { nombre, hora_inicio, hora_fin, lugar, descripcion, id_prospecto, id_proyecto, id_unidad, id_estado_cita } = req.body;
+      const { nombre, hora_inicio, hora_fin, id_sucursal, descripcion, id_prospecto, id_marca, id_modelo, id_version, id_estado_cita } = req.body;
       const id_usuario = req.user?.userId || null;
       const usuario_registro = req.user?.userId || null;
 
-      if (!nombre || !hora_inicio || !hora_fin || !lugar || !id_prospecto || !id_proyecto || !id_unidad || !id_estado_cita) {
-        return res.status(400).json({ msg: "Nombre, hora inicio, hora fin, lugar, prospecto, proyecto, unidad y estado son requeridos" });
+      if (!nombre || !hora_inicio || !hora_fin || !id_prospecto || !id_marca || !id_modelo || !id_version || !id_estado_cita) {
+        return res.status(400).json({ msg: "Nombre, hora inicio, hora fin, prospecto, marca, modelo, versión y estado son requeridos" });
       }
 
       const cita = await citaRepository.create({
-        nombre, hora_inicio, hora_fin, lugar, descripcion, id_prospecto,
-        id_proyecto, id_unidad, id_estado_cita, id_usuario, usuario_registro
+        nombre, hora_inicio, hora_fin, id_sucursal, descripcion, id_prospecto,
+        id_marca, id_modelo, id_version, id_estado_cita, id_usuario, usuario_registro
       });
 
       return res.status(201).json({ msg: "Cita creada exitosamente", data: { id: cita.id } });
@@ -53,7 +53,7 @@ class CitaController {
   async updateCita(req, res) {
     try {
       const { id } = req.params;
-      const { nombre, hora_inicio, hora_fin, lugar, descripcion, id_prospecto, id_proyecto, id_unidad, id_estado_cita } = req.body;
+      const { nombre, hora_inicio, hora_fin, id_sucursal, descripcion, id_prospecto, id_marca, id_modelo, id_version, id_estado_cita } = req.body;
       const usuario_actualizacion = req.user?.userId || null;
 
       if (!nombre || !hora_inicio || !hora_fin || !id_estado_cita) {
@@ -61,9 +61,9 @@ class CitaController {
       }
 
       const [updated] = await citaRepository.update(id, {
-        nombre, hora_inicio, hora_fin, lugar: lugar || null, descripcion: descripcion || null,
-        id_prospecto: id_prospecto || null, id_proyecto: id_proyecto || null,
-        id_unidad: id_unidad || null, id_estado_cita, usuario_actualizacion
+        nombre, hora_inicio, hora_fin, id_sucursal: id_sucursal || null, descripcion: descripcion || null,
+        id_prospecto: id_prospecto || null, id_marca: id_marca || null,
+        id_modelo: id_modelo || null, id_version: id_version || null, id_estado_cita, usuario_actualizacion
       });
 
       if (!updated) {

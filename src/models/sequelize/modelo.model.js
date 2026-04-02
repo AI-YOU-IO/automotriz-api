@@ -42,6 +42,8 @@ module.exports = (sequelize) => {
 
     Modelo.associate = (models) => {
         Modelo.belongsTo(models.Marca, { foreignKey: 'id_marca', as: 'marca' });
+        Modelo.hasMany(models.Version, { foreignKey: 'id_modelo', as: 'versiones' });
+        Modelo.hasMany(models.Recurso, { foreignKey: 'id_modelo', as: 'recursos' });
     }
     return Modelo;
 }

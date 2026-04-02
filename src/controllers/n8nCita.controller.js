@@ -9,7 +9,7 @@
  * - DELETE /n8n/citas/:id - Eliminar cita (soft delete)
  */
 
-const { Cita, Prospecto, Proyecto, Unidad, EstadoCita, Usuario } = require('../models/sequelize');
+const { Cita, Prospecto, Marca, Modelo, Version, EstadoCita, Usuario } = require('../models/sequelize');
 const logger = require('../config/logger/loggerClient');
 
 class N8nCitaController {
@@ -27,8 +27,9 @@ class N8nCitaController {
         lugar = null,
         descripcion = null,
         id_prospecto,
-        id_proyecto = null,
-        id_unidad = null,
+        id_marca = null,
+        id_modelo = null,
+        id_version = null,
         id_estado_cita = 1,
         id_usuario
       } = req.body;
@@ -83,8 +84,9 @@ class N8nCitaController {
         lugar,
         descripcion,
         id_prospecto,
-        id_proyecto,
-        id_unidad,
+        id_marca,
+        id_modelo,
+        id_version,
         id_estado_cita,
         id_usuario,
         usuario_registro: null,
@@ -103,8 +105,9 @@ class N8nCitaController {
           lugar: cita.lugar,
           descripcion: cita.descripcion,
           id_prospecto: cita.id_prospecto,
-          id_proyecto: cita.id_proyecto,
-          id_unidad: cita.id_unidad,
+          id_marca: cita.id_marca,
+          id_modelo: cita.id_modelo,
+          id_version: cita.id_version,
           id_estado_cita: cita.id_estado_cita,
           id_usuario: cita.id_usuario
         }
@@ -127,8 +130,9 @@ class N8nCitaController {
       const cita = await Cita.findByPk(id, {
         include: [
           { model: Prospecto, as: 'prospecto', attributes: ['id', 'nombre_completo', 'celular'] },
-          { model: Proyecto, as: 'proyecto', attributes: ['id', 'nombre'] },
-          { model: Unidad, as: 'unidad', attributes: ['id', 'nombre'] },
+          { model: Marca, as: 'marca', attributes: ['id', 'nombre'] },
+          { model: Modelo, as: 'modelo', attributes: ['id', 'nombre'] },
+          { model: Version, as: 'version', attributes: ['id', 'nombre'] },
           { model: EstadoCita, as: 'estadoCita', attributes: ['id', 'nombre', 'color'] },
           { model: Usuario, as: 'usuario', attributes: ['id', 'usuario'] }
         ]
@@ -151,8 +155,9 @@ class N8nCitaController {
           lugar: cita.lugar,
           descripcion: cita.descripcion,
           id_prospecto: cita.id_prospecto,
-          id_proyecto: cita.id_proyecto,
-          id_unidad: cita.id_unidad,
+          id_marca: cita.id_marca,
+          id_modelo: cita.id_modelo,
+          id_version: cita.id_version,
           id_estado_cita: cita.id_estado_cita,
           id_usuario: cita.id_usuario,
           prospecto: cita.prospecto ? {
@@ -160,13 +165,17 @@ class N8nCitaController {
             nombre: cita.prospecto.nombre_completo,
             celular: cita.prospecto.celular
           } : null,
-          proyecto: cita.proyecto ? {
-            id: cita.proyecto.id,
-            nombre: cita.proyecto.nombre
+          marca: cita.marca ? {
+            id: cita.marca.id,
+            nombre: cita.marca.nombre
           } : null,
-          unidad: cita.unidad ? {
-            id: cita.unidad.id,
-            nombre: cita.unidad.nombre
+          modelo: cita.modelo ? {
+            id: cita.modelo.id,
+            nombre: cita.modelo.nombre
+          } : null,
+          version: cita.version ? {
+            id: cita.version.id,
+            nombre: cita.version.nombre
           } : null,
           estado: cita.estadoCita ? {
             id: cita.estadoCita.id,
@@ -249,8 +258,9 @@ class N8nCitaController {
         lugar,
         descripcion,
         id_prospecto,
-        id_proyecto,
-        id_unidad,
+        id_marca,
+        id_modelo,
+        id_version,
         id_estado_cita,
         id_usuario
       } = req.body;
@@ -270,8 +280,9 @@ class N8nCitaController {
       if (lugar !== undefined) datosActualizar.lugar = lugar;
       if (descripcion !== undefined) datosActualizar.descripcion = descripcion;
       if (id_prospecto !== undefined) datosActualizar.id_prospecto = id_prospecto;
-      if (id_proyecto !== undefined) datosActualizar.id_proyecto = id_proyecto;
-      if (id_unidad !== undefined) datosActualizar.id_unidad = id_unidad;
+      if (id_marca !== undefined) datosActualizar.id_marca = id_marca;
+      if (id_modelo !== undefined) datosActualizar.id_modelo = id_modelo;
+      if (id_version !== undefined) datosActualizar.id_version = id_version;
       if (id_estado_cita !== undefined) datosActualizar.id_estado_cita = id_estado_cita;
       if (id_usuario !== undefined) datosActualizar.id_usuario = id_usuario;
 

@@ -26,7 +26,10 @@ module.exports = (sequelize) =>{
             }
 
         },
-        ...commonFields
+        ...(() => {
+            const { usuario_actualizacion, ...rest } = commonFields;
+            return rest;
+        })()
     }, {
         tableName: 'marca',
         ...commonOptions,
@@ -43,6 +46,7 @@ module.exports = (sequelize) =>{
     });
     Marca.associate = (models) => {
         Marca.belongsTo(models.Empresa, { foreignKey: 'id_empresa', as: 'empresa' });
+        Marca.hasMany(models.Modelo, { foreignKey: 'id_marca', as: 'modelos' });
     };
 
     return Marca;

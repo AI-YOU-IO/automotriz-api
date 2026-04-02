@@ -24,6 +24,10 @@ module.exports = (sequelize) => {
                 key: 'id'
             }
         },
+        anio: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
         ...commonFields
     }, {
         tableName: 'version',

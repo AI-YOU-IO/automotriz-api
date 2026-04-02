@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const { commonOptions } = require('../base/baseModel');
+const { commonFields, commonOptions } = require('../base/baseModel');
 
 module.exports = (sequelize) => {
   const Interaccion = sequelize.define('Interaccion', {
@@ -25,16 +25,15 @@ module.exports = (sequelize) => {
         key: 'id'
       }
     },
-    modelo: {
+    id_modelo: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
         model: 'modelo',
         key: 'id'
-      } 
+      }
     },
-
-    version:{
+    id_version: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
@@ -76,6 +75,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true
     },
+    ...(() => {
+      const { usuario_registro, ...rest } = commonFields;
+      return rest;
+    })()
   }, {
     tableName: 'interaccion',
     ...commonOptions,
@@ -94,6 +97,8 @@ module.exports = (sequelize) => {
     Interaccion.belongsTo(models.Prospecto, { foreignKey: 'id_prospecto', as: 'prospecto' });
     Interaccion.belongsTo(models.Usuario, { foreignKey: 'id_usuario', as: 'usuario' });
     Interaccion.belongsTo(models.Marca, { foreignKey: 'id_marca', as: 'marca' });
+    Interaccion.belongsTo(models.Modelo, { foreignKey: 'id_modelo', as: 'modelo' });
+    Interaccion.belongsTo(models.Version, { foreignKey: 'id_version', as: 'version' });
   };
 
   return Interaccion;

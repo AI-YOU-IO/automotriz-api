@@ -1,4 +1,4 @@
-const { Cita, Prospecto, Proyecto, Unidad, EstadoCita, Usuario, Tipologia } = require("../models/sequelize");
+const { Cita, Prospecto, Marca, Modelo, Version, EstadoCita, Usuario } = require("../models/sequelize");
 
 class CitaRepository {
   async findAll() {
@@ -6,10 +6,9 @@ class CitaRepository {
       where: { estado_registro: 1 },
       include: [
         { model: Prospecto, as: 'prospecto', attributes: ['id', 'nombre_completo'], required: false },
-        { model: Proyecto, as: 'proyecto', attributes: ['id', 'nombre'], required: false },
-        { model: Unidad, as: 'unidad', attributes: ['id', 'nombre'], required: false,
-          include: [{ model: Tipologia, as: 'tipologia', attributes: ['id', 'nombre'], required: false }]
-        },
+        { model: Marca, as: 'marca', attributes: ['id', 'nombre'], required: false },
+        { model: Modelo, as: 'modelo', attributes: ['id', 'nombre'], required: false },
+        { model: Version, as: 'version', attributes: ['id', 'nombre'], required: false },
         { model: EstadoCita, as: 'estadoCita', attributes: ['id', 'nombre', 'color'], required: false },
         { model: Usuario, as: 'usuario', attributes: ['id', 'usuario'], required: false }
       ],
@@ -21,10 +20,9 @@ class CitaRepository {
     return Cita.findByPk(id, {
       include: [
         { model: Prospecto, as: 'prospecto', attributes: ['id', 'nombre_completo'], required: false },
-        { model: Proyecto, as: 'proyecto', attributes: ['id', 'nombre'], required: false },
-        { model: Unidad, as: 'unidad', attributes: ['id', 'nombre'], required: false,
-          include: [{ model: Tipologia, as: 'tipologia', attributes: ['id', 'nombre'], required: false }]
-        },
+        { model: Marca, as: 'marca', attributes: ['id', 'nombre'], required: false },
+        { model: Modelo, as: 'modelo', attributes: ['id', 'nombre'], required: false },
+        { model: Version, as: 'version', attributes: ['id', 'nombre'], required: false },
         { model: EstadoCita, as: 'estadoCita', attributes: ['id', 'nombre', 'color'], required: false },
         { model: Usuario, as: 'usuario', attributes: ['id', 'usuario'], required: false }
       ]
