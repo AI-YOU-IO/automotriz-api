@@ -1,4 +1,5 @@
 const { Marca, Modelo, Version } = require("../models/sequelize");
+const { Op } = require("sequelize");
 
 class MarcaRepository {
   async findAll(idEmpresa) {
@@ -15,6 +16,20 @@ class MarcaRepository {
   async findById(id) {
     return Marca.findByPk(id, {
       include: [{ model: Modelo, as: 'modelos', where: { estado_registro: 1 }, required: false }]
+    });
+  }
+
+  async findByNombre(nombre, idEmpresa) {
+    const whereClause = {
+      estado_registro: 1,
+      nombre: { [Op.like]: `%${nombre}%` }
+    };
+    if (idEmpresa) whereClause.id_empresa = idEmpresa;
+
+    return Marca.findAll({
+      where: whereClause,
+      include: [{ model: Modelo, as: 'modelos', where: { estado_registro: 1 }, required: false }],
+      order: [['nombre', 'ASC']]
     });
   }
 

@@ -96,11 +96,11 @@ class ToolExecutor {
         return JSON.stringify(marcas);
     }
 
-    async _obtenerMarca({ id }) {
-        logger.info(`[ToolExecutor] obtenerMarca: id=${id}`);
-        const marca = await MarcaRepository.findById(id);
-        if (!marca) return JSON.stringify({ error: "Marca no encontrada" });
-        return JSON.stringify(marca);
+    async _obtenerMarca({ nombre }) {
+        logger.info(`[ToolExecutor] obtenerMarca: nombre=${nombre}`);
+        const marcas = await MarcaRepository.findByNombre(nombre, this.id_empresa);
+        if (!marcas || marcas.length === 0) return JSON.stringify({ error: "Marca no encontrada" });
+        return JSON.stringify(marcas);
     }
 
     async _obtenerModelos({ id_marca }) {

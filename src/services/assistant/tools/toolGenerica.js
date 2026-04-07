@@ -106,16 +106,16 @@ const toolDefinitions = [
         type: "function",
         function: {
             name: "obtenerMarca",
-            description: "Obtiene la información de la marca según el id",
+            description: "Busca y obtiene la información de una marca por su nombre (búsqueda parcial)",
             parameters: {
                 type: "object",
                 properties: {
-                    id: {
-                        type: "integer",
-                        description: "Id de la marca seleccionada"
+                    nombre: {
+                        type: "string",
+                        description: "Nombre o parte del nombre de la marca a buscar"
                     }
                 },
-                required: ["id"]
+                required: ["nombre"]
             }
         }
     },

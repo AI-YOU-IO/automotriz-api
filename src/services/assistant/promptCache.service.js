@@ -46,10 +46,10 @@ async function loadAutosData(id_empresa) {
 
         const formatted = marcas.map(marca => {
             const modelos = (marca.modelos || []).map(modelo => {
-                const versiones = (modelo.versiones || []).map(v => `${v.nombre} (id: ${v.id})`).join(', ');
-                return `  - ${modelo.nombre} (id: ${modelo.id})${versiones ? `: ${versiones}` : ''}`;
+                const versiones = (modelo.versiones || []).map(v => v.nombre).join(', ');
+                return `  - ${modelo.nombre}${versiones ? `: ${versiones}` : ''}`;
             }).join('\n');
-            return `${marca.nombre} (id: ${marca.id})\n${modelos}`;
+            return `${marca.nombre}\n${modelos}`;
         }).join('\n\n');
 
         const result = formatted || 'No hay autos configurados';
