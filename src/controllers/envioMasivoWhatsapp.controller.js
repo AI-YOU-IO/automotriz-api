@@ -60,7 +60,7 @@ class EnvioMasivoWhatsappController {
         cantidad_exitosos: 0,
         cantidad_fallidos: 0,
         fecha_envio: fecha_envio || null,
-        estado_envio: envio_instantaneo ? 'entregado' : 'pendiente',
+        estado_envio: envio_instantaneo ? 'enviado' : 'pendiente',
         usuario_registro
       });
 
