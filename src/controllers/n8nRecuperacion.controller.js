@@ -695,8 +695,10 @@ class N8nRecuperacionController {
           logger.info(`[n8nRecuperacion] registrarEnvio: Recuperación ${registro.tipo_recuperacion} DIRECTO para chat ${registro.id_chat}, wid: ${whatsappResult.wid_mensaje}`);
 
         } catch (directoError) {
-          // Fallback a plantilla si el envío directo falla (ventana cerrada, etc.)
-          logger.warn(`[n8nRecuperacion] Envío directo falló para chat ${registro.id_chat}: ${directoError.message}. Intentando fallback con plantilla ${nombrePlantilla}...`);
+          const metaErr = directoError.response?.data?.error || {};
+          logger.warn(`[n8nRecuperacion] Envío directo falló - chat: ${registro.id_chat}, celular: ${registro.celular}, empresa: ${registro.id_empresa}`);
+          logger.warn(`[n8nRecuperacion] Status: ${directoError.response?.status || 'N/A'}, Meta code: ${metaErr.code || 'N/A'}, message: ${metaErr.message || directoError.message}`);
+          logger.warn(`[n8nRecuperacion] Intentando fallback con plantilla ${nombrePlantilla}...`);
 
           resultadoEnvio = await enviarPlantillaRecuperacion(
             registro, nombrePlantilla, nombreProspecto
@@ -738,7 +740,14 @@ class N8nRecuperacionController {
       });
 
     } catch (error) {
-      logger.error(`[n8nRecuperacion] Error registrarEnvio: ${error.message}`);
+      const metaError = error.response?.data?.error || error.response?.data || null;
+      logger.error(`[n8nRecuperacion] Error registrarEnvio - id_mensaje_visto: ${req.body?.id_mensaje_visto}`);
+      logger.error(`[n8nRecuperacion] Mensaje: ${error.message}`);
+      logger.error(`[n8nRecuperacion] Status HTTP: ${error.response?.status || 'N/A'}`);
+      if (metaError) {
+        logger.error(`[n8nRecuperacion] Meta API error: ${JSON.stringify(metaError)}`);
+      }
+      logger.error(`[n8nRecuperacion] Stack: ${error.stack}`);
       return res.status(500).json({ success: false, error: error.message });
     }
   }

@@ -523,11 +523,15 @@ class WhatsappGraphService {
         response: response.data
       };
     } catch (error) {
+      const metaError = error.response?.data?.error || {};
       logger.error(`[WhatsappGraph] ========== ERROR ENVIAR PLANTILLA ==========`);
-      logger.error(`[WhatsappGraph] Mensaje: ${error.message}`);
-      logger.error(`[WhatsappGraph] Status: ${error.response?.status || 'N/A'}`);
-      logger.error(`[WhatsappGraph] Response: ${JSON.stringify(error.response?.data || {})}`);
+      logger.error(`[WhatsappGraph] Status HTTP: ${error.response?.status || 'N/A'}`);
+      logger.error(`[WhatsappGraph] Meta error code: ${metaError.code || 'N/A'}, subcode: ${metaError.error_subcode || 'N/A'}`);
+      logger.error(`[WhatsappGraph] Meta error message: ${metaError.message || error.message}`);
+      logger.error(`[WhatsappGraph] Meta error type: ${metaError.type || 'N/A'}`);
       logger.error(`[WhatsappGraph] URL: ${url}`);
+      logger.error(`[WhatsappGraph] Template: ${templateName}, Phone: ${formattedPhone}, WABA: ${wabaId}`);
+      logger.error(`[WhatsappGraph] Full response: ${JSON.stringify(error.response?.data || {})}`);
       logger.error(`[WhatsappGraph] ============================================`);
       throw error;
     }
