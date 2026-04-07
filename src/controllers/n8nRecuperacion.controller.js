@@ -25,62 +25,12 @@ const logger = require('../config/logger/loggerClient');
 // Secuencia de tipos de recuperación
 const SECUENCIA_TIPOS = ['1h', '8h', '24h', '48h', '72h'];
 
-// Tipos que usan envío directo (dentro de ventana de 24h de Meta)
-const TIPOS_ENVIO_DIRECTO = ['1h', '8h'];
-
-// Mensajes por defecto para envío directo. Variable soportada: {nombre} (nombre del prospecto)
-const MENSAJES_RECUPERACION_DIRECTO = {
+// Mensajes de recuperación por tipo (solo dentro de ventana de 24h de Meta).
+// Variable soportada: {nombre} (nombre del prospecto)
+const MENSAJES_RECUPERACION = {
   '1h': 'Hola {nombre}, Quería saber si llegaste a ver el mensaje anterior. Cuando tengas un momento, seguimos conversando por aqui 💚',
   '8h': 'Hola {nombre}, 👋 Te escribo solo para quedarme atenta. Si más adelante quieres continuar viendo opciones de depas, me avisas 😊'
 };
-
-/**
- * Envía una plantilla de recuperación via WhatsApp y registra en BD.
- * Todas las plantillas usan {nombre} como variable body {{1}}.
- */
-async function enviarPlantillaRecuperacion(registro, nombrePlantilla, nombreProspecto) {
-  const components = [
-    {
-      type: 'body',
-      parameters: [
-        { type: 'text', text: nombreProspecto }
-      ]
-    }
-  ];
-
-  const whatsappResult = await whatsappGraphService.enviarPlantilla(
-    registro.id_empresa,
-    registro.celular,
-    nombrePlantilla,
-    'es',
-    components
-  );
-
-  const wid_mensaje = whatsappResult?.wid_mensaje || whatsappResult?.response?.messages?.[0]?.id || null;
-
-  const mensajeDB = await Mensaje.create({
-    id_chat: registro.id_chat,
-    direccion: 'out',
-    tipo_mensaje: 'plantilla',
-    contenido: `[Plantilla: ${nombrePlantilla}]`,
-    wid_mensaje,
-    contenido_archivo: null,
-    id_usuario: null,
-    id_plantilla_whatsapp: null,
-    fecha_hora: new Date(),
-    usuario_registro: null,
-    estado_registro: 1
-  });
-
-  logger.info(`[n8nRecuperacion] Plantilla ${nombrePlantilla} enviada para chat ${registro.id_chat}, wid: ${wid_mensaje}`);
-
-  return {
-    metodo_envio: 'plantilla',
-    nombre_plantilla: nombrePlantilla,
-    wid_mensaje,
-    id_mensaje_registrado: mensajeDB.id
-  };
-}
 
 // Función para determinar tipo_recuperacion según horas
 const getTipoRecuperacion = (horas) => {
@@ -512,7 +462,7 @@ class N8nRecuperacionController {
 
         // Aplicar límite por empresa
         if (empresa.candidatos.length < limitNum) {
-          const metodoEnvio = TIPOS_ENVIO_DIRECTO.includes(candidato.tipo_recuperacion) ? 'directo' : 'plantilla';
+          const metodoEnvio = 'directo';
           empresa.candidatos.push({
             id_mensaje_visto: candidato.id_mensaje_visto,
             tipo_recuperacion: candidato.tipo_recuperacion,
@@ -597,16 +547,7 @@ class N8nRecuperacionController {
         });
       }
 
-      // Mapeo de tipo_recuperacion a nombre de plantilla (para todos los tipos)
-      const PLANTILLAS_RECUPERACION = {
-        '1h': 'recuperacion_1h',
-        '8h': 'recuperacion_8h',
-        '24h': 'recuperacion_24h',
-        '48h': 'recuperacion_48h',
-        '72h': 'recuperacion_72h'
-      };
-
-      // Verificar que existe el registro y obtener datos del prospecto
+      // Verificar que existe el registro y obtener datos del prospecto + phoneNumberId
       const [registro] = await sequelize.query(`
         SELECT
           mv.id,
@@ -615,11 +556,13 @@ class N8nRecuperacionController {
           m.id_chat,
           p.id_empresa,
           p.celular,
-          p.nombre_completo
+          p.nombre_completo,
+          cw.numero_telefono_id
         FROM mensaje_visto mv
         INNER JOIN mensaje m ON m.id = mv.id_mensaje
         INNER JOIN chat c ON c.id = m.id_chat
         INNER JOIN prospecto p ON p.id = c.id_prospecto
+        LEFT JOIN configuracion_whatsapp cw ON cw.id_empresa = p.id_empresa AND cw.estado_registro = 1
         WHERE mv.id = :id_mensaje_visto
           AND mv.estado_registro = 1
       `, {
@@ -645,74 +588,53 @@ class N8nRecuperacionController {
         });
       }
 
-      const nombreProspecto = registro.nombre_completo || 'estimado/a';
-      const nombrePlantilla = PLANTILLAS_RECUPERACION[registro.tipo_recuperacion];
-
-      if (!nombrePlantilla) {
+      if (!MENSAJES_RECUPERACION[registro.tipo_recuperacion]) {
         return res.status(400).json({
           success: false,
-          error: `tipo_recuperacion inválido: ${registro.tipo_recuperacion}`
+          error: `tipo_recuperacion '${registro.tipo_recuperacion}' no tiene mensaje configurado. Solo dentro de ventana de 24h: ${Object.keys(MENSAJES_RECUPERACION).join(', ')}`
         });
       }
 
-      const esEnvioDirecto = TIPOS_ENVIO_DIRECTO.includes(registro.tipo_recuperacion);
-      let resultadoEnvio = {};
-
-      if (esEnvioDirecto) {
-        // === ENVÍO DIRECTO (< 24h) - Ventana de Meta ===
-        const mensajeBase = mensaje_personalizado || MENSAJES_RECUPERACION_DIRECTO[registro.tipo_recuperacion];
-        const mensajeFinal = mensajeBase.replace(/\{nombre\}/g, nombreProspecto);
-
-        try {
-          const whatsappResult = await whatsappGraphService.enviarMensajeTexto(
-            registro.id_empresa,
-            registro.celular,
-            mensajeFinal
-          );
-
-          // Registrar mensaje saliente en BD
-          const mensajeDB = await Mensaje.create({
-            id_chat: registro.id_chat,
-            direccion: 'out',
-            tipo_mensaje: 'texto',
-            contenido: mensajeFinal,
-            wid_mensaje: whatsappResult.wid_mensaje || null,
-            contenido_archivo: null,
-            id_usuario: null,
-            id_plantilla_whatsapp: null,
-            fecha_hora: new Date(),
-            usuario_registro: null,
-            estado_registro: 1
-          });
-
-          resultadoEnvio = {
-            metodo_envio: 'directo',
-            mensaje_enviado_texto: mensajeFinal,
-            wid_mensaje: whatsappResult.wid_mensaje,
-            id_mensaje_registrado: mensajeDB.id
-          };
-
-          logger.info(`[n8nRecuperacion] registrarEnvio: Recuperación ${registro.tipo_recuperacion} DIRECTO para chat ${registro.id_chat}, wid: ${whatsappResult.wid_mensaje}`);
-
-        } catch (directoError) {
-          const metaErr = directoError.response?.data?.error || {};
-          logger.warn(`[n8nRecuperacion] Envío directo falló - chat: ${registro.id_chat}, celular: ${registro.celular}, empresa: ${registro.id_empresa}`);
-          logger.warn(`[n8nRecuperacion] Status: ${directoError.response?.status || 'N/A'}, Meta code: ${metaErr.code || 'N/A'}, message: ${metaErr.message || directoError.message}`);
-          logger.warn(`[n8nRecuperacion] Intentando fallback con plantilla ${nombrePlantilla}...`);
-
-          resultadoEnvio = await enviarPlantillaRecuperacion(
-            registro, nombrePlantilla, nombreProspecto
-          );
-          resultadoEnvio.fallback = true;
-          resultadoEnvio.error_directo = directoError.message;
-        }
-
-      } else {
-        // === PLANTILLA (>= 24h) - Fuera de ventana de Meta ===
-        resultadoEnvio = await enviarPlantillaRecuperacion(
-          registro, nombrePlantilla, nombreProspecto
-        );
+      if (!registro.numero_telefono_id) {
+        return res.status(400).json({
+          success: false,
+          error: `No se encontró numero_telefono_id en configuracion_whatsapp para empresa ${registro.id_empresa}`
+        });
       }
+
+      const nombreProspecto = registro.nombre_completo || 'estimado/a';
+      const mensajeBase = mensaje_personalizado || MENSAJES_RECUPERACION[registro.tipo_recuperacion];
+      const mensajeFinal = mensajeBase.replace(/\{nombre\}/g, nombreProspecto);
+
+      const whatsappResult = await whatsappGraphService.enviarMensajeTexto(
+        registro.id_empresa,
+        registro.numero_telefono_id,
+        registro.celular,
+        mensajeFinal
+      );
+
+      const mensajeDB = await Mensaje.create({
+        id_chat: registro.id_chat,
+        direccion: 'out',
+        tipo_mensaje: 'texto',
+        contenido: mensajeFinal,
+        wid_mensaje: whatsappResult.wid_mensaje || null,
+        contenido_archivo: null,
+        id_usuario: null,
+        id_plantilla_whatsapp: null,
+        fecha_hora: new Date(),
+        usuario_registro: null,
+        estado_registro: 1
+      });
+
+      logger.info(`[n8nRecuperacion] registrarEnvio: Recuperación ${registro.tipo_recuperacion} para chat ${registro.id_chat}, celular: ${registro.celular}, wid: ${whatsappResult.wid_mensaje}`);
+
+      const resultadoEnvio = {
+        metodo_envio: 'directo',
+        mensaje_enviado_texto: mensajeFinal,
+        wid_mensaje: whatsappResult.wid_mensaje,
+        id_mensaje_registrado: mensajeDB.id
+      };
 
       // Actualizar mensaje_enviado = true
       await sequelize.query(`
