@@ -36,6 +36,19 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(100),
       allowNull: true
     },
+    id_tool: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    id_tool_chatbot: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    canal: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      allowNull: false
+    },
     ...commonFields
   }, {
     tableName: 'empresa',
@@ -52,6 +65,8 @@ module.exports = (sequelize) => {
   });
 
   Empresa.associate = (models) => {
+    Empresa.belongsTo(models.Tool, { foreignKey: 'id_tool', as: 'toolLlamada' });
+    Empresa.belongsTo(models.Tool, { foreignKey: 'id_tool_chatbot', as: 'toolChatbot' });
     Empresa.hasMany(models.Usuario, { foreignKey: 'id_empresa', as: 'usuarios' });
     Empresa.hasMany(models.Sucursal, { foreignKey: 'id_empresa', as: 'sucursales' });
     Empresa.hasMany(models.Rol, { foreignKey: 'id_empresa', as: 'roles' });

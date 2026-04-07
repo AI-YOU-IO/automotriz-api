@@ -1,5 +1,6 @@
 const logger = require('../config/logger/loggerClient.js');
-const { Plantilla } = require('../models/sequelize');
+const { PromptAsistente } = require('../models/sequelize');
+const { invalidateCache } = require('../services/assistant/promptCache.service');
 
 class PromptAsistenteController {
   async getPrompt(req, res) {
@@ -10,12 +11,12 @@ class PromptAsistenteController {
         return res.status(400).json({ msg: "ID de empresa requerido" });
       }
 
-      const plantilla = await Plantilla.findOne({
+      const prompt = await PromptAsistente.findOne({
         where: { id_empresa: idEmpresa, estado_registro: 1 },
         attributes: ['id', 'id_empresa', 'prompt_sistema']
       });
 
-      return res.status(200).json({ data: plantilla });
+      return res.status(200).json({ data: prompt });
     } catch (error) {
       logger.error(`[promptAsistente.controller.js] Error al obtener prompt asistente: ${error.message}`);
       return res.status(500).json({ msg: "Error al obtener prompt asistente" });
@@ -36,27 +37,32 @@ class PromptAsistenteController {
         return res.status(400).json({ msg: "El prompt del sistema es requerido" });
       }
 
-      let plantilla = await Plantilla.findOne({
+      let prompt = await PromptAsistente.findOne({
         where: { id_empresa: idEmpresa, estado_registro: 1 }
       });
 
-      if (plantilla) {
-        await plantilla.update({ prompt_sistema });
+      if (prompt) {
+        await prompt.update({
+          prompt_sistema,
+          usuario_actualizacion: usuario_registro
+        });
+        // Invalidar cache para que se use el nuevo prompt
+        invalidateCache(idEmpresa);
         return res.status(200).json({
           msg: "Prompt actualizado exitosamente",
-          data: { id: plantilla.id }
+          data: { id: prompt.id }
         });
       } else {
-        plantilla = await Plantilla.create({
-          nombre: 'Prompt Asistente',
+        prompt = await PromptAsistente.create({
           prompt_sistema,
           id_empresa: idEmpresa,
-          id_formato: 1,
           usuario_registro
         });
+        // Invalidar cache para que se use el nuevo prompt
+        invalidateCache(idEmpresa);
         return res.status(200).json({
           msg: "Prompt creado exitosamente",
-          data: { id: plantilla.id }
+          data: { id: prompt.id }
         });
       }
     } catch (error) {

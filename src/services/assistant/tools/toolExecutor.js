@@ -7,8 +7,8 @@ const HorarioAtencionRepository = require("../../../repositories/horarioAtencion
 const MarcaRepository = require("../../../repositories/marca.repository");
 const ModeloRepository = require("../../../repositories/modelo.repository");
 const VersionRepository = require("../../../repositories/version.repository");
-const SperantServices = require("../../sperant/sperant.service");
 const UltravoxService = require("../../ultravox/ultravox.service");
+const { Empresa } = require("../../../models/sequelize");
 const logger = require("../../../config/logger/loggerClient");
 
 class ToolExecutor {
@@ -22,8 +22,6 @@ class ToolExecutor {
         switch (toolName) {
             case "obtenerLead":
                 return this._obtenerLead(args);
-            case "obtenerPuntaje":
-                return this._obtenerPuntaje(args);
             case "crearNuevoLead":
                 return this._crearNuevoLead(args);
             case "actualizarLead":
@@ -70,13 +68,6 @@ class ToolExecutor {
         const lead = await ProspectoRepository.findById(id);
         if (!lead) return JSON.stringify({ error: "Lead no encontrado" });
         return JSON.stringify(lead);
-    }
-    async _obtenerPuntaje({ id }) {
-        logger.info(`[ToolExecutor] obtenerPuntaje: id=${id}`);
-        const result = await SperantServices.obtenerPuntaje(id);
-        if (!result) return JSON.stringify({ status: 500, error: "Error de conexión con Sperant" });
-        if (result.status >= 400) return JSON.stringify({ status: result.status, error: result.data, mensaje: "La API de Sperant rechazó la solicitud. Revisa los campos enviados, corrige los valores incorrectos y vuelve a intentar." });
-        return JSON.stringify({ status: result.status, data: result.data });
     }
 
     async _crearNuevoLead({ nombre_completo, dni, celular, direccion }) {
@@ -179,33 +170,6 @@ class ToolExecutor {
         return JSON.stringify(horarios);
     }
 
-    async _crearCitaSperant({ name, datetime_start, duration, place, description, client_id, project_id, unit_id, event_type_id = 10, creator_id }) {
-        logger.info(`[ToolExecutor] crearCitaSperant: ${name}`);
-        const result = await SperantServices.crearCitaSperant({
-            name,
-            datetime_start,
-            duration,
-            place,
-            description,
-            client_id,
-            project_id,
-            unit_id,
-            event_type_id,
-            creator_id
-        });
-        if (!result) return JSON.stringify({ status: 500, error: "Error de conexión con Sperant" });
-        if (result.status >= 400) return JSON.stringify({ status: result.status, error: result.data, mensaje: "La API de Sperant rechazó la solicitud. Revisa los campos enviados, corrige los valores incorrectos y vuelve a intentar." });
-        return JSON.stringify({ status: result.status, data: result.data });
-    }
-
-    async _crearInteraccionesSperant({ id, ...data }) {
-        logger.info(`[ToolExecutor] crearInteraccionesSperant: id=${id}`);
-        const result = await SperantServices.crearInteraccionSperant(id, data);
-        if (!result) return JSON.stringify({ status: 500, error: "Error de conexión con Sperant" });
-        if (result.status >= 400) return JSON.stringify({ status: result.status, error: result.data, mensaje: "La API de Sperant rechazó la solicitud. Revisa los campos enviados, corrige los valores incorrectos y vuelve a intentar." });
-        return JSON.stringify({ status: result.status, data: result.data });
-    }
-
     async _crearInteracciones({ id_prospecto, ...datos }) {
         logger.info(`[ToolExecutor] crearInteracciones: datos=${JSON.stringify(datos)}`);
         const interaccion = await InteraccionRepository.create({
@@ -218,10 +182,29 @@ class ToolExecutor {
 
     async _enviarLeadLlamada({ destination, data, extras }) {
         logger.info(`[ToolExecutor] enviarLeadLlamada: destination=${destination}`);
+
+        // Obtener datos de la empresa desde la BD
+        const empresa = await Empresa.findByPk(this.id_empresa, {
+            attributes: ['id', 'nombre_comercial']
+        });
+
+        if (!empresa) {
+            return JSON.stringify({ error: "Empresa no encontrada" });
+        }
+
+        // Sobrescribir datos de empresa con los de la BD
+        const extrasConEmpresa = {
+            ...extras,
+            empresa: {
+                id: empresa.id,
+                nombre: empresa.nombre_comercial
+            }
+        };
+
         const resultado = await UltravoxService.realizarLlamada({
             destination,
             data,
-            extras
+            extras: extrasConEmpresa
         });
         if (!resultado) return JSON.stringify({ error: "Error al enviar lead a llamada" });
         return JSON.stringify(resultado);
@@ -233,14 +216,6 @@ class ToolExecutor {
         const filtered = results.filter(r => parseFloat(r.similarity) >= 0.35);
         if (filtered.length === 0) return JSON.stringify({ resultado: "No se encontraron FAQs relevantes para esta consulta" });
         return JSON.stringify(filtered.map(r => ({ pregunta: r.pregunta, respuesta: r.respuesta })));
-    }
-
-    async _crearClienteSperant(datos) {
-        logger.info(`[ToolExecutor] crearClienteSperant: datos=${JSON.stringify(datos)}`);
-        const result = await SperantServices.crearClienteSperant(datos);
-        if (!result) return JSON.stringify({ status: 500, error: "Error de conexión con Sperant" });
-        if (result.status >= 400) return JSON.stringify({ status: result.status, error: result.data, mensaje: "La API de Sperant rechazó la solicitud. Revisa los campos enviados, corrige los valores incorrectos y vuelve a intentar." });
-        return JSON.stringify({ status: result.status, data: result.data });
     }
 }
 

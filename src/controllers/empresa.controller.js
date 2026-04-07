@@ -30,7 +30,7 @@ class EmpresaController {
 
   async createEmpresa(req, res) {
     try {
-      const { razon_social, nombre_comercial, ruc, email, telefono, direccion, logo_url } = req.body;
+      const { razon_social, nombre_comercial, ruc, email, telefono, direccion, logo_url, id_tool, id_tool_chatbot, canal } = req.body;
       const usuario_registro = req.user?.userId || null;
 
       if (!razon_social || !nombre_comercial || !ruc || !email || !telefono || !direccion) {
@@ -38,7 +38,11 @@ class EmpresaController {
       }
 
       const empresa = await empresaRepository.create({
-        razon_social, nombre_comercial, ruc, email, telefono, direccion, logo_url, usuario_registro
+        razon_social, nombre_comercial, ruc, email, telefono, direccion, logo_url,
+        id_tool: id_tool || null,
+        id_tool_chatbot: id_tool_chatbot || null,
+        canal: canal || 0,
+        usuario_registro
       });
 
       return res.status(201).json({ msg: "Empresa creada exitosamente", data: { id: empresa.id } });
@@ -51,7 +55,7 @@ class EmpresaController {
   async updateEmpresa(req, res) {
     try {
       const { id } = req.params;
-      const { razon_social, nombre_comercial, ruc, email, telefono, direccion, logo_url } = req.body;
+      const { razon_social, nombre_comercial, ruc, email, telefono, direccion, logo_url, id_tool, id_tool_chatbot, canal } = req.body;
       const usuario_actualizacion = req.user?.userId || null;
 
       if (!razon_social || !nombre_comercial || !ruc || !email || !telefono || !direccion) {
@@ -59,7 +63,11 @@ class EmpresaController {
       }
 
       const [updated] = await empresaRepository.update(id, {
-        razon_social, nombre_comercial, ruc, email, telefono, direccion, logo_url, usuario_actualizacion
+        razon_social, nombre_comercial, ruc, email, telefono, direccion, logo_url,
+        id_tool: id_tool || null,
+        id_tool_chatbot: id_tool_chatbot || null,
+        canal: canal !== undefined ? canal : 0,
+        usuario_actualizacion
       });
 
       if (!updated) {

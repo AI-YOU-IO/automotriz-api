@@ -35,6 +35,8 @@ CREATE TABLE public.empresa (
 	usuario_actualizacion int4 NULL,
 	id_tool int4 NULL,
 	extra_fields jsonb DEFAULT '{}'::jsonb NULL,
+	id_tool_chatbot int4 NULL,
+	canal int4 DEFAULT 0 NOT NULL,
 	CONSTRAINT empresa_pkey PRIMARY KEY (id)
 );
 
@@ -1688,3 +1690,25 @@ CREATE INDEX idx_analisis_sentimiento_emocion ON public.analisis_sentimiento USI
 CREATE INDEX idx_analisis_sentimiento_empresa ON public.analisis_sentimiento USING btree (id_empresa, estado_registro);
 CREATE INDEX idx_analisis_sentimiento_llamada ON public.analisis_sentimiento USING btree (id_llamada);
 CREATE INDEX idx_analisis_sentimiento_tipo ON public.analisis_sentimiento USING btree (id_empresa, sentimiento) WHERE (estado_registro = 1);
+
+
+-- public.prompt_asistente definition
+
+-- Drop table
+
+-- DROP TABLE public.prompt_asistente;
+
+CREATE TABLE public.prompt_asistente (
+	id serial4 NOT NULL,
+	id_empresa int4 NOT NULL,
+	prompt_sistema text NOT NULL,
+	estado_registro int2 DEFAULT 1 NOT NULL,
+	usuario_registro int4 NULL,
+	usuario_actualizacion int4 NULL,
+	fecha_registro timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	fecha_actualizacion timestamp NULL,
+	CONSTRAINT prompt_asistente_pkey PRIMARY KEY (id),
+	CONSTRAINT uk_prompt_asistente_activo UNIQUE (id_empresa, estado_registro),
+	CONSTRAINT prompt_asistente_id_empresa_fkey FOREIGN KEY (id_empresa) REFERENCES public.empresa(id)
+);
+CREATE INDEX idx_prompt_asistente_empresa ON public.prompt_asistente USING btree (id_empresa, estado_registro);

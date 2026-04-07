@@ -1,7 +1,7 @@
 const { createLlmProvider } = require("../llm");
 const MemoryService = require("./memory.service");
 const { buildSystemPrompt } = require("./promptCache.service");
-const { toolDefinitions } = require("./tools/toolDefinitions");
+const { toolDefinitions } = require("./tools/toolGenerica");
 const ToolExecutor = require("./tools/toolExecutor");
 const { getLocalDateWithDay } = require("../../utils/customTimestamp");
 const logger = require("../../config/logger/loggerClient");
@@ -29,9 +29,10 @@ class AssistantService {
      */
     async runProcess({ chatId, message, prospecto, id_empresa }) {
         try {
-            const systemPrompt = buildSystemPrompt({
+            const systemPrompt = await buildSystemPrompt({
                 prospecto,
-                timestamp: getLocalDateWithDay()
+                timestamp: getLocalDateWithDay(),
+                id_empresa
             });
 
             const history = await MemoryService.getConversationHistory(chatId);

@@ -48,82 +48,6 @@ const toolDefinitions = [
     {
         type: "function",
         function: {
-            name: "crearClienteSperant",
-            description: "Te permite crear un nuevo cliente en el CRM Sperant para obt",
-            parameters: {
-                type: "object",
-                properties: {
-                    fname: {
-                        type: "string",
-                        description: "Nombres del cliente a crear"
-                    },
-                    lname: {
-                        type: "string",
-                        description: "Apellidos del cliente a crear"
-                    },
-                    phone: {
-                        type: "string",
-                        description: "Numero celular del nuevo cliente"
-                    },
-                    document_type_id: {
-                        type: "integer",
-                        description: "ID de tipo de documento. Valor por defecto es 1",
-                    },
-                    document: {
-                        type: "string",
-                        description: "DNI del cliente a crear"
-                    },
-                    project_id: {
-                        type: "integer",
-                        description: "sperant_id del proyecto que el cliente seleccionó",
-                    },
-                    interest_type_id: {
-                        type: "integer",
-                        description: "ID tipo de interes. Valor por defecto es 1",
-                    },
-                    input_channel_id: {
-                        type: "integer",
-                        description: "ID de canal de entrada. Valor por defecto es 1",
-                    },
-                    source_id: {
-                        type: "integer",
-                        description: "ID de fuente. Valor por defecto es 1",
-                    },
-                    extra_fields: {
-                        type: "object",
-                        properties: {
-                            perfilamiento: {
-                                type: "boolean",
-                                description: "True o false si el prospecto acepta el perfilamiento"
-                            }
-                        },
-                        required: ["perfilamiento"]
-                    }
-                },
-                required: ["fname", "document_type_id", "document", "project_id", "interest_type_id", "input_channel_id", "source_id", "extra_fields"]
-            }
-        }
-    },
-    {
-        type: "function",
-        function: {
-            name: "obtenerPuntaje",
-            description: "Obtiene la informacion del cliente en Sperant para registar el puntaje",
-            parameters: {
-                type: "object",
-                properties: {
-                    id: {
-                        type: "integer",
-                        description: "sperant_id del prospecto"
-                    }
-                },
-                required: ["id"]
-            }
-        }
-    },
-    {
-        type: "function",
-        function: {
             name: "actualizarLead",
             description: "Te permite actualizar la informacion del lead para el sistema",
             parameters: {
@@ -160,11 +84,7 @@ const toolDefinitions = [
                     id_estado_prospecto: {
                         type: "integer",
                         description: "Estado del prospecto"
-                    },
-                    sperant_id: {
-                        type: "integer",
-                        description: "ID del cliente registrado en el CRM Sperant"
-                    },
+                    }
                 },
                 required: ["id"]
             }
@@ -319,59 +239,6 @@ const toolDefinitions = [
     {
         type: "function",
         function: {
-            name: "crearCitaSperant",
-            description: "Crea la cita para el cliente o lead en el CRM Sperant",
-            parameters: {
-                type: "object",
-                properties: {
-                    name: {
-                        type: "string",
-                        description: "Nombre de la cita"
-                    },
-                    datetime_start: {
-                        type: "integer",
-                        description: "Timestamp para el inicio de la cita en valor numerico"
-                    },
-                    duration: {
-                        type: "integer",
-                        description: "Duración en horas de la cita"
-                    },
-                    place: {
-                        type: "string",
-                        description: "Lugar donde se realizará la cita"
-                    },
-                    description: {
-                        type: "string",
-                        description: "Descripcion sobre la cita"
-                    },
-                    client_id: {
-                        type: "integer",
-                        description: "sperant_id del lead o prospecto"
-                    },
-                    project_id: {
-                        type: "integer",
-                        description: "sperant_id del proyecto seleccionado"
-                    },
-                    unit_id: {
-                        type: "integer",
-                        description: "sperant_id de la unidad seleccionada"
-                    },
-                    event_type_id: {
-                        type: "integer",
-                        description: "ID de tipo de evento. Valor por defecto es 10",
-                    },
-                    creator_id: {
-                        type: "integer",
-                        description: "ID del usuario asignado al lead o prospecto"
-                    }
-                },
-                required: ["name", "datetime_start", "duration", "client_id", "project_id", "unit_id", "event_type_id", "creator_id"]
-            }
-        }
-    },
-    {
-        type: "function",
-        function: {
             name: "obtenerCita",
             description: "Obtiene las citas agendadas del lead",
             parameters: {
@@ -428,87 +295,6 @@ const toolDefinitions = [
                     }
                 },
                 required: ["id_usuario"]
-            }
-        }
-    },
-    {
-        type: "function",
-        function: {
-            name: "crearInteraccionesSperant",
-            description: "Crea una nueva interacción en el CRM Sperant",
-            parameters: {
-                type: "object",
-                properties: {
-                    id: {
-                        type: "integer",
-                        description: "sperant_id del lead o prospecto"
-                    },
-                    project_id: {
-                        type: "integer",
-                        description: "sperant_id del proyecto seleccionado"
-                    },
-                    agent_id: {
-                        type: "integer",
-                        description: "sperant_id del asesor asignado al lead o prospecto"
-                    },
-                    unit_id: {
-                        type: "integer",
-                        description: "sperant_id de la unidad seleccionada"
-                    },
-                    satisfactory: {
-                        type: "boolean",
-                        description: "Indica si la interacción fue satisfactoria"
-                    },
-                    utm_content: {
-                        type: "string",
-                        description: "UTM Content"
-                    },
-                    utm_term: {
-                        type: "string",
-                        description: "UTM term"
-                    },
-                    utm_campaign: {
-                        type: "string",
-                        description: "UTM campaign"
-                    },
-                    utm_medium: {
-                        type: "string",
-                        description: "UTM medium"
-                    },
-                    utm_source: {
-                        type: "string",
-                        description: "UTM source"
-                    },
-                    observations: {
-                        type: "string",
-                        description: "Observación de la interacción. Aqui se registra las habitaciones de interes, presupuesto, descuento ofrecido y el resumen de la interaccion"
-                    },
-                    reason_resign_id: {
-                        type: "integer",
-                        description: "ID de desistimiento"
-                    },
-                    segment_code: {
-                        type: "string",
-                        description: "Codigo de segmento"
-                    },
-                    interest_type_id: {
-                        type: "integer",
-                        description: "ID tipo de interes. Valor por defecto es 1",
-                    },
-                    input_channel_id: {
-                        type: "integer",
-                        description: "ID de canal de entrada. Valor por defecto es 1",
-                    },
-                    source_id: {
-                        type: "integer",
-                        description: "ID de fuente. Valor por defecto es 1",
-                    },
-                    interaction_type_id: {
-                        type: "integer",
-                        description: "ID tipo de interaccion. Valor por defecto es 1",
-                    },
-                },
-                required: ["project_id", "agent_id", "unit_id", "interest_type_id", "input_channel_id", "source_id", "interaction_type_id"]
             }
         }
     },
@@ -633,26 +419,10 @@ const toolDefinitions = [
                             voice: {
                                 type: "string",
                                 description: "ID o nombre de la voz a utilizar por el agente de llamada",
-                                default: "bacfa559-a200-4377-9d0e-fcae7c766a1f",
-                            },
-                            empresa: {
-                                type: "object",
-                                description: "Datos de la empresa",
-                                properties: {
-                                    id: {
-                                        type: "integer",
-                                        description: "Id de la empresa donde el lead o prospecto pertenece"
-                                    },
-                                    nombre: {
-                                        type: "string",
-                                        description: "Nombre de la empresa",
-                                        default: "viva"
-                                    }
-                                },
-                                required: ["nombre"]
+                                default: "bacfa559-a200-4377-9d0e-fcae7c766a1f"
                             }
                         },
-                        required: ["voice", "empresa"]
+                        required: ["voice"]
                     }
                 },
                 required: ["destination", "data", "extras"]

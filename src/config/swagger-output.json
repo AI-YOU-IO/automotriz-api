@@ -2060,31 +2060,22 @@
                 "correo": {
                   "example": "any"
                 },
+                "duracion_cita": {
+                  "example": "any"
+                },
                 "fecha_hora_cita": {
                   "example": "any"
                 },
-                "id_proyecto": {
+                "id_marca": {
+                  "example": "any"
+                },
+                "id_modelo": {
+                  "example": "any"
+                },
+                "id_version": {
                   "example": "any"
                 },
                 "id_prospecto": {
-                  "example": "any"
-                },
-                "num_habitaciones": {
-                  "example": "any"
-                },
-                "piso_referidos": {
-                  "example": "any"
-                },
-                "precio_indicado": {
-                  "example": "any"
-                },
-                "descuento": {
-                  "example": "any"
-                },
-                "cuota_crediticia": {
-                  "example": "any"
-                },
-                "score_crediticio": {
                   "example": "any"
                 },
                 "resumen": {
@@ -2206,31 +2197,22 @@
                 "correo": {
                   "example": "any"
                 },
+                "duracion_cita": {
+                  "example": "any"
+                },
                 "fecha_hora_cita": {
                   "example": "any"
                 },
-                "id_proyecto": {
+                "id_marca": {
+                  "example": "any"
+                },
+                "id_modelo": {
+                  "example": "any"
+                },
+                "id_version": {
                   "example": "any"
                 },
                 "id_prospecto": {
-                  "example": "any"
-                },
-                "num_habitaciones": {
-                  "example": "any"
-                },
-                "piso_referidos": {
-                  "example": "any"
-                },
-                "precio_indicado": {
-                  "example": "any"
-                },
-                "descuento": {
-                  "example": "any"
-                },
-                "cuota_crediticia": {
-                  "example": "any"
-                },
-                "score_crediticio": {
                   "example": "any"
                 },
                 "resumen": {
@@ -4335,6 +4317,65 @@
         }
       }
     },
+    "/api/crm/empresas/{id}/estado": {
+      "put": {
+        "tags": [
+          "Empresa"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "estado": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/crm/campania-ejecuciones": {
       "get": {
         "tags": [
@@ -4841,7 +4882,7 @@
                 "hora_fin": {
                   "example": "any"
                 },
-                "lugar": {
+                "id_sucursal": {
                   "example": "any"
                 },
                 "descripcion": {
@@ -4850,10 +4891,13 @@
                 "id_prospecto": {
                   "example": "any"
                 },
-                "id_proyecto": {
+                "id_marca": {
                   "example": "any"
                 },
-                "id_unidad": {
+                "id_modelo": {
+                  "example": "any"
+                },
+                "id_version": {
                   "example": "any"
                 },
                 "id_estado_cita": {
@@ -4972,7 +5016,7 @@
                 "hora_fin": {
                   "example": "any"
                 },
-                "lugar": {
+                "id_sucursal": {
                   "example": "any"
                 },
                 "descripcion": {
@@ -4981,10 +5025,13 @@
                 "id_prospecto": {
                   "example": "any"
                 },
-                "id_proyecto": {
+                "id_marca": {
                   "example": "any"
                 },
-                "id_unidad": {
+                "id_modelo": {
+                  "example": "any"
+                },
+                "id_version": {
                   "example": "any"
                 },
                 "id_estado_cita": {
@@ -5944,10 +5991,13 @@
                 "id_tipo_interaccion": {
                   "example": "any"
                 },
-                "id_proyecto": {
+                "id_marca": {
                   "example": "any"
                 },
-                "id_agente": {
+                "id_modelo": {
+                  "example": "any"
+                },
+                "id_version": {
                   "example": "any"
                 },
                 "id_nivel_interes": {
@@ -5956,34 +6006,13 @@
                 "satisfactorio": {
                   "example": "any"
                 },
-                "id_unidad": {
-                  "example": "any"
-                },
-                "utm_content": {
-                  "example": "any"
-                },
-                "utm_term": {
-                  "example": "any"
-                },
-                "utm_campaign": {
-                  "example": "any"
-                },
-                "utm_medium": {
-                  "example": "any"
-                },
-                "utm_source": {
-                  "example": "any"
-                },
                 "observaciones": {
                   "example": "any"
                 },
-                "id_motivo_desistimiento": {
+                "motivo_desistimiento": {
                   "example": "any"
                 },
-                "id_canal_entrada": {
-                  "example": "any"
-                },
-                "id_medio_captacion": {
+                "preguntas_resumen": {
                   "example": "any"
                 }
               }
@@ -6096,10 +6125,13 @@
                 "id_tipo_interaccion": {
                   "example": "any"
                 },
-                "id_proyecto": {
+                "id_marca": {
                   "example": "any"
                 },
-                "id_agente": {
+                "id_modelo": {
+                  "example": "any"
+                },
+                "id_version": {
                   "example": "any"
                 },
                 "id_nivel_interes": {
@@ -6108,34 +6140,13 @@
                 "satisfactorio": {
                   "example": "any"
                 },
-                "id_unidad": {
-                  "example": "any"
-                },
-                "utm_content": {
-                  "example": "any"
-                },
-                "utm_term": {
-                  "example": "any"
-                },
-                "utm_campaign": {
-                  "example": "any"
-                },
-                "utm_medium": {
-                  "example": "any"
-                },
-                "utm_source": {
-                  "example": "any"
-                },
                 "observaciones": {
                   "example": "any"
                 },
-                "id_motivo_desistimiento": {
+                "motivo_desistimiento": {
                   "example": "any"
                 },
-                "id_canal_entrada": {
-                  "example": "any"
-                },
-                "id_medio_captacion": {
+                "preguntas_resumen": {
                   "example": "any"
                 }
               }
@@ -9589,90 +9600,12 @@
         }
       }
     },
-    "/api/crm/projects/sync-sperant": {
-      "post": {
-        "tags": [
-          "Proyectos"
-        ],
-        "summary": "Sincronizar proyectos y tipologías desde Sperant",
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/crm/units/sync-sperant": {
-      "post": {
-        "tags": [
-          "Unidades"
-        ],
-        "summary": "Sincronizar unidades desde Sperant",
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "0": {
-            "description": ""
-          },
-          "1": {
-            "description": ""
-          },
-          "2": {
-            "description": ""
-          },
-          "4": {
-            "description": ""
-          },
-          "5": {
-            "description": ""
-          },
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
     "/api/crm/sync-sperant-all": {
       "post": {
         "tags": [
           "Sperant"
         ],
-        "summary": "Sincronización completa desde Sperant (clientes, proyectos, tipologías)",
+        "summary": "Sincronización completa desde Sperant (clientes)",
         "description": "",
         "parameters": [
           {
@@ -12449,10 +12382,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "id_proyecto": {
-                  "example": "any"
-                },
-                "id_tipologia": {
+                "id_modelo": {
                   "example": "any"
                 },
                 "nombre": {
@@ -12461,7 +12391,7 @@
                 "url": {
                   "example": "any"
                 },
-                "tipo_recurso_id": {
+                "id_tipo_recurso": {
                   "example": "any"
                 }
               }
@@ -12568,10 +12498,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "id_proyecto": {
-                  "example": "any"
-                },
-                "id_tipologia": {
+                "id_modelo": {
                   "example": "any"
                 },
                 "nombre": {
@@ -12580,7 +12507,7 @@
                 "url": {
                   "example": "any"
                 },
-                "tipo_recurso_id": {
+                "id_tipo_recurso": {
                   "example": "any"
                 }
               }
@@ -13133,6 +13060,988 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/crm/marcas": {
+      "get": {
+        "tags": [
+          "Marca"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Marca"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "example": "any"
+                },
+                "descripcion": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/crm/marcas/{id}": {
+      "get": {
+        "tags": [
+          "Marca"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Marca"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "example": "any"
+                },
+                "descripcion": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Marca"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/crm/modelos": {
+      "get": {
+        "tags": [
+          "Modelo"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "id_marca",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Modelo"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "example": "any"
+                },
+                "descripcion": {
+                  "example": "any"
+                },
+                "id_marca": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/crm/modelos/{id}": {
+      "get": {
+        "tags": [
+          "Modelo"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Modelo"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "example": "any"
+                },
+                "descripcion": {
+                  "example": "any"
+                },
+                "id_marca": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Modelo"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/crm/versiones": {
+      "get": {
+        "tags": [
+          "Version"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "id_modelo",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Version"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "example": "any"
+                },
+                "descripcion": {
+                  "example": "any"
+                },
+                "id_modelo": {
+                  "example": "any"
+                },
+                "anio": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/crm/versiones/{id}": {
+      "get": {
+        "tags": [
+          "Version"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Version"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "example": "any"
+                },
+                "descripcion": {
+                  "example": "any"
+                },
+                "id_modelo": {
+                  "example": "any"
+                },
+                "anio": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Version"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/crm/horario-atencion": {
+      "get": {
+        "tags": [
+          "HorarioAtencion"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "HorarioAtencion"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "horarios": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/crm/horario-bloqueado": {
+      "get": {
+        "tags": [
+          "HorarioBloqueado"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "HorarioBloqueado"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/crm/horario-bloqueado/{id}": {
+      "delete": {
+        "tags": [
+          "HorarioBloqueado"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "0": {
+            "description": ""
+          },
+          "1": {
+            "description": ""
+          },
+          "2": {
+            "description": ""
+          },
+          "4": {
+            "description": ""
+          },
+          "5": {
+            "description": ""
+          },
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -14161,10 +15070,13 @@
                 "id_prospecto": {
                   "example": "any"
                 },
-                "id_proyecto": {
+                "id_marca": {
                   "example": "any"
                 },
-                "id_unidad": {
+                "id_modelo": {
+                  "example": "any"
+                },
+                "id_version": {
                   "example": "any"
                 },
                 "id_estado_cita": {
@@ -14354,10 +15266,13 @@
                 "id_prospecto": {
                   "example": "any"
                 },
-                "id_proyecto": {
+                "id_marca": {
                   "example": "any"
                 },
-                "id_unidad": {
+                "id_modelo": {
+                  "example": "any"
+                },
+                "id_version": {
                   "example": "any"
                 },
                 "id_estado_cita": {

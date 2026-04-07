@@ -11,6 +11,7 @@ db.Formato = require('./formato.model')(sequelize);
 db.FormatoCampo = require('./formatoCampo.model')(sequelize);
 db.Speaker = require('./speaker.model')(sequelize);
 db.Voz = require('./voz.model')(sequelize);
+db.Tool = require('./tool.model')(sequelize);
 db.EstadoLlamada = require('./estadoLlamada.model')(sequelize);
 db.TipoRecurso = require('./tipoRecurso.model')(sequelize);
 db.Distrito = require('./distrito.model')(sequelize);
@@ -30,6 +31,7 @@ db.PeriodicidadRecordatorio = require('./periodicidadRecordatorio.model')(sequel
 db.Faq = require('./faq.model')(sequelize);
 db.Plantilla = require('./plantilla.model')(sequelize);
 db.PlantillaWhatsapp = require('./plantillaWhatsapp.model')(sequelize);
+db.PromptAsistente = require('./promptAsistente.model')(sequelize);
 
 // Cargar modelos - Fase 3: Dependencias de Rol, Modulo
 db.RolModulo = require('./rolModulo.model')(sequelize);
