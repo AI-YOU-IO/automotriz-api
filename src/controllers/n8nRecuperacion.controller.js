@@ -34,6 +34,54 @@ const MENSAJES_RECUPERACION_DIRECTO = {
   '8h': 'Hola {nombre}, 👋 Te escribo solo para quedarme atenta. Si más adelante quieres continuar viendo opciones de depas, me avisas 😊'
 };
 
+/**
+ * Envía una plantilla de recuperación via WhatsApp y registra en BD.
+ * Todas las plantillas usan {nombre} como variable body {{1}}.
+ */
+async function enviarPlantillaRecuperacion(registro, nombrePlantilla, nombreProspecto) {
+  const components = [
+    {
+      type: 'body',
+      parameters: [
+        { type: 'text', text: nombreProspecto }
+      ]
+    }
+  ];
+
+  const whatsappResult = await whatsappGraphService.enviarPlantilla(
+    registro.id_empresa,
+    registro.celular,
+    nombrePlantilla,
+    'es',
+    components
+  );
+
+  const wid_mensaje = whatsappResult?.wid_mensaje || whatsappResult?.response?.messages?.[0]?.id || null;
+
+  const mensajeDB = await Mensaje.create({
+    id_chat: registro.id_chat,
+    direccion: 'out',
+    tipo_mensaje: 'plantilla',
+    contenido: `[Plantilla: ${nombrePlantilla}]`,
+    wid_mensaje,
+    contenido_archivo: null,
+    id_usuario: null,
+    id_plantilla_whatsapp: null,
+    fecha_hora: new Date(),
+    usuario_registro: null,
+    estado_registro: 1
+  });
+
+  logger.info(`[n8nRecuperacion] Plantilla ${nombrePlantilla} enviada para chat ${registro.id_chat}, wid: ${wid_mensaje}`);
+
+  return {
+    metodo_envio: 'plantilla',
+    nombre_plantilla: nombrePlantilla,
+    wid_mensaje,
+    id_mensaje_registrado: mensajeDB.id
+  };
+}
+
 // Función para determinar tipo_recuperacion según horas
 const getTipoRecuperacion = (horas) => {
   if (horas < 8) return '1h';
@@ -650,7 +698,7 @@ class N8nRecuperacionController {
           // Fallback a plantilla si el envío directo falla (ventana cerrada, etc.)
           logger.warn(`[n8nRecuperacion] Envío directo falló para chat ${registro.id_chat}: ${directoError.message}. Intentando fallback con plantilla ${nombrePlantilla}...`);
 
-          resultadoEnvio = await this._enviarPlantillaRecuperacion(
+          resultadoEnvio = await enviarPlantillaRecuperacion(
             registro, nombrePlantilla, nombreProspecto
           );
           resultadoEnvio.fallback = true;
@@ -659,7 +707,7 @@ class N8nRecuperacionController {
 
       } else {
         // === PLANTILLA (>= 24h) - Fuera de ventana de Meta ===
-        resultadoEnvio = await this._enviarPlantillaRecuperacion(
+        resultadoEnvio = await enviarPlantillaRecuperacion(
           registro, nombrePlantilla, nombreProspecto
         );
       }
@@ -693,55 +741,6 @@ class N8nRecuperacionController {
       logger.error(`[n8nRecuperacion] Error registrarEnvio: ${error.message}`);
       return res.status(500).json({ success: false, error: error.message });
     }
-  }
-
-  /**
-   * Método interno: envía una plantilla de recuperación via WhatsApp y registra en BD.
-   * Todas las plantillas usan {nombre} como variable body {{1}}.
-   */
-  async _enviarPlantillaRecuperacion(registro, nombrePlantilla, nombreProspecto) {
-    const components = [
-      {
-        type: 'body',
-        parameters: [
-          { type: 'text', text: nombreProspecto }
-        ]
-      }
-    ];
-
-    const whatsappResult = await whatsappGraphService.enviarPlantilla(
-      registro.id_empresa,
-      registro.celular,
-      nombrePlantilla,
-      'es',
-      components
-    );
-
-    const wid_mensaje = whatsappResult?.wid_mensaje || whatsappResult?.response?.messages?.[0]?.id || null;
-
-    // Registrar mensaje saliente en BD
-    const mensajeDB = await Mensaje.create({
-      id_chat: registro.id_chat,
-      direccion: 'out',
-      tipo_mensaje: 'plantilla',
-      contenido: `[Plantilla: ${nombrePlantilla}]`,
-      wid_mensaje,
-      contenido_archivo: null,
-      id_usuario: null,
-      id_plantilla_whatsapp: null,
-      fecha_hora: new Date(),
-      usuario_registro: null,
-      estado_registro: 1
-    });
-
-    logger.info(`[n8nRecuperacion] Plantilla ${nombrePlantilla} enviada para chat ${registro.id_chat}, wid: ${wid_mensaje}`);
-
-    return {
-      metodo_envio: 'plantilla',
-      nombre_plantilla: nombrePlantilla,
-      wid_mensaje,
-      id_mensaje_registrado: mensajeDB.id
-    };
   }
 
   // ============================================
