@@ -1,14 +1,86 @@
+const path = require("path");
 const { createLlmProvider } = require("../llm");
 const MemoryService = require("./memory.service");
 const { buildSystemPrompt } = require("./promptCache.service");
-const { toolDefinitions } = require("./tools/toolGenerica");
 const ToolExecutor = require("./tools/toolExecutor");
 const { getLocalDateWithDay } = require("../../utils/customTimestamp");
+const { Empresa, Tool } = require("../../models/sequelize");
 const logger = require("../../config/logger/loggerClient");
 
 const MAX_TOOL_ITERATIONS = 15;
 const MAX_TOOL_RETRIES = 2;
 const RETRY_DELAY_MS = 1000;
+
+// Cache de toolDefinitions por empresa
+const _toolDefinitionsCache = new Map();
+
+/**
+ * Carga las definiciones de tools según el id_tool_chatbot de la empresa
+ * @param {number} id_empresa
+ * @returns {Promise<Array>} toolDefinitions
+ */
+async function loadToolDefinitions(id_empresa) {
+    // Verificar cache
+    if (_toolDefinitionsCache.has(id_empresa)) {
+        return _toolDefinitionsCache.get(id_empresa);
+    }
+
+    try {
+        // Obtener empresa con su id_tool_chatbot
+        const empresa = await Empresa.findByPk(id_empresa, {
+            attributes: ['id', 'id_tool_chatbot']
+        });
+
+        if (!empresa || !empresa.id_tool_chatbot) {
+            logger.warn(`[AssistantService] Empresa ${id_empresa} no tiene id_tool_chatbot configurado, usando toolGenerica`);
+            const { toolDefinitions } = require("./tools/toolGenerica");
+            _toolDefinitionsCache.set(id_empresa, toolDefinitions);
+            return toolDefinitions;
+        }
+
+        // Obtener el tool
+        const tool = await Tool.findByPk(empresa.id_tool_chatbot, {
+            attributes: ['id', 'nombre', 'ruta']
+        });
+
+        if (!tool || !tool.ruta) {
+            logger.warn(`[AssistantService] Tool ${empresa.id_tool_chatbot} no encontrado o sin ruta, usando toolGenerica`);
+            const { toolDefinitions } = require("./tools/toolGenerica");
+            _toolDefinitionsCache.set(id_empresa, toolDefinitions);
+            return toolDefinitions;
+        }
+
+        // Cargar el módulo del tool dinámicamente
+        const toolPath = path.resolve(__dirname, "tools", tool.ruta);
+
+        // Limpiar cache de require para obtener versión actualizada
+        delete require.cache[require.resolve(toolPath)];
+        const toolModule = require(toolPath);
+
+        const definitions = toolModule.toolDefinitions || [];
+        _toolDefinitionsCache.set(id_empresa, definitions);
+        logger.info(`[AssistantService] Tool '${tool.nombre}' cargado para empresa ${id_empresa} con ${definitions.length} funciones`);
+
+        return definitions;
+    } catch (error) {
+        logger.error(`[AssistantService] Error al cargar toolDefinitions: ${error.message}`);
+        // Fallback a toolGenerica
+        const { toolDefinitions } = require("./tools/toolGenerica");
+        return toolDefinitions;
+    }
+}
+
+/**
+ * Invalida el cache de toolDefinitions para una empresa
+ * @param {number} id_empresa - Si es null, invalida todo el cache
+ */
+function invalidateToolDefinitionsCache(id_empresa) {
+    if (id_empresa) {
+        _toolDefinitionsCache.delete(id_empresa);
+    } else {
+        _toolDefinitionsCache.clear();
+    }
+}
 
 class AssistantService {
 
@@ -29,6 +101,9 @@ class AssistantService {
      */
     async runProcess({ chatId, message, prospecto, id_empresa }) {
         try {
+            // Cargar tools dinámicamente según la empresa
+            const toolDefinitions = await loadToolDefinitions(id_empresa);
+
             const systemPrompt = await buildSystemPrompt({
                 prospecto,
                 timestamp: getLocalDateWithDay(),
@@ -125,4 +200,10 @@ class AssistantService {
     }
 }
 
-module.exports = new AssistantService();
+const assistantService = new AssistantService();
+
+module.exports = {
+    ...assistantService,
+    runProcess: assistantService.runProcess.bind(assistantService),
+    invalidateToolDefinitionsCache
+};
