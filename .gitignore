@@ -41,3 +41,4 @@ build/
 Thumbs.db
 .idea/
 .vscode/
+package-lock.json
