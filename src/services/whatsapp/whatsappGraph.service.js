@@ -530,7 +530,7 @@ class WhatsappGraphService {
       logger.error(`[WhatsappGraph] Meta error message: ${metaError.message || error.message}`);
       logger.error(`[WhatsappGraph] Meta error type: ${metaError.type || 'N/A'}`);
       logger.error(`[WhatsappGraph] URL: ${url}`);
-      logger.error(`[WhatsappGraph] Template: ${templateName}, Phone: ${formattedPhone}, WABA: ${wabaId}`);
+      logger.error(`[WhatsappGraph] Template: ${templateName}, Phone: ${formattedPhone}, WABA: ${credenciales.wabaId}`);
       logger.error(`[WhatsappGraph] Full response: ${JSON.stringify(error.response?.data || {})}`);
       logger.error(`[WhatsappGraph] ============================================`);
       throw error;
