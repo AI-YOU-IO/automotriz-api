@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
     },
     body: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: true
     },
     footer: {
       type: DataTypes.STRING(255),
