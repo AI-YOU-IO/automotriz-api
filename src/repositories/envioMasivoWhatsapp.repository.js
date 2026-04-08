@@ -36,11 +36,12 @@ class EnvioMasivoWhatsappRepository {
     return EnvioMasivoWhatsapp.update({ estado_registro: 0 }, { where: { id } });
   }
 
-  async updateContadores(id, cantidadExitosos, cantidadFallidos) {
-    return EnvioMasivoWhatsapp.update(
-      { cantidad_exitosos: cantidadExitosos, cantidad_fallidos: cantidadFallidos },
-      { where: { id } }
-    );
+  async incrementExitosos(id) {
+    return EnvioMasivoWhatsapp.increment('cantidad_exitosos', { where: { id } });
+  }
+
+  async incrementFallidos(id) {
+    return EnvioMasivoWhatsapp.increment('cantidad_fallidos', { where: { id } });
   }
 }
 
