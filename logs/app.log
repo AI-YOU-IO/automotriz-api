@@ -1599,3 +1599,7 @@
 {"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"08-04-2026 / 18:15:24"}
 {"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"08-04-2026 / 18:15:24"}
 {"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"08-04-2026 / 18:15:24"}
+{"level":"info","message":"[cron] Ejecutando detección de conversaciones abandonadas...","timestamp":"08-04-2026 / 19:00:00"}
+{"level":"info","message":"[cron] Ejecutando detección de conversaciones abandonadas...","timestamp":"08-04-2026 / 19:00:00"}
+{"level":"info","message":"[cron] Detección finalizada. Prospectos actualizados: 0","timestamp":"08-04-2026 / 19:00:00"}
+{"level":"info","message":"[cron] Detección finalizada. Prospectos actualizados: 0","timestamp":"08-04-2026 / 19:00:00"}
