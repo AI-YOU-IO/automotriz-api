@@ -1024,7 +1024,7 @@ class ReportesCrmController {
                 INNER JOIN mensaje m ON m.id_chat = ch.id AND m.estado_registro = 1
                 WHERE ch.id_prospecto = cp.id_prospecto AND ch.estado_registro = 1
                 AND m.direccion = 'in'
-                AND m.fecha_hora > ce.fecha_registro
+                AND m.fecha_hora > cp.fecha_registro
               ) THEN cp.id_prospecto
             END) as respondidos,
             COUNT(DISTINCT CASE

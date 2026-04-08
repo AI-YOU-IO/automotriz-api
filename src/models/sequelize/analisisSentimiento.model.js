@@ -10,9 +10,17 @@ module.exports = (sequelize) => {
     },
     id_llamada: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'llamada',
+        key: 'id'
+      }
+    },
+    id_chat: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'chat',
         key: 'id'
       }
     },

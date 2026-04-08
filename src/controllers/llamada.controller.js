@@ -1,5 +1,6 @@
 const llamadaRepository = require("../repositories/llamada.repository.js");
 const transcripcionRepository = require("../repositories/transcripcion.repository.js");
+const speechAnalysisService = require('../services/speechAnalysis.service.js');
 const logger = require('../config/logger/loggerClient.js');
 const s3Service = require('../services/s3.service.js');
 const path = require('path');
@@ -306,6 +307,19 @@ class LlamadaController {
           });
         }
         transcripcion_count = transcripcion.length;
+      }
+
+      // Lanzar análisis de speech analytics en background (no bloquea la respuesta)
+      if (transcripcion_count > 0) {
+        const mensajesParaAnalisis = transcripcion.map(m => {
+          let speaker_role = 'sistema';
+          if (m.role === 'MESSAGE_ROLE_AGENT' || m.role === 'agent') speaker_role = 'ai';
+          else if (m.role === 'MESSAGE_ROLE_USER' || m.role === 'user') speaker_role = 'humano';
+          return { speaker_role, texto: m.text || '' };
+        });
+
+        speechAnalysisService.analizarTranscripcion(llamada.id, mensajesParaAnalisis, llamada.id_empresa, duracion_seg)
+          .catch(err => logger.error(`[llamada.controller.js] Error en análisis speech async: ${err.message}`));
       }
 
       return res.status(200).json({

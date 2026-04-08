@@ -34,11 +34,7 @@ router.get("/leads/:id",
     // #swagger.summary = 'Obtener lead por ID'
     LeadsController.getLeadById
 );
-router.get("/leads/:id/perfilamiento",
-    // #swagger.tags = ['Leads']
-    // #swagger.summary = 'Obtener perfilamiento del lead'
-    LeadsController.getPerfilamiento
-);
+
 router.get("/leads/:id/interacciones",
     // #swagger.tags = ['Leads']
     // #swagger.summary = 'Obtener interacciones del lead'
