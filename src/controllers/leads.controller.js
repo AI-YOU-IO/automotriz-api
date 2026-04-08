@@ -18,18 +18,9 @@ class LeadsController {
       }
 
       // Filtrar por tipo de usuario
-      if (rolIdNum === 3) {
+      if (rolIdNum === 2) {
         // Asesor: solo sus prospectos asignados
         whereClause.id_usuario = userId;
-      } else if (rolIdNum === 2) {
-        // Supervisor: prospectos de sus asesores subordinados
-        const subordinados = await Usuario.findAll({
-          where: { id_padre: userId, estado_registro: 1 },
-          attributes: ['id']
-        });
-        const subordinadoIds = subordinados.map(s => s.id);
-        subordinadoIds.push(userId);
-        whereClause.id_usuario = { [Op.in]: subordinadoIds };
       }
       // Rol 1 (admin): ve todos de su empresa (sin filtro adicional)
 
@@ -42,12 +33,28 @@ class LeadsController {
         order: [['fecha_registro', 'DESC']]
       });
 
+      // Obtener última tipificación de cada prospecto
+      const prospIds = leads.map(l => l.id);
+      let tipifMap = {};
+      if (prospIds.length > 0) {
+        const tipifs = await sequelize.query(`
+          SELECT DISTINCT ON (id_prospecto) id, nombre, tipo, id_prospecto, usuario_registro, fecha_registro
+          FROM tipificacion
+          WHERE estado_registro = 1 AND id_prospecto IN (:ids)
+          ORDER BY id_prospecto, fecha_registro DESC
+        `, { replacements: { ids: prospIds }, type: QueryTypes.SELECT });
+        tipifs.forEach(t => { tipifMap[t.id_prospecto] = t; });
+      }
+
       // Mapear a campos planos que espera el frontend
       const leadsPlain = leads.map(lead => {
         const l = lead.toJSON();
         l.estado_nombre = l.estadoProspecto?.nombre || null;
         l.estado_color = l.estadoProspecto?.color || null;
         l.asesor_nombre = l.usuario?.usuario || null;
+        const tipif = tipifMap[l.id] || null;
+        l.tipificacion_nombre = tipif?.nombre || null;
+        l.tipificacion_color = tipif?.tipo === 'consulta' ? '#3B82F6' : tipif?.tipo === 'cita' ? '#8B5CF6' : tipif?.tipo === 'cotizacion' ? '#06B6D4' : tipif?.tipo === 'postventa' ? '#10B981' : tipif?.tipo === 'desistimiento' ? '#EF4444' : '#6B7280';
         return l;
       });
 
@@ -141,22 +148,15 @@ class LeadsController {
 
       logger.info(`[leads.controller.js] getAsesores - userId: ${userId}, rolId: ${rolId}, rolIdNum: ${rolIdNum}, idEmpresa: ${idEmpresa}`);
 
-      let whereClause = { id_rol: 3, estado_registro: 1 };
+      let whereClause = { id_rol: 2, estado_registro: 1 };
 
       if (rolIdNum === 1) {
         // Rol 1 (admin): ver todos los asesores de su empresa
         if (idEmpresa) {
           whereClause.id_empresa = idEmpresa;
         }
-      } else if (rolIdNum === 2) {
-        // Rol 2 (supervisor): ver solo asesores con id_padre = userId
-        whereClause.id_padre = userId;
-        if (idEmpresa) {
-          whereClause.id_empresa = idEmpresa;
-        }
       } else {
-        // Otros roles no pueden ver asesores
-        logger.info(`[leads.controller.js] getAsesores - Rol ${rolIdNum} no tiene permisos para ver asesores`);
+        // Asesores no pueden ver otros asesores
         return res.status(200).json({ data: [] });
       }
 
@@ -207,12 +207,25 @@ class LeadsController {
         return res.status(404).json({ msg: "Lead no encontrado" });
       }
 
-      const updateData = { ...req.body };
-      // Mapear id_estado a id_estado_prospecto si viene del frontend
-      if (updateData.id_estado !== undefined) {
-        updateData.id_estado_prospecto = updateData.id_estado;
-        delete updateData.id_estado;
-      }
+      const body = req.body;
+      logger.info(`[leads.controller.js] updateLead body: ${JSON.stringify(body)}`);
+
+      // Mapear campos del frontend a campos de la BD
+      const updateData = {};
+      if (body.nombre_completo !== undefined) updateData.nombre_completo = body.nombre_completo;
+      if (body.dni !== undefined) updateData.dni = body.dni || null;
+      if (body.celular !== undefined) updateData.celular = body.celular;
+      if (body.direccion !== undefined) updateData.direccion = body.direccion || null;
+      if (body.email !== undefined) updateData.email = body.email || null;
+      if (body.id_estado !== undefined) updateData.id_estado_prospecto = body.id_estado;
+      if (body.id_estado_prospecto !== undefined) updateData.id_estado_prospecto = body.id_estado_prospecto;
+      if (body.id_asesor !== undefined) updateData.id_usuario = body.id_asesor || null;
+      if (body.calificacion_lead !== undefined) updateData.calificacion_lead = body.calificacion_lead;
+      if (body.perfilamiento !== undefined) updateData.perfilamiento = body.perfilamiento;
+      if (body.puntaje !== undefined) updateData.puntaje = body.puntaje;
+      if (body.fue_contactado !== undefined) updateData.fue_contactado = body.fue_contactado;
+
+      logger.info(`[leads.controller.js] updateLead mapped: ${JSON.stringify(updateData)}`);
       await lead.update(updateData);
       logger.info(`[leads.controller.js] Lead ${id} actualizado correctamente`);
 
@@ -228,29 +241,8 @@ class LeadsController {
     return res.status(200).json({ data: [] });
   }
 
-  async getPerfilamiento(req, res) {
-    try {
-      const { id } = req.params;
 
-      const [rows] = await sequelize.query(`
-        SELECT
-          pp.pregunta,
-          ppp.respuesta
-        FROM prospecto_pregunta_perfilamiento ppp
-        INNER JOIN pregunta_perfilamiento pp ON pp.id = ppp.id_pregunta
-        WHERE ppp.id_prospecto = :id
-        ORDER BY pp.orden ASC
-      `, {
-        replacements: { id },
-        type: sequelize.QueryTypes.SELECT
-      });
 
-      return res.status(200).json({ data: rows || [] });
-    } catch (error) {
-      logger.error(`[leads.controller.js] Error al obtener perfilamiento: ${error.message}`);
-      return res.status(500).json({ msg: "Error al obtener perfilamiento" });
-    }
-  }
 
   async syncFromSperant(req, res) {
     try {
