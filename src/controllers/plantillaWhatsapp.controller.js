@@ -478,8 +478,10 @@ class PlantillaWhatsappController {
       try {
         await whatsappGraphService.eliminarPlantilla(id_empresa, plantilla.name);
       } catch (metaError) {
-        logger.error(`[plantillaWhatsapp.controller.js] Error eliminando en Meta: ${metaError.message}`);
-        // Si falla en Meta, igual eliminamos de BD (puede que ya no exista en Meta)
+        const metaErr = metaError.response?.data?.error || {};
+        logger.warn(`[plantillaWhatsapp.controller] Error eliminando en Meta (se eliminará de BD igualmente)`);
+        logger.warn(`[plantillaWhatsapp.controller] Status: ${metaError.response?.status || 'N/A'}, Meta code: ${metaErr.code || 'N/A'}, message: ${metaErr.message || metaError.message}`);
+        logger.warn(`[plantillaWhatsapp.controller] Plantilla name: ${plantilla.name}, empresa: ${id_empresa}`);
       }
 
       // 2. Eliminar en BD (soft delete) usando el ID local
