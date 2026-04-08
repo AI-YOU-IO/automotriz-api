@@ -1523,3 +1523,37 @@
 {"level":"info","message":"[cron] Detección finalizada. Prospectos actualizados: 0","timestamp":"06-04-2026 / 23:00:00"}
 {"level":"error","message":"[abandonedConversations] Error al detectar conversaciones abandonadas: insert or update on table \"prospecto\" violates foreign key constraint \"prospecto_id_estado_prospecto_fkey\"","timestamp":"06-04-2026 / 23:00:00"}
 {"level":"info","message":"[cron] Detección finalizada. Prospectos actualizados: 0","timestamp":"06-04-2026 / 23:00:00"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: aiyou_automotriz","timestamp":"08-04-2026 / 10:17:38"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"08-04-2026 / 10:17:38"}
+{"level":"error","message":"[server.js] Vector DB no disponible: ","timestamp":"08-04-2026 / 10:17:38"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"08-04-2026 / 10:17:38"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"08-04-2026 / 10:17:38"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"08-04-2026 / 10:17:38"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"08-04-2026 / 10:17:38"}
+{"level":"info","message":"[loginAttempts.service] Intentos limpiados para admin123","timestamp":"08-04-2026 / 10:18:32"}
+{"level":"info","message":"[plantillaWhatsapp.controller] Sincronizando plantillas desde Meta para empresa 1","timestamp":"08-04-2026 / 10:19:35"}
+{"level":"info","message":"[WhatsappGraph] ========== LISTAR PLANTILLAS ==========","timestamp":"08-04-2026 / 10:19:35"}
+{"level":"info","message":"[WhatsappGraph] idEmpresa: 1, options: {}","timestamp":"08-04-2026 / 10:19:35"}
+{"level":"info","message":"[WhatsappGraph] Usando token de Maravia (coexistence) para empresa: 1, phone_number_id: 952054414665764","timestamp":"08-04-2026 / 10:19:35"}
+{"level":"info","message":"[WhatsappGraph] Credenciales obtenidas - wabaId: 3379557938858835, phoneNumberId: 952054414665764, tokenLength: 201","timestamp":"08-04-2026 / 10:19:35"}
+{"level":"info","message":"[WhatsappGraph] URL de Meta: https://graph.facebook.com/v21.0/3379557938858835/message_templates?fields=name,status,category,language,components,quality_score,rejected_reason&limit=100","timestamp":"08-04-2026 / 10:19:35"}
+{"level":"info","message":"[WhatsappGraph] Respuesta Meta - Status: 200","timestamp":"08-04-2026 / 10:19:36"}
+{"level":"info","message":"[WhatsappGraph] Respuesta Meta - Data keys: data, paging","timestamp":"08-04-2026 / 10:19:36"}
+{"level":"info","message":"[WhatsappGraph] Respuesta Meta - Templates count: 1","timestamp":"08-04-2026 / 10:19:36"}
+{"level":"info","message":"[WhatsappGraph] Templates procesados: 1","timestamp":"08-04-2026 / 10:19:36"}
+{"level":"info","message":"[WhatsappGraph] Primeras 3 plantillas: mensaje_prueba","timestamp":"08-04-2026 / 10:19:36"}
+{"level":"info","message":"[plantillaWhatsapp.controller] Meta devolvió 1 plantillas","timestamp":"08-04-2026 / 10:19:36"}
+{"level":"info","message":"[plantillaWhatsapp.controller] Sincronización completada: 0 creadas, 1 actualizadas","timestamp":"08-04-2026 / 10:19:36"}
+{"level":"info","message":"[WhatsappGraph] ========== ENVIAR PLANTILLA ==========","timestamp":"08-04-2026 / 10:28:51"}
+{"level":"info","message":"[WhatsappGraph] idEmpresa: 1, phone: 982359672, template: mensaje_prueba, lang: es","timestamp":"08-04-2026 / 10:28:51"}
+{"level":"info","message":"[WhatsappGraph] Obteniendo credenciales...","timestamp":"08-04-2026 / 10:28:51"}
+{"level":"info","message":"[WhatsappGraph] Usando token de Maravia (coexistence) para empresa: 1, phone_number_id: 952054414665764","timestamp":"08-04-2026 / 10:28:51"}
+{"level":"info","message":"[WhatsappGraph] Credenciales OK - phoneNumberId: 952054414665764, tokenLength: 201","timestamp":"08-04-2026 / 10:28:51"}
+{"level":"info","message":"[WhatsappGraph] URL: https://graph.facebook.com/v21.0/952054414665764/messages","timestamp":"08-04-2026 / 10:28:51"}
+{"level":"info","message":"[WhatsappGraph] Teléfono formateado: 51982359672","timestamp":"08-04-2026 / 10:28:51"}
+{"level":"info","message":"[WhatsappGraph] Payload: {\"messaging_product\":\"whatsapp\",\"recipient_type\":\"individual\",\"to\":\"51982359672\",\"type\":\"template\",\"template\":{\"name\":\"mensaje_prueba\",\"language\":{\"code\":\"es\"}}}","timestamp":"08-04-2026 / 10:28:51"}
+{"level":"info","message":"[WhatsappGraph] Respuesta OK - Status: 200","timestamp":"08-04-2026 / 10:28:52"}
+{"level":"info","message":"[WhatsappGraph] Response data: {\"messaging_product\":\"whatsapp\",\"contacts\":[{\"input\":\"51982359672\",\"wa_id\":\"51982359672\"}],\"messages\":[{\"id\":\"wamid.HBgLNTE5ODIzNTk2NzIVAgARGBIxOEMzQkExREU2QzlEQ0U1RkUA\",\"message_status\":\"accepted\"}]}","timestamp":"08-04-2026 / 10:28:52"}
+{"level":"info","message":"[cron] Ejecutando detección de conversaciones abandonadas...","timestamp":"08-04-2026 / 11:00:00"}
+{"level":"error","message":"[abandonedConversations] Error al detectar conversaciones abandonadas: insert or update on table \"prospecto\" violates foreign key constraint \"prospecto_id_estado_prospecto_fkey\"","timestamp":"08-04-2026 / 11:00:00"}
+{"level":"info","message":"[cron] Detección finalizada. Prospectos actualizados: 0","timestamp":"08-04-2026 / 11:00:00"}
