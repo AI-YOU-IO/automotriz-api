@@ -3,10 +3,10 @@
  * Se espera el header X-Cron-Key o query param cron_key
  */
 
-const N8N_API_KEY = process.env.N8N_API_KEY || 'viva_n8n_secret_key_2024';
+const N8N_API_KEY = process.env.N8N_API_KEY || 'gqm_n8n_secret_key_2024';
 
 const validateN8nApiKey = (req, res, next) => {
-  const apiKey = req.headers['x-viva-cron-key'] || req.headers['x-cron-key'] || req.query.cron_key;
+  const apiKey = req.headers['x-gqm-cron-key'] || req.headers['x-cron-key'] || req.query.cron_key;
 
   if (!apiKey || apiKey !== N8N_API_KEY) {
     return res.status(401).json({ error: 'No autorizado' });
