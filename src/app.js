@@ -58,6 +58,7 @@ const n8nChatRoutes = require("./routes/n8nChat.route.js");
 const n8nCitaRoutes = require("./routes/n8nCita.route.js");
 const n8nRecuperacionRoutes = require("./routes/n8nRecuperacion.route.js");
 const n8nEmpresaRoutes = require("./routes/n8nEmpresa.route.js");
+const n8nPlantillaBitrixRoutes = require("./routes/n8nPlantillaBitrix.route.js");
 const whatsappMensajeRoutes = require("./routes/whatsappMensaje.route.js");
 const tipoCampaniaRoutes = require("./routes/tipoCampania.route.js");
 const estadoCampaniaRoutes = require("./routes/estadoCampania.route.js");
@@ -139,6 +140,7 @@ app.use('/api/n8n/chats', n8nChatRoutes);
 app.use('/api/n8n/citas', n8nCitaRoutes);
 app.use('/api/n8n/recuperacion', n8nRecuperacionRoutes);
 app.use('/api/n8n/empresa', n8nEmpresaRoutes);
+app.use('/api/n8n/plantilla-bitrix', n8nPlantillaBitrixRoutes);
 
 // Rutas Ultravox webhook (protegidas con Bearer token)
 app.use('/api/ultravox', ultravoxRoutes);
