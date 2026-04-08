@@ -1,0 +1,434 @@
+const toolDefinitions = [
+    {
+        type: "function",
+        function: {
+            name: "obtenerLead",
+            description: "Obtiene la informacion del lead según el id",
+            parameters: {
+                type: "object",
+                properties: {
+                    id: {
+                        type: "integer",
+                        description: "Id del lead o cliente"
+                    }
+                },
+                required: ["id"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "crearNuevoLead",
+            description: "Te permite crear un nuevo lead para el sistema",
+            parameters: {
+                type: "object",
+                properties: {
+                    nombre_completo: {
+                        type: "string",
+                        description: "Nombre completo del nuevo lead"
+                    },
+                    dni: {
+                        type: "string",
+                        description: "DNI del nuevo lead"
+                    },
+                    celular: {
+                        type: "string",
+                        description: "Numero celular del nuevo lead"
+                    },
+                    direccion: {
+                        type: "string",
+                        description: "Direccion del nuevo lead"
+                    }
+                },
+                required: ["nombre_completo", "celular"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "actualizarLead",
+            description: "Te permite actualizar la informacion del lead para el sistema",
+            parameters: {
+                type: "object",
+                properties: {
+                    id: {
+                        type: "integer",
+                        description: "Id del lead a actualizar"
+                    },
+                    nombre_completo: {
+                        type: "string",
+                        description: "Nombre completo del nuevo lead"
+                    },
+                    dni: {
+                        type: "string",
+                        description: "DNI del nuevo lead"
+                    },
+                    celular: {
+                        type: "string",
+                        description: "Numero celular del nuevo lead"
+                    },
+                    direccion: {
+                        type: "string",
+                        description: "Direccion del nuevo lead"
+                    },
+                    perfilamiento: {
+                        type: "integer",
+                        description: "Estado del perfilamiento 0 o 1"
+                    },
+                    puntaje: {
+                        type: "integer",
+                        description: "Puntaje acrediticion"
+                    },
+                    id_estado_prospecto: {
+                        type: "integer",
+                        description: "Estado del prospecto"
+                    }
+                },
+                required: ["id"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "obtenerMarcas",
+            description: "Obtiene la lista de marcas de vehículos disponibles",
+            parameters: {
+                type: "object",
+                properties: {},
+                required: []
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "obtenerMarca",
+            description: "Busca y obtiene la información de una marca por su nombre (búsqueda parcial)",
+            parameters: {
+                type: "object",
+                properties: {
+                    nombre: {
+                        type: "string",
+                        description: "Nombre o parte del nombre de la marca a buscar"
+                    }
+                },
+                required: ["nombre"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "obtenerModelos",
+            description: "Obtiene la lista de modelos según el id de la marca",
+            parameters: {
+                type: "object",
+                properties: {
+                    id_marca: {
+                        type: "integer",
+                        description: "ID de la marca seleccionada"
+                    }
+                },
+                required: ["id_marca"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "obtenerModelo",
+            description: "Obtiene el detalle del modelo seleccionado",
+            parameters: {
+                type: "object",
+                properties: {
+                    id: {
+                        type: "integer",
+                        description: "Id del modelo seleccionado"
+                    }
+                },
+                required: ["id"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "obtenerVersiones",
+            description: "Obtiene la lista de versiones según el id del modelo",
+            parameters: {
+                type: "object",
+                properties: {
+                    id_modelo: {
+                        type: "integer",
+                        description: "ID del modelo seleccionado"
+                    }
+                },
+                required: ["id_modelo"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "obtenerVersion",
+            description: "Obtiene el detalle de la versión seleccionada",
+            parameters: {
+                type: "object",
+                properties: {
+                    id: {
+                        type: "integer",
+                        description: "Id de la versión seleccionada"
+                    }
+                },
+                required: ["id"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "crearCita",
+            description: "Crea la cita para el cliente o lead",
+            parameters: {
+                type: "object",
+                properties: {
+                    nombre: {
+                        type: "string",
+                        description: "Nombre de la cita"
+                    },
+                    hora_inicio: {
+                        type: "string",
+                        description: "Timestamp para el inicio de la cita"
+                    },
+                    hora_fin: {
+                        type: "string",
+                        description: "Timestamp para el fin de la cita"
+                    },
+                    lugar: {
+                        type: "string",
+                        description: "Lugar donde se realizará la cita"
+                    },
+                    id_estado_cita: {
+                        type: "integer",
+                        description: "ID del estado de la cita. Valor por defecto es 1",
+                    },
+                    id_prospecto: {
+                        type: "integer",
+                        description: "ID del lead o prospecto"
+                    },
+                    id_marca: {
+                        type: "integer",
+                        description: "ID de la marca seleccionada"
+                    },
+                    id_modelo: {
+                        type: "integer",
+                        description: "ID del modelo seleccionado"
+                    },
+                    id_version: {
+                        type: "integer",
+                        description: "ID de la versión seleccionada"
+                    }
+                },
+                required: ["nombre", "hora_inicio", "hora_fin", "lugar", "id_prospecto", "id_marca", "id_modelo", "id_version"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "obtenerCita",
+            description: "Obtiene las citas agendadas del lead",
+            parameters: {
+                type: "object",
+                properties: {
+                    id_prospecto: {
+                        type: "integer",
+                        description: "ID del lead o prospecto"
+                    }
+                },
+                required: ["id_prospecto"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "obtenerHorarioAtencion",
+            description: "Obtiene los días de atención presencial. Devuelve los días de la semana y las horas de atención (0=domingo, 1=lunes ... 6=sábado)",
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "obtenerDiasDescanso",
+            description: "Obtiene la fecha de descanso del asesor si coincide",
+            parameters: {
+                type: "object",
+                properties: {
+                    id_usuario: {
+                        type: "integer",
+                        description: "ID del asesor/usuario"
+                    },
+                    fecha_descanso: {
+                        type: "string",
+                        description: "Fecha consultada por el lead"
+                    }
+                },
+                required: ["id_usuario", "fecha_descanso"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "obtenerHorariosOcupados",
+            description: "Obtiene las citas ya agendadas del asesor, con hora_inicio y hora_fin, para saber qué horarios ya están ocupados",
+            parameters: {
+                type: "object",
+                properties: {
+                    id_usuario: {
+                        type: "integer",
+                        description: "ID del asesor/usuario"
+                    }
+                },
+                required: ["id_usuario"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "crearInteracciones",
+            description: "Crea una nueva interacción",
+            parameters: {
+                type: "object",
+                properties: {
+                    id_marca: {
+                        type: "integer",
+                        description: "ID de la marca seleccionada"
+                    },
+                    id_modelo: {
+                        type: "integer",
+                        description: "ID del modelo seleccionado"
+                    },
+                    id_version: {
+                        type: "integer",
+                        description: "ID de la versión seleccionada"
+                    },
+                    id_usuario: {
+                        type: "integer",
+                        description: "ID del asesor asignado al lead o prospecto"
+                    },
+                    satisfactorio: {
+                        type: "integer",
+                        description: "Indica si la interacción fue satisfactoria. Es 0 o 1"
+                    },
+                    utm_content: {
+                        type: "string",
+                        description: "UTM Content"
+                    },
+                    utm_term: {
+                        type: "string",
+                        description: "UTM term"
+                    },
+                    utm_campaign: {
+                        type: "string",
+                        description: "UTM campaign"
+                    },
+                    utm_medium: {
+                        type: "string",
+                        description: "UTM medium"
+                    },
+                    utm_source: {
+                        type: "string",
+                        description: "UTM source"
+                    },
+                    observaciones: {
+                        type: "string",
+                        description: "Observación de la interacción. Aqui se registra las habitaciones de interes, presupuesto, descuento ofrecido y el resumen de la interaccion"
+                    },
+                    id_motivo_desistimiento: {
+                        type: "integer",
+                        description: "ID de desistimiento"
+                    },
+                    id_prospecto: {
+                        type: "integer",
+                        description: "ID del lead o prospecto"
+                    },
+                    id_nivel_interes: {
+                        type: "integer",
+                        description: "ID tipo de interes. Valor por defecto es 1",
+                    },
+                    id_canal_entrada: {
+                        type: "integer",
+                        description: "ID de canal de entrada. Valor por defecto es 1",
+                    },
+                    id_medio_captacion: {
+                        type: "integer",
+                        description: "ID de fuente. Valor por defecto es 1",
+                    },
+                    id_tipo_interaccion: {
+                        type: "integer",
+                        description: "ID tipo de interaccion. Valor por defecto es 1",
+                    },
+                },
+                required: ["id_marca", "id_modelo", "id_version", "id_usuario", "id_prospecto", "id_nivel_interes", "id_canal_entrada", "id_medio_captacion", "id_tipo_interaccion"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "buscarFaqs",
+            description: "Busca en la base de conocimiento las preguntas frecuentes y objeciones más relevantes para responder la consulta del cliente. Úsala siempre que el cliente haga una pregunta o exprese una objeción antes de responder.",
+            parameters: {
+                type: "object",
+                properties: {
+                    query: {
+                        type: "string",
+                        description: "La pregunta u objeción del cliente, en sus propias palabras"
+                    }
+                },
+                required: ["query"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "enviarLeadLlamada",
+            description: "Envias la informacion del lead o prospecto para continuar el flujo con nuestro agente de llamadas",
+            parameters: {
+                type: "object",
+                properties: {
+                    destination: {
+                        type: "string",
+                        description: "Número del lead o prospecto donde recibirá la llamada"
+                    },
+                    data: {
+                        type: "object",
+                        description: "Objecto que contiene información del lead o prospecto incluyendo fase del flujo"
+                    },
+                    extras: {
+                        type: "object",
+                        description: "Contenido extra para la llamada",
+                        properties: {
+                            voice: {
+                                type: "string",
+                                description: "ID o nombre de la voz a utilizar por el agente de llamada",
+                                default: "bacfa559-a200-4377-9d0e-fcae7c766a1f"
+                            }
+                        },
+                        required: ["voice"]
+                    }
+                },
+                required: ["destination", "data", "extras"]
+            }
+        }
+    }
+];
+
+module.exports = { toolDefinitions };

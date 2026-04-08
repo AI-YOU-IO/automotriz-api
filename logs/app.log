@@ -1557,3 +1557,45 @@
 {"level":"info","message":"[cron] Ejecutando detección de conversaciones abandonadas...","timestamp":"08-04-2026 / 11:00:00"}
 {"level":"error","message":"[abandonedConversations] Error al detectar conversaciones abandonadas: insert or update on table \"prospecto\" violates foreign key constraint \"prospecto_id_estado_prospecto_fkey\"","timestamp":"08-04-2026 / 11:00:00"}
 {"level":"info","message":"[cron] Detección finalizada. Prospectos actualizados: 0","timestamp":"08-04-2026 / 11:00:00"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: aiyou_automotriz","timestamp":"08-04-2026 / 18:14:39"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: aiyou_automotriz","timestamp":"08-04-2026 / 18:14:39"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"08-04-2026 / 18:14:39"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"08-04-2026 / 18:14:39"}
+{"level":"error","message":"[server.js] Vector DB no disponible: ","timestamp":"08-04-2026 / 18:14:39"}
+{"level":"error","message":"[server.js] Vector DB no disponible: ","timestamp":"08-04-2026 / 18:14:39"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"08-04-2026 / 18:14:39"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"08-04-2026 / 18:14:39"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"08-04-2026 / 18:14:39"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"08-04-2026 / 18:14:39"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"08-04-2026 / 18:14:39"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"08-04-2026 / 18:14:39"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"08-04-2026 / 18:14:39"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"08-04-2026 / 18:14:39"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: aiyou_automotriz","timestamp":"08-04-2026 / 18:15:03"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"08-04-2026 / 18:15:03"}
+{"level":"error","message":"[server.js] Vector DB no disponible: ","timestamp":"08-04-2026 / 18:15:03"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"08-04-2026 / 18:15:03"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: aiyou_automotriz","timestamp":"08-04-2026 / 18:15:03"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"08-04-2026 / 18:15:03"}
+{"level":"error","message":"[server.js] Vector DB no disponible: ","timestamp":"08-04-2026 / 18:15:03"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"08-04-2026 / 18:15:03"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"08-04-2026 / 18:15:03"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"08-04-2026 / 18:15:03"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"08-04-2026 / 18:15:03"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"08-04-2026 / 18:15:03"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"08-04-2026 / 18:15:03"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"08-04-2026 / 18:15:03"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: aiyou_automotriz","timestamp":"08-04-2026 / 18:15:24"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"08-04-2026 / 18:15:24"}
+{"level":"error","message":"[server.js] Vector DB no disponible: ","timestamp":"08-04-2026 / 18:15:24"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: aiyou_automotriz","timestamp":"08-04-2026 / 18:15:24"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"08-04-2026 / 18:15:24"}
+{"level":"error","message":"[server.js] Vector DB no disponible: ","timestamp":"08-04-2026 / 18:15:24"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"08-04-2026 / 18:15:24"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"08-04-2026 / 18:15:24"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"08-04-2026 / 18:15:24"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"08-04-2026 / 18:15:24"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"08-04-2026 / 18:15:24"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"08-04-2026 / 18:15:24"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"08-04-2026 / 18:15:24"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"08-04-2026 / 18:15:24"}
