@@ -94,6 +94,10 @@ module.exports = (sequelize) => {
     meta_template_id: {
       type: DataTypes.STRING(50),
       allowNull: true
+    },
+    components: {
+      type: DataTypes.JSONB,
+      allowNull: true
     }
   }, {
     tableName: 'plantilla_whatsapp',

@@ -10,5 +10,6 @@ router.post("/plantillas-whatsapp", /* #swagger.tags = ['Plantilla WhatsApp'] */
 router.put("/plantillas-whatsapp/:id", /* #swagger.tags = ['Plantilla WhatsApp'] */ uploadPlantillaMiddleware, PlantillaWhatsappController.updatePlantilla);
 router.delete("/plantillas-whatsapp/:id", /* #swagger.tags = ['Plantilla WhatsApp'] */ PlantillaWhatsappController.deletePlantilla);
 router.post("/plantillas-whatsapp/enviar", /* #swagger.tags = ['Plantilla WhatsApp'] */ PlantillaWhatsappController.enviarPlantilla);
+router.post("/plantillas-whatsapp/sincronizar-meta", /* #swagger.tags = ['Plantilla WhatsApp'] */ PlantillaWhatsappController.sincronizarMeta);
 
 module.exports = router;

@@ -45,6 +45,16 @@ class PlantillaWhatsappRepository {
   async delete(id) {
     return PlantillaWhatsapp.update({ estado_registro: 0 }, { where: { id } });
   }
+
+  async upsertByName(name, idEmpresa, data) {
+    const existing = await this.findByName(name, idEmpresa);
+    if (existing) {
+      await this.update(existing.id, data);
+      return { ...existing.toJSON(), ...data, isNew: false };
+    }
+    const created = await PlantillaWhatsapp.create({ ...data, name, id_empresa: idEmpresa });
+    return { ...created.toJSON(), isNew: true };
+  }
 }
 
 module.exports = new PlantillaWhatsappRepository();

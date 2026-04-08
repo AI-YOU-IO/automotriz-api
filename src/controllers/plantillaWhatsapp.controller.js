@@ -6,72 +6,88 @@ const path = require('path');
 
 class PlantillaWhatsappController {
   /**
-   * Obtiene plantillas desde Meta Graph API
-   * El listado siempre viene de Meta para tener datos actualizados (status, quality_score, etc)
+   * Obtiene plantillas desde la BD local
    */
   async getPlantillas(req, res) {
     try {
       const idEmpresa = req.user?.idEmpresa || null;
-      const { status, limit } = req.query;
-
-      logger.info(`[plantillaWhatsapp.controller] ========== GET PLANTILLAS ==========`);
-      logger.info(`[plantillaWhatsapp.controller] idEmpresa: ${idEmpresa}, status: ${status}, limit: ${limit}`);
-      logger.info(`[plantillaWhatsapp.controller] user: ${JSON.stringify(req.user || {})}`);
 
       if (!idEmpresa) {
-        logger.error(`[plantillaWhatsapp.controller] ID de empresa no encontrado en req.user`);
         return res.status(400).json({ msg: "ID de empresa requerido" });
       }
 
-      // Obtener plantillas desde Meta
-      logger.info(`[plantillaWhatsapp.controller] Llamando a whatsappGraphService.listarPlantillas...`);
-      const result = await whatsappGraphService.listarPlantillas(idEmpresa, { status, limit });
-      logger.info(`[plantillaWhatsapp.controller] Resultado de Meta - templates: ${result.templates?.length || 0}, waba_id: ${result.waba_id}`);
-
-      // Obtener datos locales para enriquecer (id local, url media, etc)
-      const plantillasLocales = await plantillaWhatsappRepository.findAll(idEmpresa);
-      logger.info(`[plantillaWhatsapp.controller] Plantillas locales encontradas: ${plantillasLocales?.length || 0}`);
-
-      const mapaLocal = {};
-      for (const p of plantillasLocales) {
-        mapaLocal[p.name] = {
-          id_local: p.id,
-          url_imagen: p.url_imagen,
-          header_type: p.header_type,
-          meta_template_id: p.meta_template_id
-        };
-      }
-
-      // Enriquecer plantillas de Meta con datos locales
-      const templatesEnriquecidos = result.templates.map(template => {
-        const local = mapaLocal[template.name];
-        if (local) {
-          return {
-            ...template,
-            id_local: local.id_local,
-            url_imagen: local.url_imagen,
-            header_type_local: local.header_type,
-            meta_template_id: local.meta_template_id || template.id
-          };
-        }
-        return template;
-      });
-
-      logger.info(`[plantillaWhatsapp.controller] Templates enriquecidos: ${templatesEnriquecidos.length}`);
-      logger.info(`[plantillaWhatsapp.controller] ========== FIN GET PLANTILLAS ==========`);
+      const plantillas = await plantillaWhatsappRepository.findAll(idEmpresa);
 
       return res.status(200).json({
         success: true,
         data: {
-          templates: templatesEnriquecidos,
-          total: result.total,
-          waba_id: result.waba_id
+          templates: plantillas,
+          total: plantillas.length
         }
       });
     } catch (error) {
       logger.error(`[plantillaWhatsapp.controller] Error al obtener plantillas: ${error.message}`);
-      logger.error(`[plantillaWhatsapp.controller] Stack: ${error.stack}`);
       return res.status(500).json({ msg: "Error al obtener plantillas", error: error.message });
+    }
+  }
+
+  /**
+   * Sincroniza plantillas desde Meta Graph API hacia la BD local.
+   * Crea o actualiza cada plantilla usando el name como clave.
+   */
+  async sincronizarMeta(req, res) {
+    try {
+      const idEmpresa = req.user?.idEmpresa || null;
+      const userId = req.user?.userId || null;
+
+      if (!idEmpresa) {
+        return res.status(400).json({ msg: "ID de empresa requerido" });
+      }
+
+      logger.info(`[plantillaWhatsapp.controller] Sincronizando plantillas desde Meta para empresa ${idEmpresa}`);
+
+      const result = await whatsappGraphService.listarPlantillas(idEmpresa, {});
+      const templates = result.templates || [];
+
+      logger.info(`[plantillaWhatsapp.controller] Meta devolvió ${templates.length} plantillas`);
+
+      let creadas = 0;
+      let actualizadas = 0;
+
+      for (const tpl of templates) {
+        const data = {
+          status: tpl.status || 'PENDING',
+          category: tpl.category || 'MARKETING',
+          language: tpl.language || 'es',
+          components: tpl.components || [],
+          meta_template_id: tpl.id || null,
+          quality_score: tpl.quality_score?.score || null,
+          usuario_actualizacion: userId
+        };
+
+        const resultado = await plantillaWhatsappRepository.upsertByName(tpl.name, idEmpresa, {
+          ...data,
+          usuario_registro: userId
+        });
+
+        if (resultado.isNew) {
+          creadas++;
+        } else {
+          actualizadas++;
+        }
+      }
+
+      logger.info(`[plantillaWhatsapp.controller] Sincronización completada: ${creadas} creadas, ${actualizadas} actualizadas`);
+
+      return res.status(200).json({
+        success: true,
+        msg: `Sincronización completada: ${creadas} creadas, ${actualizadas} actualizadas`,
+        data: { creadas, actualizadas, total: templates.length }
+      });
+    } catch (error) {
+      logger.error(`[plantillaWhatsapp.controller] Error al sincronizar con Meta: ${error.message}`);
+      logger.error(`[plantillaWhatsapp.controller] Stack: ${error.stack}`);
+      return res.status(500).json({ msg: "Error al sincronizar con Meta", error: error.message });
     }
   }
 
@@ -179,17 +195,13 @@ class PlantillaWhatsappController {
         components
       );
 
-      // 2. Si Meta fue exitoso, guardar en BD con la URL del archivo y el meta_template_id
+      // 2. Si Meta fue exitoso, guardar en BD con components y el meta_template_id
       const plantilla = await plantillaWhatsappRepository.create({
         name: nombreFormateado,
         status: resultMeta.status || 'PENDING',
         category: category || 'MARKETING',
         language: language || 'es',
-        header_type,
-        header_text,
-        body,
-        footer,
-        buttons: buttons || [],
+        components,
         url_imagen,
         meta_template_id: resultMeta.id || null,
         id_empresa,
@@ -395,11 +407,7 @@ class PlantillaWhatsappController {
       const updateData = {
         category,
         language,
-        header_type,
-        header_text,
-        body,
-        footer,
-        buttons: buttons || [],
+        components,
         url_imagen,
         usuario_actualizacion
       };

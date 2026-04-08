@@ -149,7 +149,6 @@ class EnvioMasivoWhatsappController {
         return res.status(400).json({ msg: "ID de empresa es requerido" });
       }
 
-      // Obtener el envío masivo con prospectos y plantilla
       const envio = await envioMasivoWhatsappRepository.findById(id);
 
       if (!envio) {
@@ -160,24 +159,31 @@ class EnvioMasivoWhatsappController {
         return res.status(400).json({ msg: "El envío no tiene una plantilla asociada" });
       }
 
-      const prospectos = envio.enviosProspectos || [];
-      if (prospectos.length === 0) {
-        return res.status(400).json({ msg: "El envío no tiene prospectos asociados" });
+      // Solo procesar prospectos pendientes (permite reanudar envíos parciales)
+      const prospectosPendientes = (envio.enviosProspectos || []).filter(ep => ep.estado === 'pendiente');
+      if (prospectosPendientes.length === 0) {
+        return res.status(400).json({ msg: "No hay prospectos pendientes de envío" });
       }
 
       const templateName = envio.plantilla.name;
       const language = envio.plantilla.language || 'es';
 
-      let cantidadExitosos = 0;
-      let cantidadFallidos = 0;
+      // Marcar como enviando
+      await envioMasivoWhatsappRepository.update(id, {
+        estado_envio: 'en_proceso',
+        fecha_envio: envio.fecha_envio || new Date().toISOString().split('T')[0]
+      });
 
-      // Enviar a cada prospecto
-      for (const envioProspecto of prospectos) {
+      let exitosos = 0;
+      let fallidos = 0;
+
+      for (const envioProspecto of prospectosPendientes) {
         const prospecto = envioProspecto.prospecto;
 
         if (!prospecto || !prospecto.celular) {
           await enviosProspectosRepository.updateEstado(envioProspecto.id, 'fallido', 'Prospecto sin número de celular');
-          cantidadFallidos++;
+          await envioMasivoWhatsappRepository.incrementFallidos(id);
+          fallidos++;
           continue;
         }
 
@@ -189,28 +195,29 @@ class EnvioMasivoWhatsappController {
             language
           );
           await enviosProspectosRepository.updateEstado(envioProspecto.id, 'completado');
-          cantidadExitosos++;
+          await envioMasivoWhatsappRepository.incrementExitosos(id);
+          exitosos++;
         } catch (error) {
-          logger.error(`[envioMasivoWhatsapp.controller.js] Error enviando a ${prospecto.celular}: ${error.message}`);
+          logger.error(`[envioMasivoWhatsapp.controller] Error enviando a ${prospecto.celular}: ${error.message}`);
           await enviosProspectosRepository.updateEstado(envioProspecto.id, 'fallido', error.message);
-          cantidadFallidos++;
+          await envioMasivoWhatsappRepository.incrementFallidos(id);
+          fallidos++;
         }
       }
 
-      // Actualizar contadores y estado del envío masivo
-      await envioMasivoWhatsappRepository.update(id, {
-        estado_envio: 'completado',
-        cantidad_exitosos: cantidadExitosos,
-        cantidad_fallidos: cantidadFallidos,
-        fecha_envio: new Date().toISOString().split('T')[0]
-      });
+      // Marcar como completado al terminar todos los pendientes
+      await envioMasivoWhatsappRepository.update(id, { estado_envio: 'completado' });
 
       return res.status(200).json({
         msg: "Envío masivo ejecutado",
-        data: { cantidadExitosos, cantidadFallidos }
+        data: { exitosos, fallidos, total: prospectosPendientes.length }
       });
     } catch (error) {
-      logger.error(`[envioMasivoWhatsapp.controller.js] Error al ejecutar envío masivo: ${error.message}`);
+      logger.error(`[envioMasivoWhatsapp.controller] Error al ejecutar envío masivo: ${error.message}`);
+      // Si falla el proceso general, marcar como error pero los contadores individuales ya están en BD
+      try {
+        await envioMasivoWhatsappRepository.update(req.params.id, { estado_envio: 'error' });
+      } catch (_) { /* ignorar */ }
       return res.status(500).json({ msg: "Error al ejecutar envío masivo" });
     }
   }
