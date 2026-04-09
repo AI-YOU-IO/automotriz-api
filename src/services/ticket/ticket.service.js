@@ -57,8 +57,8 @@ class TicketService {
                 formData.append('archivos', file.buffer, { filename: file.originalname, contentType: file.mimetype });
             }
         }
-        const response = await this.client.post(`/tickets/${id}/comentarios`, formData, {
-            headers: { ...formData.getHeaders(), 'X-API-Key': TICKET_API_KEY, 'Content-Type': undefined },
+        const response = await axios.post(`${TICKET_API_URL}/tickets/${id}/comentarios`, formData, {
+            headers: { ...formData.getHeaders(), 'X-API-Key': TICKET_API_KEY },
             timeout: 60000
         });
         return response.data;
