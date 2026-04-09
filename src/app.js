@@ -73,6 +73,7 @@ const horarioAtencionRoutes = require("./routes/horarioAtencion.route.js");
 const horarioBloqueadoRoutes = require("./routes/horarioBloqueado.route.js");
 const toolRoutes = require("./routes/tool.route.js");
 const ultravoxRoutes = require("./routes/ultravox.route.js");
+const ticketRoutes = require("./routes/ticket.route.js");
 // const webhookRoutes = require("./routes/webhook.route.js");
 const getEventWebhook = require("../webhook/getEvent.js");
 
@@ -126,7 +127,8 @@ app.use("/api/crm", authMiddleware, rolRoutes, usuarioRoutes, moduloRoutes, sucu
   envioMasivoWhatsappRoutes, enviosProspectosRoutes,
   tipoCampaniaRoutes, estadoCampaniaRoutes, recursoRoutes, tipoRecursoRoutes, distritoRoutes,
   promptAsistenteRoutes, marcaRoutes, modeloRoutes, versionRoutes,
-  horarioAtencionRoutes, horarioBloqueadoRoutes, toolRoutes
+  horarioAtencionRoutes, horarioBloqueadoRoutes, toolRoutes,
+  ticketRoutes
 );
 
 // Rutas del asistente IA (protegidas con API Key)
