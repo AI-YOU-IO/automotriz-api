@@ -83,14 +83,15 @@ class TicketController {
             const { userId, username } = req.user;
             const { contenido } = req.body;
 
-            if (!contenido) {
-                return res.status(400).json({ msg: "El campo contenido es requerido" });
+            if (!contenido && (!req.files || req.files.length === 0)) {
+                return res.status(400).json({ msg: "Debe proporcionar contenido o archivos adjuntos" });
             }
 
             const result = await ticketService.createComentario(id, {
-                contenido,
+                contenido: contenido || '',
                 usuario_externo_id: userId,
-                usuario_externo_nombre: username
+                usuario_externo_nombre: username,
+                files: req.files || []
             });
 
             return res.status(201).json(result);

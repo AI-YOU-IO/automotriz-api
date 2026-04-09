@@ -46,9 +46,20 @@ class TicketService {
         return response.data;
     }
 
-    async createComentario(id, { contenido, usuario_externo_id, usuario_externo_nombre }) {
-        const response = await this.client.post(`/tickets/${id}/comentarios`, {
-            contenido, usuario_externo_id, usuario_externo_nombre
+    async createComentario(id, { contenido, usuario_externo_id, usuario_externo_nombre, files }) {
+        const FormData = require('form-data');
+        const formData = new FormData();
+        if (contenido) formData.append('contenido', contenido);
+        formData.append('usuario_externo_id', usuario_externo_id);
+        formData.append('usuario_externo_nombre', usuario_externo_nombre);
+        if (files && files.length > 0) {
+            for (const file of files) {
+                formData.append('archivos', file.buffer, { filename: file.originalname, contentType: file.mimetype });
+            }
+        }
+        const response = await this.client.post(`/tickets/${id}/comentarios`, formData, {
+            headers: { ...formData.getHeaders(), 'X-API-Key': TICKET_API_KEY },
+            timeout: 60000
         });
         return response.data;
     }
