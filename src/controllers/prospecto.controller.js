@@ -57,10 +57,6 @@ class ProspectoController {
       const { id_estado_prospecto, id_usuario, nombre_completo, dni, direccion, celular, perfilamiento, puntaje } = req.body;
       const usuario_actualizacion = req.user?.userId || null;
 
-      if (!nombre_completo || !dni || !celular || !id_estado_prospecto) {
-        return res.status(400).json({ msg: "Nombre completo, DNI, celular y estado son requeridos" });
-      }
-
       const [updated] = await prospectoRepository.update(id, {
         id_estado_prospecto, id_usuario, nombre_completo, dni, direccion, celular,
         perfilamiento, puntaje, usuario_actualizacion

@@ -9,6 +9,7 @@ const { testVectorConnection } = require('./config/vectorDatabase');
 
 const logger = require('./config/logger/loggerClient');
 const { initAbandonedConversationsCron } = require('./cron/abandonedConversations.cron.js');
+const { initSpeechAnalysisChatCron } = require('./cron/speechAnalysisChat.cron.js');
 
 const PORT = process.env.PORT || 3020;
 
@@ -40,6 +41,7 @@ const startServer = async () => {
 
   // Iniciar cron jobs
   initAbandonedConversationsCron();
+  initSpeechAnalysisChatCron();
 
   // Iniciar servidor aunque falle la conexión
   app.listen(PORT, () => {
