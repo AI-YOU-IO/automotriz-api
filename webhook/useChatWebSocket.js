@@ -7,7 +7,7 @@ const useChatWebSocket = (contactoId, onNuevoMensaje, onMensajeEnviado) => {
     const [reconnectCount, setReconnectCount] = useState(0)
 
     // Usar variable de entorno o localhost en desarrollo
-    const wsUrl = 'https://bitel-websocket.xylure.easypanel.host/'
+    const wsUrl = 'https://gqm-websocket.xylure.easypanel.host/'
 
     const { sendMessage, lastMessage, readyState } = useWebSocket(wsUrl, {
         shouldReconnect: (closeEvent) => {

@@ -43,3 +43,4 @@ Thumbs.db
 .vscode/
 package-lock.json
 logs/app.log
+websocket.zip
