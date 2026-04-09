@@ -58,7 +58,7 @@ class TicketService {
             }
         }
         const response = await this.client.post(`/tickets/${id}/comentarios`, formData, {
-            headers: { ...formData.getHeaders(), 'X-API-Key': TICKET_API_KEY },
+            headers: { ...formData.getHeaders(), 'X-API-Key': TICKET_API_KEY, 'Content-Type': undefined },
             timeout: 60000
         });
         return response.data;
