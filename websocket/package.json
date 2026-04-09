@@ -1,0 +1,16 @@
+{
+  "name": "gqm-websocket-server",
+  "version": "1.0.0",
+  "description": "Servidor WebSocket para Viva CRM - Mensajes en tiempo real",
+  "main": "websocketServer.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node websocketServer.js",
+    "dev": "node websocketServer.js"
+  },
+  "dependencies": {
+    "ws": "^8.14.2"
+  }
+}
