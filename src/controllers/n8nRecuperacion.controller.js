@@ -299,7 +299,7 @@ class N8nRecuperacionController {
         if (paraCrear.length > 0) {
           const registros = paraCrear.map(m => ({
             id_mensaje: m.id_mensaje,
-            fecha_visto: m.fecha_hora_mensaje,
+            fecha_visto: new Date(new Date(m.fecha_hora_mensaje).toLocaleString('en-US', { timeZone: 'America/Lima' })),
             tipo_recuperacion: m.tipo_recuperacion,
             mensaje_enviado: false,
             usuario_registro: null,
@@ -567,7 +567,7 @@ class N8nRecuperacionController {
           c.id_version,
           ma.nombre AS nombre_marca,
           mo.nombre AS nombre_modelo,
-          v.precio AS precio_version
+          v.precio_lista AS precio_version
         FROM mensaje_visto mv
         INNER JOIN mensaje m ON m.id = mv.id_mensaje
         INNER JOIN chat c ON c.id = m.id_chat
