@@ -299,7 +299,7 @@ class N8nRecuperacionController {
         if (paraCrear.length > 0) {
           const registros = paraCrear.map(m => ({
             id_mensaje: m.id_mensaje,
-            fecha_visto: new Date(),
+            fecha_visto: m.fecha_hora_mensaje,
             tipo_recuperacion: m.tipo_recuperacion,
             mensaje_enviado: false,
             usuario_registro: null,
