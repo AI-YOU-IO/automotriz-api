@@ -220,6 +220,7 @@ class N8nRecuperacionController {
         SELECT
           um.id_mensaje,
           um.id_chat,
+          um.fecha_hora,
           ROUND(um.horas_transcurridas::numeric, 2) as horas,
           va.id_mensaje_visto,
           va.tipo_actual,
@@ -271,7 +272,8 @@ class N8nRecuperacionController {
             // No existe, crear nuevo
             paraCrear.push({
               id_mensaje: m.id_mensaje,
-              tipo_recuperacion: tipoCorrespondiente
+              tipo_recuperacion: tipoCorrespondiente,
+              fecha_hora_mensaje: m.fecha_hora
             });
           }
         }
