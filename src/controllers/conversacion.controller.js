@@ -340,7 +340,7 @@ class ConversacionController {
 
       // Notificar al WebSocket server para tiempo real
       try {
-        const WS_SERVER_URL = process.env.WS_SERVER_URL || 'http://localhost:8080';
+        const WS_SERVER_URL = process.env.WS_SERVER_URL || 'https://gqm-websocket.xylure.easypanel.host/';
         await axios.post(`${WS_SERVER_URL}/webhook/mensaje-saliente`, {
           id_contacto: prospectoId,
           mensaje: {
