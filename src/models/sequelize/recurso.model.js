@@ -40,6 +40,14 @@ module.exports = (sequelize) => {
         key: 'id'
       }
     },
+    es_principal: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    orden: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
     ...commonFields
   }, {
     tableName: 'recurso',

@@ -41,7 +41,7 @@ class ReportesCrmController {
         replacements.dateTo = dateTo + ' 23:59:59';
       }
 
-      const [totalResult, contactadosResult, interesadosResult] = await Promise.all([
+      const [totalResult, contactadosResult, calificadosResult] = await Promise.all([
         // 1. Total de leads
         sequelize.query(`
           SELECT COUNT(*) as total FROM prospecto p
@@ -55,7 +55,7 @@ class ReportesCrmController {
           AND p.fue_contactado = 1
         `, { replacements, type: QueryTypes.SELECT }),
 
-        // 3. Interesados (calificacion_lead tibio o caliente)
+        // 3. Leads Calificados (calificacion_lead tibio o caliente)
         sequelize.query(`
           SELECT COUNT(*) as total FROM prospecto p
           WHERE p.estado_registro = 1 ${empresaFilter} ${dateFilter}
@@ -65,7 +65,7 @@ class ReportesCrmController {
 
       const totalLeads = parseInt(totalResult[0]?.total || 0);
       const contactados = parseInt(contactadosResult[0]?.total || 0);
-      const interesados = parseInt(interesadosResult[0]?.total || 0);
+      const leadsCalificados = parseInt(calificadosResult[0]?.total || 0);
 
       const funnelData = {
         totalLeads: {
@@ -78,10 +78,10 @@ class ReportesCrmController {
           valor: contactados,
           porcentaje: totalLeads > 0 ? Math.round((contactados / totalLeads) * 100) : 0
         },
-        interesados: {
-          nombre: 'Interesados',
-          valor: interesados,
-          porcentaje: totalLeads > 0 ? Math.round((interesados / totalLeads) * 100) : 0
+        leadsCalificados: {
+          nombre: 'Leads Calificados',
+          valor: leadsCalificados,
+          porcentaje: totalLeads > 0 ? Math.round((leadsCalificados / totalLeads) * 100) : 0
         }
       };
 
@@ -103,7 +103,7 @@ class ReportesCrmController {
         replacements.idEmpresa = parseInt(idEmpresa);
       }
 
-      const [totalLeadsResult, interesadosResult, leadsSemanaResult, contactadosResult, pipelineResult] = await Promise.all([
+      const [totalLeadsResult, calificadosResult, leadsSemanaResult, contactadosResult, pipelineResult] = await Promise.all([
         // 1. Total de leads
         sequelize.query(`
           SELECT COUNT(*) as total
@@ -111,7 +111,7 @@ class ReportesCrmController {
           WHERE p.estado_registro = 1 ${empresaFilter}
         `, { replacements, type: QueryTypes.SELECT }),
 
-        // 2. Interesados (calificacion_lead tibio o caliente)
+        // 2. Leads Calificados (calificacion_lead tibio o caliente)
         sequelize.query(`
           SELECT COUNT(*) as total
           FROM prospecto p
@@ -149,14 +149,14 @@ class ReportesCrmController {
       ]);
 
       const totalLeads = parseInt(totalLeadsResult[0]?.total || 0);
-      const interesados = parseInt(interesadosResult[0]?.total || 0);
+      const leadsCalificados = parseInt(calificadosResult[0]?.total || 0);
       const leadsSemana = parseInt(leadsSemanaResult[0]?.total || 0);
       const contactados = parseInt(contactadosResult[0]?.total || 0);
-      const tasaConversion = totalLeads > 0 ? Math.round((interesados / totalLeads) * 100) : 0;
+      const tasaConversion = totalLeads > 0 ? Math.round((leadsCalificados / totalLeads) * 100) : 0;
 
       const dashboardStats = {
         totalLeads,
-        interesados,
+        leadsCalificados,
         leadsSemana,
         contactados,
         tasaConversion,
@@ -485,12 +485,12 @@ class ReportesCrmController {
         evoTipoConvResult,
         kpisMesAnteriorResult
       ] = await Promise.all([
-        // 1. KPIs: total leads + contactados (flag) + interesados (tibio/caliente)
+        // 1. KPIs: total leads + contactados (flag) + leads calificados (tibio/caliente)
         sequelize.query(`
           SELECT
             COUNT(*) as total_leads,
             COUNT(*) FILTER (WHERE p.fue_contactado = 1) as contactados,
-            COUNT(*) FILTER (WHERE p.calificacion_lead IN ('tibio', 'caliente')) as interesados
+            COUNT(*) FILTER (WHERE p.calificacion_lead IN ('tibio', 'caliente')) as leads_calificados
           FROM prospecto p
           WHERE p.estado_registro = 1 ${empresaFilter} ${dateFilter}
         `, { replacements, type: QueryTypes.SELECT }),
@@ -750,7 +750,7 @@ class ReportesCrmController {
           SELECT
             COUNT(*) as total_leads,
             COUNT(*) FILTER (WHERE p.fue_contactado = 1) as contactados,
-            COUNT(*) FILTER (WHERE p.calificacion_lead IN ('tibio', 'caliente')) as interesados
+            COUNT(*) FILTER (WHERE p.calificacion_lead IN ('tibio', 'caliente')) as leads_calificados
           FROM prospecto p
           WHERE p.estado_registro = 1
             ${empresaFilter}
@@ -765,13 +765,13 @@ class ReportesCrmController {
       const kpis = kpisResult[0] || {};
       const totalLeads = parseInt(kpis.total_leads || 0);
       const contactados = parseInt(kpis.contactados || 0);
-      const interesados = parseInt(kpis.interesados || 0);
+      const leadsCalificados = parseInt(kpis.leads_calificados || 0);
 
       // KPIs mes anterior
       const kpisPrev = kpisMesAnteriorResult[0] || {};
       const prevLeads = parseInt(kpisPrev.total_leads || 0);
       const prevContactados = parseInt(kpisPrev.contactados || 0);
-      const prevInteresados = parseInt(kpisPrev.interesados || 0);
+      const prevCalificados = parseInt(kpisPrev.leads_calificados || 0);
 
       const calcCambio = (actual, anterior) => {
         if (anterior === 0) return actual > 0 ? '+100%' : '0%';
@@ -821,18 +821,18 @@ class ReportesCrmController {
         evoTipoMap[r.num_mes][r.tipo || 'Otros'] = parseInt(r.total || 0);
       });
 
-      // Conversión: interesados (tibio+caliente) / total leads
-      const conversion = totalLeads > 0 ? Math.round((interesados / totalLeads) * 100 * 10) / 10 : 0;
+      // Conversión: leads calificados (tibio+caliente) / total leads
+      const conversion = totalLeads > 0 ? Math.round((leadsCalificados / totalLeads) * 100 * 10) / 10 : 0;
 
       const data = {
         kpis: {
           totalLeads,
           contactados,
-          interesados,
+          leadsCalificados,
           conversion,
           cambioLeads: calcCambio(totalLeads, prevLeads),
           cambioContactados: calcCambio(contactados, prevContactados),
-          cambioInteresados: calcCambio(interesados, prevInteresados),
+          cambioCalificados: calcCambio(leadsCalificados, prevCalificados),
         },
         funnel,
         citados,
