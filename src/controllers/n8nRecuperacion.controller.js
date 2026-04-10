@@ -23,19 +23,21 @@ const whatsappGraphService = require('../services/whatsapp/whatsappGraph.service
 const logger = require('../config/logger/loggerClient');
 
 // Secuencia de tipos de recuperación
-const SECUENCIA_TIPOS = ['1h', '8h', '24h', '48h', '72h'];
+const SECUENCIA_TIPOS = ['24h', '48h', '72h'];
 
-// Mensajes de recuperación por tipo (solo dentro de ventana de 24h de Meta).
-// Variable soportada: {nombre} (nombre del prospecto)
-const MENSAJES_RECUPERACION = {
-  '1h': 'Hola {nombre}, Quería saber si llegaste a ver el mensaje anterior. Cuando tengas un momento, seguimos conversando por aqui 💚',
-  '8h': 'Hola {nombre}, 👋 Te escribo solo para quedarme atenta. Si más adelante quieres continuar viendo opciones de depas, me avisas 😊'
+// Plantillas de recuperación por marca
+// KIA tiene sus propias plantillas por tipo
+const PLANTILLAS_KIA = {
+  '24h': 'recordatorio_kia_24h',
+  '48h': 'recordatorio_kia_48h',
+  '72h': 'recordatorio_kia_72h'
 };
+
+// Plantilla genérica para otras marcas
+const PLANTILLA_GENERICA = 'recordatorio_expo_automotriz';
 
 // Función para determinar tipo_recuperacion según horas
 const getTipoRecuperacion = (horas) => {
-  if (horas < 8) return '1h';
-  if (horas < 24) return '8h';
   if (horas < 48) return '24h';
   if (horas < 72) return '48h';
   return '72h';
@@ -56,7 +58,7 @@ class N8nRecuperacionController {
    */
   async getChatsSinRespuesta(req, res) {
     try {
-      const { horas_min = 1, horas_max, id_empresa, limit = 100 } = req.query;
+      const { horas_min = 24, horas_max, id_empresa, limit = 100 } = req.query;
 
       const horasMinNum = parseFloat(horas_min);
       const horasMaxNum = horas_max ? parseFloat(horas_max) : null;
@@ -155,19 +157,19 @@ class N8nRecuperacionController {
    * - Si existe pero tipo es menor → ACTUALIZAR tipo y mensaje_enviado = false
    *
    * Tipos según horas:
-   * - 1-8h → '1h', 8-24h → '8h', 24-48h → '24h', 48-72h → '48h', 72+h → '72h'
+   * - 24-48h → '24h', 48-72h → '48h', 72+h → '72h'
    *
    * Body:
-   * - horas_min: Mínimo de horas (default 1)
-   * - horas_max: Máximo de horas (default 72)
+   * - horas_min: Mínimo de horas (default 24)
+   * - horas_max: Máximo de horas (default 168)
    * - id_empresa: Filtrar por empresa (opcional)
    * - limit: Límite por lote (default 200, max 500)
    */
   async marcarVistoMasivo(req, res) {
     try {
-      const { horas_min = 1, horas_max = 72, id_empresa, limit = 200 } = req.body;
+      const { horas_min = 24, horas_max = 168, id_empresa, limit = 200 } = req.body;
       const horasMinNum = parseFloat(horas_min);
-      const horasMaxNum = Math.min(parseFloat(horas_max) || 72, 72);
+      const horasMaxNum = parseFloat(horas_max) || 168;
       const limitNum = Math.min(parseInt(limit) || 200, 500);
 
       if (isNaN(horasMinNum) || horasMinNum < 0) {
@@ -218,6 +220,7 @@ class N8nRecuperacionController {
         SELECT
           um.id_mensaje,
           um.id_chat,
+          um.fecha_hora,
           ROUND(um.horas_transcurridas::numeric, 2) as horas,
           va.id_mensaje_visto,
           va.tipo_actual,
@@ -269,7 +272,8 @@ class N8nRecuperacionController {
             // No existe, crear nuevo
             paraCrear.push({
               id_mensaje: m.id_mensaje,
-              tipo_recuperacion: tipoCorrespondiente
+              tipo_recuperacion: tipoCorrespondiente,
+              fecha_hora_mensaje: m.fecha_hora
             });
           }
         }
@@ -295,7 +299,7 @@ class N8nRecuperacionController {
         if (paraCrear.length > 0) {
           const registros = paraCrear.map(m => ({
             id_mensaje: m.id_mensaje,
-            fecha_visto: new Date(),
+            fecha_visto: m.fecha_hora_mensaje,
             tipo_recuperacion: m.tipo_recuperacion,
             mensaje_enviado: false,
             usuario_registro: null,
@@ -462,7 +466,7 @@ class N8nRecuperacionController {
 
         // Aplicar límite por empresa
         if (empresa.candidatos.length < limitNum) {
-          const metodoEnvio = 'directo';
+          const metodoEnvio = 'plantilla';
           empresa.candidatos.push({
             id_mensaje_visto: candidato.id_mensaje_visto,
             tipo_recuperacion: candidato.tipo_recuperacion,
@@ -547,7 +551,7 @@ class N8nRecuperacionController {
         });
       }
 
-      // Verificar que existe el registro y obtener datos del prospecto + phoneNumberId
+      // Verificar que existe el registro y obtener datos del prospecto, marca, modelo, version y phoneNumberId
       const [registro] = await sequelize.query(`
         SELECT
           mv.id,
@@ -557,12 +561,21 @@ class N8nRecuperacionController {
           p.id_empresa,
           p.celular,
           p.nombre_completo,
-          cw.numero_telefono_id
+          cw.numero_telefono_id,
+          c.id_marca,
+          c.id_modelo,
+          c.id_version,
+          ma.nombre AS nombre_marca,
+          mo.nombre AS nombre_modelo,
+          v.precio AS precio_version
         FROM mensaje_visto mv
         INNER JOIN mensaje m ON m.id = mv.id_mensaje
         INNER JOIN chat c ON c.id = m.id_chat
         INNER JOIN prospecto p ON p.id = c.id_prospecto
         LEFT JOIN configuracion_whatsapp cw ON cw.id_empresa = p.id_empresa AND cw.estado_registro = 1
+        LEFT JOIN marca ma ON ma.id = c.id_marca
+        LEFT JOIN modelo mo ON mo.id = c.id_modelo
+        LEFT JOIN version v ON v.id = c.id_version
         WHERE mv.id = :id_mensaje_visto
           AND mv.estado_registro = 1
       `, {
@@ -588,37 +601,89 @@ class N8nRecuperacionController {
         });
       }
 
-      if (!MENSAJES_RECUPERACION[registro.tipo_recuperacion]) {
+      if (!SECUENCIA_TIPOS.includes(registro.tipo_recuperacion)) {
         return res.status(400).json({
           success: false,
-          error: `tipo_recuperacion '${registro.tipo_recuperacion}' no tiene mensaje configurado. Solo dentro de ventana de 24h: ${Object.keys(MENSAJES_RECUPERACION).join(', ')}`
+          error: `tipo_recuperacion '${registro.tipo_recuperacion}' inválido. Tipos válidos: ${SECUENCIA_TIPOS.join(', ')}`
         });
       }
 
-      if (!registro.numero_telefono_id) {
-        return res.status(400).json({
-          success: false,
-          error: `No se encontró numero_telefono_id en configuracion_whatsapp para empresa ${registro.id_empresa}`
-        });
+      // Determinar plantilla según marca
+      const esKia = registro.nombre_marca && registro.nombre_marca.toUpperCase() === 'KIA';
+      let nombrePlantilla;
+
+      if (esKia && PLANTILLAS_KIA[registro.tipo_recuperacion]) {
+        nombrePlantilla = PLANTILLAS_KIA[registro.tipo_recuperacion];
+      } else {
+        nombrePlantilla = PLANTILLA_GENERICA;
       }
 
-      const nombreProspecto = registro.nombre_completo || 'estimado/a';
-      const mensajeBase = mensaje_personalizado || MENSAJES_RECUPERACION[registro.tipo_recuperacion];
-      const mensajeFinal = mensajeBase.replace(/\{nombre\}/g, nombreProspecto);
+      // Variables para la plantilla recordatorio_expo_automotriz: {{1}} = modelo, {{2}} = precio
+      const nombreModelo = registro.nombre_modelo || 'nuestros vehículos';
+      const precioVersion = registro.precio_version
+        ? `$${Number(registro.precio_version).toLocaleString('es-PE')}`
+        : 'precio especial de exposición';
 
-      const whatsappResult = await whatsappGraphService.enviarMensajeTexto(
+      // Construir components según la plantilla
+      let components = [];
+      if (esKia) {
+        const tipo = registro.tipo_recuperacion;
+        if (tipo === '24h') {
+          // Sin variables
+          components = [];
+        } else if (tipo === '48h') {
+          // {{1}} = fecha del evento
+          components = [
+            {
+              type: 'body',
+              parameters: [
+                { type: 'text', text: '26 de abril' }
+              ]
+            }
+          ];
+        } else if (tipo === '72h') {
+          // {{1}} = nombre de la persona
+          const nombreProspecto = registro.nombre_completo || 'estimado/a';
+          components = [
+            {
+              type: 'body',
+              parameters: [
+                { type: 'text', text: nombreProspecto }
+              ]
+            }
+          ];
+        }
+      } else {
+        // recordatorio_expo_automotriz: {{1}} = modelo, {{2}} = precio
+        components = [
+          {
+            type: 'body',
+            parameters: [
+              { type: 'text', text: nombreModelo },
+              { type: 'text', text: precioVersion }
+            ]
+          }
+        ];
+      }
+
+      logger.info(`[n8nRecuperacion] registrarEnvio: marca=${registro.nombre_marca || 'N/A'}, plantilla=${nombrePlantilla}, modelo=${nombreModelo}, precio=${precioVersion}`);
+
+      const whatsappResult = await whatsappGraphService.enviarPlantilla(
         registro.id_empresa,
-        registro.numero_telefono_id,
         registro.celular,
-        mensajeFinal
+        nombrePlantilla,
+        'es',
+        components
       );
+
+      const wid_mensaje = whatsappResult?.response?.messages?.[0]?.id || null;
 
       const mensajeDB = await Mensaje.create({
         id_chat: registro.id_chat,
         direccion: 'out',
-        tipo_mensaje: 'texto',
-        contenido: mensajeFinal,
-        wid_mensaje: whatsappResult.wid_mensaje || null,
+        tipo_mensaje: 'plantilla',
+        contenido: `[Plantilla: ${nombrePlantilla}]`,
+        wid_mensaje,
         contenido_archivo: null,
         id_usuario: null,
         id_plantilla_whatsapp: null,
@@ -627,12 +692,15 @@ class N8nRecuperacionController {
         estado_registro: 1
       });
 
-      logger.info(`[n8nRecuperacion] registrarEnvio: Recuperación ${registro.tipo_recuperacion} para chat ${registro.id_chat}, celular: ${registro.celular}, wid: ${whatsappResult.wid_mensaje}`);
+      logger.info(`[n8nRecuperacion] registrarEnvio: Plantilla ${nombrePlantilla} enviada para chat ${registro.id_chat}, celular: ${registro.celular}, wid: ${wid_mensaje}`);
 
       const resultadoEnvio = {
-        metodo_envio: 'directo',
-        mensaje_enviado_texto: mensajeFinal,
-        wid_mensaje: whatsappResult.wid_mensaje,
+        metodo_envio: 'plantilla',
+        nombre_plantilla: nombrePlantilla,
+        es_kia: esKia,
+        modelo: nombreModelo,
+        precio: precioVersion,
+        wid_mensaje,
         id_mensaje_registrado: mensajeDB.id
       };
 
