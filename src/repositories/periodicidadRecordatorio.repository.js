@@ -8,8 +8,8 @@ class PeriodicidadRecordatorioRepository {
     return PeriodicidadRecordatorio.findAll({
       where: whereClause,
       include: [
-        { model: Marca, as: 'marca', attributes: ['id', 'nombre'] },
-        { model: PlantillaWhatsapp, as: 'plantilla', attributes: ['id', 'name', 'status'] }
+        { model: Marca, as: 'marca', attributes: ['id', 'nombre'], required: false },
+        { model: PlantillaWhatsapp, as: 'plantilla', attributes: ['id', 'name', 'status'], required: false }
       ],
       order: [['cada_horas', 'ASC']]
     });
