@@ -1725,6 +1725,9 @@ CREATE TABLE public.tabla_gqm_lead (
 	numero varchar(50) NOT NULL,
 	n_lead varchar(50) NOT NULL,
 	source_id varchar(100) NULL,
+	nombre varchar(250) NULL,
+	marca varchar(250) NULL,
+	modelo varchar(250) NULL,
 	CONSTRAINT tabla_gqm_lead_pkey PRIMARY KEY (id),
 	CONSTRAINT tabla_gqm_lead_n_lead_key UNIQUE (n_lead)
 );
