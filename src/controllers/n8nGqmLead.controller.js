@@ -9,6 +9,9 @@ class N8nGqmLeadController {
       const sourceId = (req.body?.source_id ?? '').toString().trim();
       const numero = (req.body?.numero ?? '').toString().trim();
       const nLead = (req.body?.n_lead ?? '').toString().trim();
+      const nombre = (req.body?.nombre ?? '').toString().trim() || null;
+      const marca = (req.body?.marca ?? '').toString().trim() || null;
+      const modelo = (req.body?.modelo ?? '').toString().trim() || null;
 
       if (!sourceId || !numero || !nLead) {
         return res.status(400).json({
@@ -27,7 +30,10 @@ class N8nGqmLeadController {
       const registro = await TablaGqmLead.create({
         source_id: sourceId,
         numero,
-        n_lead: nLead
+        n_lead: nLead,
+        nombre,
+        marca,
+        modelo
       });
 
       logger.info(`[n8nGqmLead] Creado: ${registro.id} - n_lead: ${registro.n_lead}`);
@@ -38,7 +44,10 @@ class N8nGqmLeadController {
           id: registro.id,
           source_id: registro.source_id,
           numero: registro.numero,
-          n_lead: registro.n_lead
+          n_lead: registro.n_lead,
+          nombre: registro.nombre,
+          marca: registro.marca,
+          modelo: registro.modelo
         }
       });
     } catch (error) {
