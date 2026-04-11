@@ -1,4 +1,5 @@
 const plantillaWhatsappRepository = require("../repositories/plantillaWhatsapp.repository.js");
+const formatoCampoPlantillaRepository = require("../repositories/formatoCampoPlantilla.repository.js");
 const whatsappGraphService = require("../services/whatsapp/whatsappGraph.service.js");
 const logger = require('../config/logger/loggerClient.js');
 const fs = require('fs');
@@ -18,11 +19,19 @@ class PlantillaWhatsappController {
 
       const plantillas = await plantillaWhatsappRepository.findAll(idEmpresa);
 
+      // Enriquecer con variable mappings
+      const templates = [];
+      for (const p of plantillas) {
+        const plain = p.toJSON ? p.toJSON() : p;
+        plain.variable_mappings = await formatoCampoPlantillaRepository.findByPlantilla(plain.id);
+        templates.push(plain);
+      }
+
       return res.status(200).json({
         success: true,
         data: {
-          templates: plantillas,
-          total: plantillas.length
+          templates,
+          total: templates.length
         }
       });
     } catch (error) {
@@ -123,7 +132,7 @@ class PlantillaWhatsappController {
    */
   async createPlantilla(req, res) {
     try {
-      const { name, category, language, header_type, header_text, body, footer, buttons } = req.body;
+      const { name, category, language, header_type, header_text, body, footer, buttons, variable_mappings, id_formato } = req.body;
       const id_empresa = req.user?.idEmpresa || null;
       const usuario_registro = req.user?.userId || null;
 
@@ -205,10 +214,20 @@ class PlantillaWhatsappController {
         url_imagen,
         meta_template_id: resultMeta.id || null,
         id_empresa,
+        id_formato: id_formato || null,
         usuario_registro
       });
 
-      logger.info(`[plantillaWhatsapp.controller.js] Plantilla creada en Meta y BD: ${nombreFormateado}, url_imagen: ${url_imagen}`);
+      // 3. Guardar mapeo de variables si se proporcionó
+      let parsedMappings = variable_mappings;
+      if (typeof parsedMappings === 'string') {
+        try { parsedMappings = JSON.parse(parsedMappings); } catch { parsedMappings = []; }
+      }
+      if (parsedMappings && parsedMappings.length > 0) {
+        await formatoCampoPlantillaRepository.replaceForPlantilla(plantilla.id, parsedMappings, usuario_registro);
+      }
+
+      logger.info(`[plantillaWhatsapp.controller.js] Plantilla creada en Meta y BD: ${nombreFormateado}, mappings: ${parsedMappings?.length || 0}`);
 
       return res.status(201).json({
         success: true,
@@ -248,7 +267,7 @@ class PlantillaWhatsappController {
   async updatePlantilla(req, res) {
     try {
       const { id } = req.params;
-      const { name, category, language, header_type, header_text, body, footer, buttons, meta_template_id } = req.body;
+      const { name, category, language, header_type, header_text, body, footer, buttons, meta_template_id, variable_mappings, skip_meta, id_formato } = req.body;
       const id_empresa = req.user?.idEmpresa || null;
       const usuario_actualizacion = req.user?.userId || null;
       const MAX_INTEGER = 2147483647;
@@ -338,79 +357,71 @@ class PlantillaWhatsappController {
         buttons
       }, mediaHandle);
 
-      // 1. Editar en Meta (usar meta_template_id del body o de la BD)
-      const metaTemplateIdToUse = meta_template_id || plantillaActual.meta_template_id;
-
-      // Obtener el status actual de Meta para validar si se puede editar
       let statusActualMeta = null;
-      let plantillaEnMeta = null;
 
-      if (metaTemplateIdToUse) {
-        try {
-          const plantillasMeta = await whatsappGraphService.listarPlantillas(id_empresa, {});
-          plantillaEnMeta = plantillasMeta.templates.find(t => t.id === metaTemplateIdToUse || t.name === plantillaActual.name);
+      // 1. Editar en Meta solo si el contenido de la plantilla cambio
+      if (!skip_meta) {
+        const metaTemplateIdToUse = meta_template_id || plantillaActual.meta_template_id;
 
-          if (plantillaEnMeta) {
-            statusActualMeta = plantillaEnMeta.status;
-            logger.info(`[plantillaWhatsapp.controller.js] Status actual en Meta: ${statusActualMeta}`);
+        if (metaTemplateIdToUse) {
+          try {
+            const plantillasMeta = await whatsappGraphService.listarPlantillas(id_empresa, {});
+            const plantillaEnMeta = plantillasMeta.templates.find(t => t.id === metaTemplateIdToUse || t.name === plantillaActual.name);
 
-            // Sincronizar status en BD si es diferente
-            if (statusActualMeta && statusActualMeta !== plantillaActual.status) {
-              await plantillaWhatsappRepository.update(plantillaActual.id, { status: statusActualMeta });
+            if (plantillaEnMeta) {
+              statusActualMeta = plantillaEnMeta.status;
+              if (statusActualMeta && statusActualMeta !== plantillaActual.status) {
+                await plantillaWhatsappRepository.update(plantillaActual.id, { status: statusActualMeta });
+              }
             }
+          } catch (err) {
+            logger.warn(`[plantillaWhatsapp.controller.js] No se pudo obtener status de Meta: ${err.message}`);
           }
-        } catch (err) {
-          logger.warn(`[plantillaWhatsapp.controller.js] No se pudo obtener status de Meta: ${err.message}`);
-        }
 
-        // Validar que no esté PENDING
-        if (statusActualMeta === 'PENDING') {
-          limpiarArchivo();
-          return res.status(400).json({
-            success: false,
-            msg: "No se puede editar una plantilla en estado PENDING. Espere a que sea aprobada o rechazada por Meta."
-          });
-        }
-
-        // Validar que los componentes tengan contenido válido antes de enviar a Meta
-        if (!components || components.length === 0) {
-          limpiarArchivo();
-          return res.status(400).json({
-            success: false,
-            msg: "Los componentes de la plantilla no son válidos. Asegúrese de enviar al menos el contenido del cuerpo (body)."
-          });
-        }
-
-        try {
-          await whatsappGraphService.editarPlantilla(id_empresa, metaTemplateIdToUse, components);
-          logger.info(`[plantillaWhatsapp.controller.js] Plantilla editada en Meta: ${metaTemplateIdToUse}`);
-
-          // Después de editar en Meta, la plantilla puede volver a PENDING para re-revisión
-          // Avisar al usuario
-          if (statusActualMeta === 'APPROVED') {
-            logger.info(`[plantillaWhatsapp.controller.js] La plantilla estaba APPROVED, puede volver a PENDING para re-revisión por Meta`);
+          if (statusActualMeta === 'PENDING') {
+            limpiarArchivo();
+            return res.status(400).json({
+              success: false,
+              msg: "No se puede editar una plantilla en estado PENDING. Espere a que sea aprobada o rechazada por Meta."
+            });
           }
-        } catch (metaError) {
-          limpiarArchivo();
-          const errorMsg = metaError.response?.data?.error?.message || metaError.message;
-          logger.error(`[plantillaWhatsapp.controller.js] Error editando en Meta: ${errorMsg}`);
-          return res.status(400).json({
-            success: false,
-            msg: `Error al editar plantilla en Meta: ${errorMsg}`
-          });
+
+          if (!components || components.length === 0) {
+            limpiarArchivo();
+            return res.status(400).json({
+              success: false,
+              msg: "Los componentes de la plantilla no son válidos. Asegúrese de enviar al menos el contenido del cuerpo (body)."
+            });
+          }
+
+          try {
+            await whatsappGraphService.editarPlantilla(id_empresa, metaTemplateIdToUse, components);
+            logger.info(`[plantillaWhatsapp.controller.js] Plantilla editada en Meta: ${metaTemplateIdToUse}`);
+          } catch (metaError) {
+            limpiarArchivo();
+            const errorMsg = metaError.response?.data?.error?.message || metaError.message;
+            logger.error(`[plantillaWhatsapp.controller.js] Error editando en Meta: ${errorMsg}`);
+            return res.status(400).json({
+              success: false,
+              msg: `Error al editar plantilla en Meta: ${errorMsg}`
+            });
+          }
         }
       } else {
-        logger.warn(`[plantillaWhatsapp.controller.js] No se encontró meta_template_id para la plantilla ${id}, solo se actualizará en BD`);
+        logger.info(`[plantillaWhatsapp.controller.js] skip_meta=true, solo se actualizará mapeo de campos para plantilla ${id}`);
       }
 
       // 2. Actualizar en BD
       const updateData = {
-        category,
-        language,
-        components,
-        url_imagen,
-        usuario_actualizacion
+        usuario_actualizacion,
+        id_formato: id_formato || null
       };
+      if (!skip_meta) {
+        updateData.category = category;
+        updateData.language = language;
+        updateData.components = components;
+        updateData.url_imagen = url_imagen;
+      }
 
       // Si viene meta_template_id y la plantilla no lo tenía, guardarlo
       if (meta_template_id && !plantillaActual.meta_template_id) {
@@ -424,11 +435,24 @@ class PlantillaWhatsappController {
         return res.status(404).json({ msg: "Plantilla no encontrada" });
       }
 
-      logger.info(`[plantillaWhatsapp.controller.js] Plantilla actualizada: ${plantillaActual.id}`);
+      // Guardar mapeo de variables si se proporcionó
+      let parsedMappings = variable_mappings;
+      if (typeof parsedMappings === 'string') {
+        try { parsedMappings = JSON.parse(parsedMappings); } catch { parsedMappings = []; }
+      }
+      logger.info(`[plantillaWhatsapp.controller] variable_mappings recibido: ${JSON.stringify(parsedMappings)}, tipo: ${typeof variable_mappings}`);
+      if (parsedMappings && Array.isArray(parsedMappings) && parsedMappings.length > 0) {
+        await formatoCampoPlantillaRepository.replaceForPlantilla(plantillaActual.id, parsedMappings, usuario_actualizacion);
+        logger.info(`[plantillaWhatsapp.controller] Mappings guardados: ${parsedMappings.length} para plantilla ${plantillaActual.id}`);
+      } else {
+        logger.warn(`[plantillaWhatsapp.controller] No se guardaron mappings: parsedMappings=${JSON.stringify(parsedMappings)}`);
+      }
+
+      logger.info(`[plantillaWhatsapp.controller.js] Plantilla actualizada: ${plantillaActual.id}, mappings: ${parsedMappings?.length || 0}`);
 
       // Mensaje de respuesta según el estado
-      let mensaje = "Plantilla actualizada exitosamente";
-      if (metaTemplateIdToUse && statusActualMeta === 'APPROVED') {
+      let mensaje = skip_meta ? "Mapeo de campos actualizado" : "Plantilla actualizada exitosamente";
+      if (!skip_meta && statusActualMeta === 'APPROVED') {
         mensaje = "Plantilla actualizada. Los cambios serán revisados por Meta antes de aplicarse.";
       }
 

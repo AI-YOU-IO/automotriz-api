@@ -12,6 +12,18 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(50),
       allowNull: false
     },
+    descripcion: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    id_empresa: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'empresa',
+        key: 'id'
+      }
+    },
     ...commonFields
   }, {
     tableName: 'formato',

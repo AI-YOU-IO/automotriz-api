@@ -32,15 +32,20 @@ class PeriodicidadRecordatorioController {
   async createPeriodicidadRecordatorio(req, res) {
     try {
       const { idEmpresa } = req.user || {};
-      const { nombre, cada_horas } = req.body;
+      const { nombre, cada_horas, id_marca, id_plantilla } = req.body;
 
-      if (!nombre || !cada_horas) {
-        return res.status(400).json({ msg: "El nombre y cada_horas son requeridos" });
+      if (!nombre || !cada_horas || !id_marca || !id_plantilla) {
+        return res.status(400).json({ msg: "El nombre, cada_horas, marca y plantilla son requeridos" });
       }
 
       const usuario_registro = req.user?.userId || null;
       const periodicidad = await periodicidadRecordatorioRepository.create({
-        nombre, cada_horas, id_empresa: idEmpresa, usuario_registro
+        nombre,
+        cada_horas: parseInt(cada_horas),
+        id_empresa: idEmpresa,
+        id_marca: parseInt(id_marca),
+        id_plantilla: parseInt(id_plantilla),
+        usuario_registro
       });
 
       return res.status(201).json({ msg: "Periodicidad de recordatorio creada exitosamente", data: { id: periodicidad.id } });
@@ -53,14 +58,20 @@ class PeriodicidadRecordatorioController {
   async updatePeriodicidadRecordatorio(req, res) {
     try {
       const { id } = req.params;
-      const { nombre, cada_horas } = req.body;
+      const { nombre, cada_horas, id_marca, id_plantilla } = req.body;
 
-      if (!nombre || !cada_horas) {
-        return res.status(400).json({ msg: "El nombre y cada_horas son requeridos" });
+      if (!nombre || !cada_horas || !id_marca || !id_plantilla) {
+        return res.status(400).json({ msg: "El nombre, cada_horas, marca y plantilla son requeridos" });
       }
 
       const usuario_actualizacion = req.user?.userId || null;
-      await periodicidadRecordatorioRepository.update(id, { nombre, cada_horas, usuario_actualizacion });
+      await periodicidadRecordatorioRepository.update(id, {
+        nombre,
+        cada_horas: parseInt(cada_horas),
+        id_marca: parseInt(id_marca),
+        id_plantilla: parseInt(id_plantilla),
+        usuario_actualizacion
+      });
 
       return res.status(200).json({ msg: "Periodicidad de recordatorio actualizada exitosamente" });
     } catch (error) {

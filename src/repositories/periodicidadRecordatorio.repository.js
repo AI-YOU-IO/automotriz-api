@@ -1,4 +1,4 @@
-const { PeriodicidadRecordatorio } = require("../models/sequelize");
+const { PeriodicidadRecordatorio, Marca, PlantillaWhatsapp } = require("../models/sequelize");
 
 class PeriodicidadRecordatorioRepository {
   async findAll(idEmpresa) {
@@ -7,6 +7,10 @@ class PeriodicidadRecordatorioRepository {
 
     return PeriodicidadRecordatorio.findAll({
       where: whereClause,
+      include: [
+        { model: Marca, as: 'marca', attributes: ['id', 'nombre'], required: false },
+        { model: PlantillaWhatsapp, as: 'plantilla', attributes: ['id', 'name', 'status'], required: false }
+      ],
       order: [['cada_horas', 'ASC']]
     });
   }
