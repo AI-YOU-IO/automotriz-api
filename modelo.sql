@@ -1712,3 +1712,19 @@ CREATE TABLE public.prompt_asistente (
 	CONSTRAINT prompt_asistente_id_empresa_fkey FOREIGN KEY (id_empresa) REFERENCES public.empresa(id)
 );
 CREATE INDEX idx_prompt_asistente_empresa ON public.prompt_asistente USING btree (id_empresa, estado_registro);
+
+
+-- public.tabla_gqm_lead definition
+
+-- Drop table
+
+-- DROP TABLE public.tabla_gqm_lead;
+
+CREATE TABLE public.tabla_gqm_lead (
+	id serial4 NOT NULL,
+	numero varchar(50) NOT NULL,
+	n_lead varchar(50) NOT NULL,
+	source_id varchar(100) NULL,
+	CONSTRAINT tabla_gqm_lead_pkey PRIMARY KEY (id),
+	CONSTRAINT tabla_gqm_lead_n_lead_key UNIQUE (n_lead)
+);

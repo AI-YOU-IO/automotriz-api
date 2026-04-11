@@ -16,6 +16,7 @@ db.EstadoLlamada = require('./estadoLlamada.model')(sequelize);
 db.TipoRecurso = require('./tipoRecurso.model')(sequelize);
 db.Distrito = require('./distrito.model')(sequelize);
 db.DistritoAdyacente = require('./distritoAdyacente.model')(sequelize);
+db.TablaGqmLead = require('./tablaGqmLead.model')(sequelize);
 
 // Cargar modelos - Fase 2: Dependencias de Empresa
 db.TipoCampania = require('./tipoCampania.model')(sequelize);

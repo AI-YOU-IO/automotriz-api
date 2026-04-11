@@ -59,6 +59,7 @@ const n8nCitaRoutes = require("./routes/n8nCita.route.js");
 const n8nRecuperacionRoutes = require("./routes/n8nRecuperacion.route.js");
 const n8nEmpresaRoutes = require("./routes/n8nEmpresa.route.js");
 const n8nPlantillaBitrixRoutes = require("./routes/n8nPlantillaBitrix.route.js");
+const n8nGqmLeadRoutes = require("./routes/n8nGqmLead.route.js");
 const wsNotifyRoutes = require("./routes/wsNotify.route.js");
 const whatsappMensajeRoutes = require("./routes/whatsappMensaje.route.js");
 const tipoCampaniaRoutes = require("./routes/tipoCampania.route.js");
@@ -144,6 +145,7 @@ app.use('/api/n8n/citas', n8nCitaRoutes);
 app.use('/api/n8n/recuperacion', n8nRecuperacionRoutes);
 app.use('/api/n8n/empresa', n8nEmpresaRoutes);
 app.use('/api/n8n/plantilla-bitrix', n8nPlantillaBitrixRoutes);
+app.use('/api/n8n/gqm-leads', n8nGqmLeadRoutes);
 
 // Rutas WebSocket notify (para servicios externos: agente IA, etc.)
 app.use('/api/ws-notify', wsNotifyRoutes);
