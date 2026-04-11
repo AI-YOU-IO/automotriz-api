@@ -98,6 +98,14 @@ module.exports = (sequelize) => {
     components: {
       type: DataTypes.JSONB,
       allowNull: true
+    },
+    id_formato: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'formato',
+        key: 'id'
+      }
     }
   }, {
     tableName: 'plantilla_whatsapp',
