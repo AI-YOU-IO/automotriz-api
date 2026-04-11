@@ -26,6 +26,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true
     },
+    constante: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     estado_registro: {
       type: DataTypes.INTEGER,
       defaultValue: 1,

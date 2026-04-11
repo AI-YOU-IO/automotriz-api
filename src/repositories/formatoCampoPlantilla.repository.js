@@ -10,7 +10,8 @@ class FormatoCampoPlantillaRepository {
         fcp.id_plantilla,
         fcp.id_formato_campo,
         fcp.id_campo_sistema,
-        fcp.orden
+        fcp.orden,
+        fcp.constante
       FROM formato_campo_plantilla fcp
       WHERE fcp.id_plantilla = :idPlantilla
         AND fcp.estado_registro = 1
@@ -35,6 +36,7 @@ class FormatoCampoPlantillaRepository {
       id_plantilla: idPlantilla,
       id_formato_campo: m.id_formato_campo || null,
       id_campo_sistema: m.id_campo_sistema || null,
+      constante: m.constante || null,
       orden: m.orden,
       usuario_registro: userId,
       estado_registro: 1
