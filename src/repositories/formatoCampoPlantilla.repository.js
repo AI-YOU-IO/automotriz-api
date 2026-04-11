@@ -1,14 +1,23 @@
-const { FormatoCampoPlantilla, FormatoCampo, CampoSistema } = require('../models/sequelize');
+const { FormatoCampoPlantilla } = require('../models/sequelize');
+const { sequelize } = require('../models/sequelize');
+const { QueryTypes } = require('sequelize');
 
 class FormatoCampoPlantillaRepository {
   async findByPlantilla(idPlantilla) {
-    return FormatoCampoPlantilla.findAll({
-      where: { id_plantilla: idPlantilla, estado_registro: 1 },
-      include: [
-        { model: FormatoCampo, as: 'formatoCampo', attributes: ['id', 'nombre_campo', 'etiqueta', 'tipo_dato'] },
-        { model: CampoSistema, as: 'campoSistema', attributes: ['id', 'nombre', 'etiqueta', 'tipo_dato'] }
-      ],
-      order: [['orden', 'ASC']]
+    return sequelize.query(`
+      SELECT
+        fcp.id,
+        fcp.id_plantilla,
+        fcp.id_formato_campo,
+        fcp.id_campo_sistema,
+        fcp.orden
+      FROM formato_campo_plantilla fcp
+      WHERE fcp.id_plantilla = :idPlantilla
+        AND fcp.estado_registro = 1
+      ORDER BY fcp.orden ASC
+    `, {
+      replacements: { idPlantilla },
+      type: QueryTypes.SELECT
     });
   }
 
