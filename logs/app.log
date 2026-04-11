@@ -2248,3 +2248,51 @@
 {"level":"info","message":"[speechAnalysisChat] Encontrados 0 chats para analizar (empresa 1)","timestamp":"11-04-2026 / 13:23:55"}
 {"level":"info","message":"[speechAnalysisChat] Resultado: 0 analizados, 0 errores","timestamp":"11-04-2026 / 13:23:55"}
 {"level":"error","message":"[n8nGqmLead] Error crear: Validation error","timestamp":"11-04-2026 / 13:24:25"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: aiyou_automotriz","timestamp":"11-04-2026 / 14:56:51"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"11-04-2026 / 14:56:51"}
+{"level":"error","message":"[server.js] Vector DB no disponible: ","timestamp":"11-04-2026 / 14:56:51"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-04-2026 / 14:56:51"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"11-04-2026 / 14:56:51"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"11-04-2026 / 14:56:51"}
+{"level":"info","message":"[cron] Cron de análisis de chats programado (al inicio + cada hora)","timestamp":"11-04-2026 / 14:56:51"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"11-04-2026 / 14:56:51"}
+{"level":"info","message":"[cron] Ejecutando análisis de chats al inicio...","timestamp":"11-04-2026 / 14:57:01"}
+{"level":"info","message":"[speechAnalysisChat] Encontrados 0 chats para analizar (empresa 1)","timestamp":"11-04-2026 / 14:57:02"}
+{"level":"info","message":"[speechAnalysisChat] Resultado: 0 analizados, 0 errores","timestamp":"11-04-2026 / 14:57:02"}
+{"level":"info","message":"[cron] Ejecutando detección de conversaciones abandonadas...","timestamp":"11-04-2026 / 15:00:00"}
+{"level":"info","message":"[cron] Detección finalizada. Prospectos actualizados: 0","timestamp":"11-04-2026 / 15:00:00"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: aiyou_automotriz","timestamp":"11-04-2026 / 15:03:32"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"11-04-2026 / 15:03:32"}
+{"level":"error","message":"[server.js] Vector DB no disponible: ","timestamp":"11-04-2026 / 15:03:32"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-04-2026 / 15:03:33"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"11-04-2026 / 15:03:33"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"11-04-2026 / 15:03:33"}
+{"level":"info","message":"[cron] Cron de análisis de chats programado (al inicio + cada hora)","timestamp":"11-04-2026 / 15:03:33"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"11-04-2026 / 15:03:33"}
+{"level":"info","message":"[cron] Ejecutando análisis de chats al inicio...","timestamp":"11-04-2026 / 15:03:43"}
+{"level":"info","message":"[speechAnalysisChat] Encontrados 0 chats para analizar (empresa 1)","timestamp":"11-04-2026 / 15:03:43"}
+{"level":"info","message":"[speechAnalysisChat] Resultado: 0 analizados, 0 errores","timestamp":"11-04-2026 / 15:03:43"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: aiyou_automotriz","timestamp":"11-04-2026 / 15:05:42"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"11-04-2026 / 15:05:42"}
+{"level":"error","message":"[server.js] Vector DB no disponible: ","timestamp":"11-04-2026 / 15:05:42"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-04-2026 / 15:05:43"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"11-04-2026 / 15:05:43"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"11-04-2026 / 15:05:43"}
+{"level":"info","message":"[cron] Cron de análisis de chats programado (al inicio + cada hora)","timestamp":"11-04-2026 / 15:05:43"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"11-04-2026 / 15:05:43"}
+{"level":"info","message":"[cron] Ejecutando análisis de chats al inicio...","timestamp":"11-04-2026 / 15:05:53"}
+{"level":"info","message":"[speechAnalysisChat] Encontrados 0 chats para analizar (empresa 1)","timestamp":"11-04-2026 / 15:05:53"}
+{"level":"info","message":"[speechAnalysisChat] Resultado: 0 analizados, 0 errores","timestamp":"11-04-2026 / 15:05:53"}
+{"level":"info","message":"[n8nGqmLead] Creado: 7 - n_lead: LEAD-004","timestamp":"11-04-2026 / 15:06:33"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: aiyou_automotriz","timestamp":"11-04-2026 / 15:09:31"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"11-04-2026 / 15:09:31"}
+{"level":"error","message":"[server.js] Vector DB no disponible: ","timestamp":"11-04-2026 / 15:09:31"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-04-2026 / 15:09:32"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"11-04-2026 / 15:09:32"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"11-04-2026 / 15:09:32"}
+{"level":"info","message":"[cron] Cron de análisis de chats programado (al inicio + cada hora)","timestamp":"11-04-2026 / 15:09:32"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"11-04-2026 / 15:09:32"}
+{"level":"info","message":"[n8nGqmLead] Creado: 8 - n_lead: LEAD-005","timestamp":"11-04-2026 / 15:09:36"}
+{"level":"info","message":"[cron] Ejecutando análisis de chats al inicio...","timestamp":"11-04-2026 / 15:09:42"}
+{"level":"info","message":"[speechAnalysisChat] Encontrados 0 chats para analizar (empresa 1)","timestamp":"11-04-2026 / 15:09:42"}
+{"level":"info","message":"[speechAnalysisChat] Resultado: 0 analizados, 0 errores","timestamp":"11-04-2026 / 15:09:42"}
