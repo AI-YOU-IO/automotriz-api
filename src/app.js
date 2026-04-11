@@ -67,6 +67,7 @@ const recursoRoutes = require("./routes/recurso.route.js");
 const tipoRecursoRoutes = require("./routes/tipoRecurso.route.js");
 const distritoRoutes = require("./routes/distrito.route.js");
 const promptAsistenteRoutes = require("./routes/promptAsistente.route.js");
+const campoSistemaRoutes = require("./routes/campoSistema.route.js");
 const marcaRoutes = require("./routes/marca.route.js");
 const modeloRoutes = require("./routes/modelo.route.js");
 const versionRoutes = require("./routes/version.route.js");
@@ -127,7 +128,7 @@ app.use("/api/crm", authMiddleware, rolRoutes, usuarioRoutes, moduloRoutes, sucu
   plantillaWhatsappRoutes, whatsappEmbeddedRoutes, configuracionWhatsappRoutes,
   envioMasivoWhatsappRoutes, enviosProspectosRoutes,
   tipoCampaniaRoutes, estadoCampaniaRoutes, recursoRoutes, tipoRecursoRoutes, distritoRoutes,
-  promptAsistenteRoutes, marcaRoutes, modeloRoutes, versionRoutes,
+  promptAsistenteRoutes, campoSistemaRoutes, marcaRoutes, modeloRoutes, versionRoutes,
   horarioAtencionRoutes, horarioBloqueadoRoutes, toolRoutes,
   ticketRoutes
 );

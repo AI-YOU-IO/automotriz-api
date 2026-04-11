@@ -2,9 +2,12 @@ const { Formato, FormatoCampo, sequelize } = require("../models/sequelize");
 const { QueryTypes } = require("sequelize");
 
 class FormatoRepository {
-  async findAll() {
+  async findAll(idEmpresa) {
+    const whereClause = { estado_registro: 1 };
+    if (idEmpresa) whereClause.id_empresa = idEmpresa;
+
     const formatos = await Formato.findAll({
-      where: { estado_registro: 1 },
+      where: whereClause,
       order: [['nombre', 'ASC']]
     });
 

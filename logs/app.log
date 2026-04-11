@@ -2120,3 +2120,77 @@
 {"level":"info","message":"[cron] Ejecutando detección de conversaciones abandonadas...","timestamp":"08-04-2026 / 19:00:00"}
 {"level":"info","message":"[cron] Detección finalizada. Prospectos actualizados: 0","timestamp":"08-04-2026 / 19:00:00"}
 {"level":"info","message":"[cron] Detección finalizada. Prospectos actualizados: 0","timestamp":"08-04-2026 / 19:00:00"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: aiyou_automotriz","timestamp":"11-04-2026 / 10:20:27"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"11-04-2026 / 10:20:27"}
+{"level":"error","message":"[server.js] Vector DB no disponible: ","timestamp":"11-04-2026 / 10:20:27"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-04-2026 / 10:20:27"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"11-04-2026 / 10:20:27"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"11-04-2026 / 10:20:27"}
+{"level":"info","message":"[cron] Cron de análisis de chats programado (al inicio + cada hora)","timestamp":"11-04-2026 / 10:20:27"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"11-04-2026 / 10:20:27"}
+{"level":"info","message":"[cron] Ejecutando análisis de chats al inicio...","timestamp":"11-04-2026 / 10:20:37"}
+{"level":"info","message":"[speechAnalysisChat] Encontrados 15 chats para analizar (empresa 1)","timestamp":"11-04-2026 / 10:20:37"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 2: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:38"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 6: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:39"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 16: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:39"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 15: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:39"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 14: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:40"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 3: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:40"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 13: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:40"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 12: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:41"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 5: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:41"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 11: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:41"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 10: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:41"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 8: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:42"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 7: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:42"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 1: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:42"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 4: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:20:43"}
+{"level":"info","message":"[speechAnalysisChat] Resultado: 0 analizados, 15 errores","timestamp":"11-04-2026 / 10:20:43"}
+{"level":"info","message":"[loginAttempts.service] Intentos limpiados para admin123","timestamp":"11-04-2026 / 10:21:29"}
+{"level":"info","message":"[cron] Ejecutando análisis de chats programado...","timestamp":"11-04-2026 / 10:30:00"}
+{"level":"info","message":"[speechAnalysisChat] Encontrados 15 chats para analizar (empresa 1)","timestamp":"11-04-2026 / 10:30:00"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 2: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:00"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 6: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:01"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 16: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:01"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 15: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:01"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 14: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:01"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 3: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:02"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 13: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:02"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 12: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:02"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 5: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:03"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 11: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:03"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 10: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:03"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 8: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:04"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 7: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:04"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 1: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:04"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 4: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:30:04"}
+{"level":"info","message":"[speechAnalysisChat] Resultado: 0 analizados, 15 errores","timestamp":"11-04-2026 / 10:30:04"}
+{"level":"info","message":"[database.js] Conexion a PostgreSQL verificada. BD: aiyou_automotriz","timestamp":"11-04-2026 / 10:49:20"}
+{"level":"info","message":"[server.js] PostgreSQL (Sequelize) verificado","timestamp":"11-04-2026 / 10:49:20"}
+{"level":"error","message":"[server.js] Vector DB no disponible: ","timestamp":"11-04-2026 / 10:49:20"}
+{"level":"info","message":"[redis.js] Conexión a Redis establecida","timestamp":"11-04-2026 / 10:49:20"}
+{"level":"info","message":"[server.js] Redis verificado","timestamp":"11-04-2026 / 10:49:20"}
+{"level":"info","message":"[cron] Cron de conversaciones abandonadas programado (cada hora)","timestamp":"11-04-2026 / 10:49:20"}
+{"level":"info","message":"[cron] Cron de análisis de chats programado (al inicio + cada hora)","timestamp":"11-04-2026 / 10:49:20"}
+{"level":"info","message":"[server.js] Server running on http://localhost:3020","timestamp":"11-04-2026 / 10:49:20"}
+{"level":"info","message":"[cron] Ejecutando análisis de chats al inicio...","timestamp":"11-04-2026 / 10:49:30"}
+{"level":"info","message":"[speechAnalysisChat] Encontrados 15 chats para analizar (empresa 1)","timestamp":"11-04-2026 / 10:49:30"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 2: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:31"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 6: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:31"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 16: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:31"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 15: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:32"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 14: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:32"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 3: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:32"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 13: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:33"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 12: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:33"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 5: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:33"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 11: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:34"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 10: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:34"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 8: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:34"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 7: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:34"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 1: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:35"}
+{"level":"error","message":"[speechAnalysisChat] Error analizando chat 4: 401 Incorrect API key provided: sk-proj-xxxx. You can find your API key at https://platform.openai.com/account/api-keys.","timestamp":"11-04-2026 / 10:49:35"}
+{"level":"info","message":"[speechAnalysisChat] Resultado: 0 analizados, 15 errores","timestamp":"11-04-2026 / 10:49:35"}
+{"level":"info","message":"[loginAttempts.service] Intentos limpiados para admin123","timestamp":"11-04-2026 / 10:56:47"}
+{"level":"info","message":"[cron] Ejecutando detección de conversaciones abandonadas...","timestamp":"11-04-2026 / 11:00:00"}
+{"level":"info","message":"[cron] Detección finalizada. Prospectos actualizados: 0","timestamp":"11-04-2026 / 11:00:00"}

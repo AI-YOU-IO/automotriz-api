@@ -1,4 +1,5 @@
 const plantillaWhatsappRepository = require("../repositories/plantillaWhatsapp.repository.js");
+const formatoCampoPlantillaRepository = require("../repositories/formatoCampoPlantilla.repository.js");
 const whatsappGraphService = require("../services/whatsapp/whatsappGraph.service.js");
 const logger = require('../config/logger/loggerClient.js');
 const fs = require('fs');
@@ -18,11 +19,19 @@ class PlantillaWhatsappController {
 
       const plantillas = await plantillaWhatsappRepository.findAll(idEmpresa);
 
+      // Enriquecer con variable mappings
+      const templates = [];
+      for (const p of plantillas) {
+        const plain = p.toJSON ? p.toJSON() : p;
+        plain.variable_mappings = await formatoCampoPlantillaRepository.findByPlantilla(plain.id);
+        templates.push(plain);
+      }
+
       return res.status(200).json({
         success: true,
         data: {
-          templates: plantillas,
-          total: plantillas.length
+          templates,
+          total: templates.length
         }
       });
     } catch (error) {
@@ -123,7 +132,7 @@ class PlantillaWhatsappController {
    */
   async createPlantilla(req, res) {
     try {
-      const { name, category, language, header_type, header_text, body, footer, buttons } = req.body;
+      const { name, category, language, header_type, header_text, body, footer, buttons, variable_mappings } = req.body;
       const id_empresa = req.user?.idEmpresa || null;
       const usuario_registro = req.user?.userId || null;
 
@@ -208,7 +217,16 @@ class PlantillaWhatsappController {
         usuario_registro
       });
 
-      logger.info(`[plantillaWhatsapp.controller.js] Plantilla creada en Meta y BD: ${nombreFormateado}, url_imagen: ${url_imagen}`);
+      // 3. Guardar mapeo de variables si se proporcionó
+      let parsedMappings = variable_mappings;
+      if (typeof parsedMappings === 'string') {
+        try { parsedMappings = JSON.parse(parsedMappings); } catch { parsedMappings = []; }
+      }
+      if (parsedMappings && parsedMappings.length > 0) {
+        await formatoCampoPlantillaRepository.replaceForPlantilla(plantilla.id, parsedMappings, usuario_registro);
+      }
+
+      logger.info(`[plantillaWhatsapp.controller.js] Plantilla creada en Meta y BD: ${nombreFormateado}, mappings: ${parsedMappings?.length || 0}`);
 
       return res.status(201).json({
         success: true,
@@ -248,7 +266,7 @@ class PlantillaWhatsappController {
   async updatePlantilla(req, res) {
     try {
       const { id } = req.params;
-      const { name, category, language, header_type, header_text, body, footer, buttons, meta_template_id } = req.body;
+      const { name, category, language, header_type, header_text, body, footer, buttons, meta_template_id, variable_mappings } = req.body;
       const id_empresa = req.user?.idEmpresa || null;
       const usuario_actualizacion = req.user?.userId || null;
       const MAX_INTEGER = 2147483647;
@@ -424,7 +442,16 @@ class PlantillaWhatsappController {
         return res.status(404).json({ msg: "Plantilla no encontrada" });
       }
 
-      logger.info(`[plantillaWhatsapp.controller.js] Plantilla actualizada: ${plantillaActual.id}`);
+      // Guardar mapeo de variables si se proporcionó
+      let parsedMappings = variable_mappings;
+      if (typeof parsedMappings === 'string') {
+        try { parsedMappings = JSON.parse(parsedMappings); } catch { parsedMappings = []; }
+      }
+      if (parsedMappings && parsedMappings.length > 0) {
+        await formatoCampoPlantillaRepository.replaceForPlantilla(plantillaActual.id, parsedMappings, usuario_actualizacion);
+      }
+
+      logger.info(`[plantillaWhatsapp.controller.js] Plantilla actualizada: ${plantillaActual.id}, mappings: ${parsedMappings?.length || 0}`);
 
       // Mensaje de respuesta según el estado
       let mensaje = "Plantilla actualizada exitosamente";
