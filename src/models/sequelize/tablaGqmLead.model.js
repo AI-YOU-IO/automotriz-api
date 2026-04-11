@@ -19,6 +19,18 @@ module.exports = (sequelize) => {
     source_id: {
       type: DataTypes.STRING(100),
       allowNull: true
+    },
+    nombre: {
+      type: DataTypes.STRING(250),
+      allowNull: true
+    },
+    marca: {
+      type: DataTypes.STRING(250),
+      allowNull: true
+    },
+    modelo: {
+      type: DataTypes.STRING(250),
+      allowNull: true
     }
   }, {
     tableName: 'tabla_gqm_lead',
