@@ -2,6 +2,8 @@ const { sequelize, Chat, Mensaje, MensajeVisto, Prospecto } = require("../models
 const { QueryTypes } = require("sequelize");
 const logger = require('../config/logger/loggerClient.js');
 const whatsappGraphService = require("../services/whatsapp/whatsappGraph.service.js");
+const configuracionWhatsappRepository = require("../repositories/configuracionWhatsapp.repository.js");
+const axios = require('axios');
 
 const CONTACTS_PER_PAGE = 20;
 
@@ -308,24 +310,50 @@ class ConversacionController {
         usuario_registro: userId
       });
 
-      // Enviar a WhatsApp
+      // Enviar a WhatsApp via Graph API
       const { idEmpresa } = req.user || {};
       const prospecto = await Prospecto.findByPk(prospectoId, { attributes: ['celular'] });
 
-      logger.info(`[conversacion.controller.js] Enviar WA -> prospectoId: ${prospectoId}, celular: ${prospecto?.celular}, idEmpresa: ${idEmpresa}`);
-
       if (prospecto?.celular && idEmpresa) {
         try {
-          const resultado = await whatsappGraphService.enviarMensajeTexto(idEmpresa, prospecto.celular, contenido);
-          logger.info(`[conversacion.controller.js] WA resultado: ${JSON.stringify(resultado)}`);
-          if (resultado?.wid_mensaje) {
-            await Mensaje.update({ wid_mensaje: resultado.wid_mensaje }, { where: { id: mensaje.id } });
+          const configWa = await configuracionWhatsappRepository.findByEmpresaId(idEmpresa);
+          if (!configWa?.numero_telefono_id) {
+            logger.warn(`[conversacion.controller] No se encontró numero_telefono_id para empresa ${idEmpresa}`);
+          } else {
+            const resultado = await whatsappGraphService.enviarMensajeTexto(
+              idEmpresa,
+              configWa.numero_telefono_id,
+              prospecto.celular,
+              contenido
+            );
+            logger.info(`[conversacion.controller] WA enviado a ${prospecto.celular}, wid: ${resultado?.wid_mensaje}`);
+            if (resultado?.wid_mensaje) {
+              await Mensaje.update({ wid_mensaje: resultado.wid_mensaje }, { where: { id: mensaje.id } });
+            }
           }
         } catch (waError) {
-          logger.error(`[conversacion.controller.js] Error al enviar a WhatsApp: ${waError.message}`);
+          logger.error(`[conversacion.controller] Error al enviar a WhatsApp: ${waError.message}`);
         }
       } else {
-        logger.warn(`[conversacion.controller.js] No se envió a WA: celular=${prospecto?.celular}, idEmpresa=${idEmpresa}`);
+        logger.warn(`[conversacion.controller] No se envió a WA: celular=${prospecto?.celular}, idEmpresa=${idEmpresa}`);
+      }
+
+      // Notificar al WebSocket server para tiempo real
+      try {
+        const WS_SERVER_URL = process.env.WS_SERVER_URL || 'https://gqm-websocket.xylure.easypanel.host/';
+        await axios.post(`${WS_SERVER_URL}/webhook/mensaje-saliente`, {
+          id_contacto: prospectoId,
+          mensaje: {
+            id: mensaje.id,
+            id_contacto: parseInt(prospectoId),
+            contenido,
+            direccion: 'out',
+            tipo_mensaje: 'text',
+            fecha_hora: mensaje.fecha_hora
+          }
+        }, { timeout: 3000 });
+      } catch (wsErr) {
+        logger.warn(`[conversacion.controller] No se pudo notificar al WS server: ${wsErr.message}`);
       }
 
       // Marcar prospecto como contactado

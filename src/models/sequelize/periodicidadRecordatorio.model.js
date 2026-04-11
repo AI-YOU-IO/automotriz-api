@@ -24,6 +24,22 @@ module.exports = (sequelize) => {
         key: 'id'
       }
     },
+    id_marca: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'marca',
+        key: 'id'
+      }
+    },
+    id_plantilla: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'plantilla_whatsapp',
+        key: 'id'
+      }
+    },
     ...commonFields
   }, {
     tableName: 'periodicidad_recordatorio',
@@ -42,6 +58,8 @@ module.exports = (sequelize) => {
 
   PeriodicidadRecordatorio.associate = (models) => {
     PeriodicidadRecordatorio.belongsTo(models.Empresa, { foreignKey: 'id_empresa', as: 'empresa' });
+    PeriodicidadRecordatorio.belongsTo(models.Marca, { foreignKey: 'id_marca', as: 'marca' });
+    PeriodicidadRecordatorio.belongsTo(models.PlantillaWhatsapp, { foreignKey: 'id_plantilla', as: 'plantilla' });
   };
 
   return PeriodicidadRecordatorio;

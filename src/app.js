@@ -59,6 +59,8 @@ const n8nCitaRoutes = require("./routes/n8nCita.route.js");
 const n8nRecuperacionRoutes = require("./routes/n8nRecuperacion.route.js");
 const n8nEmpresaRoutes = require("./routes/n8nEmpresa.route.js");
 const n8nPlantillaBitrixRoutes = require("./routes/n8nPlantillaBitrix.route.js");
+const n8nGqmLeadRoutes = require("./routes/n8nGqmLead.route.js");
+const wsNotifyRoutes = require("./routes/wsNotify.route.js");
 const whatsappMensajeRoutes = require("./routes/whatsappMensaje.route.js");
 const tipoCampaniaRoutes = require("./routes/tipoCampania.route.js");
 const estadoCampaniaRoutes = require("./routes/estadoCampania.route.js");
@@ -66,6 +68,7 @@ const recursoRoutes = require("./routes/recurso.route.js");
 const tipoRecursoRoutes = require("./routes/tipoRecurso.route.js");
 const distritoRoutes = require("./routes/distrito.route.js");
 const promptAsistenteRoutes = require("./routes/promptAsistente.route.js");
+const campoSistemaRoutes = require("./routes/campoSistema.route.js");
 const marcaRoutes = require("./routes/marca.route.js");
 const modeloRoutes = require("./routes/modelo.route.js");
 const versionRoutes = require("./routes/version.route.js");
@@ -73,6 +76,7 @@ const horarioAtencionRoutes = require("./routes/horarioAtencion.route.js");
 const horarioBloqueadoRoutes = require("./routes/horarioBloqueado.route.js");
 const toolRoutes = require("./routes/tool.route.js");
 const ultravoxRoutes = require("./routes/ultravox.route.js");
+const ticketRoutes = require("./routes/ticket.route.js");
 // const webhookRoutes = require("./routes/webhook.route.js");
 const getEventWebhook = require("../webhook/getEvent.js");
 
@@ -125,8 +129,9 @@ app.use("/api/crm", authMiddleware, rolRoutes, usuarioRoutes, moduloRoutes, sucu
   plantillaWhatsappRoutes, whatsappEmbeddedRoutes, configuracionWhatsappRoutes,
   envioMasivoWhatsappRoutes, enviosProspectosRoutes,
   tipoCampaniaRoutes, estadoCampaniaRoutes, recursoRoutes, tipoRecursoRoutes, distritoRoutes,
-  promptAsistenteRoutes, marcaRoutes, modeloRoutes, versionRoutes,
-  horarioAtencionRoutes, horarioBloqueadoRoutes, toolRoutes
+  promptAsistenteRoutes, campoSistemaRoutes, marcaRoutes, modeloRoutes, versionRoutes,
+  horarioAtencionRoutes, horarioBloqueadoRoutes, toolRoutes,
+  ticketRoutes
 );
 
 // Rutas del asistente IA (protegidas con API Key)
@@ -141,6 +146,10 @@ app.use('/api/n8n/citas', n8nCitaRoutes);
 app.use('/api/n8n/recuperacion', n8nRecuperacionRoutes);
 app.use('/api/n8n/empresa', n8nEmpresaRoutes);
 app.use('/api/n8n/plantilla-bitrix', n8nPlantillaBitrixRoutes);
+app.use('/api/n8n/gqm-leads', n8nGqmLeadRoutes);
+
+// Rutas WebSocket notify (para servicios externos: agente IA, etc.)
+app.use('/api/ws-notify', wsNotifyRoutes);
 
 // Rutas Ultravox webhook (protegidas con Bearer token)
 app.use('/api/ultravox', ultravoxRoutes);

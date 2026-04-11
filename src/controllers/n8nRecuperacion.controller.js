@@ -22,24 +22,37 @@ const { QueryTypes } = require('sequelize');
 const whatsappGraphService = require('../services/whatsapp/whatsappGraph.service');
 const logger = require('../config/logger/loggerClient');
 
-// Secuencia de tipos de recuperación
-const SECUENCIA_TIPOS = ['1h', '8h', '24h', '48h', '72h'];
+/**
+ * Carga la secuencia de periodicidades desde la BD ordenadas por cada_horas ASC.
+ * Retorna { secuencia: ['24h','48h',...], getTipo(horas), horasMin, horasMax }
+ */
+async function cargarPeriodicidades(idEmpresa) {
+  const rows = await sequelize.query(`
+    SELECT DISTINCT cada_horas
+    FROM periodicidad_recordatorio
+    WHERE estado_registro = 1
+      ${idEmpresa ? 'AND id_empresa = :idEmpresa' : ''}
+    ORDER BY cada_horas ASC
+  `, {
+    replacements: idEmpresa ? { idEmpresa } : {},
+    type: QueryTypes.SELECT
+  });
 
-// Mensajes de recuperación por tipo (solo dentro de ventana de 24h de Meta).
-// Variable soportada: {nombre} (nombre del prospecto)
-const MENSAJES_RECUPERACION = {
-  '1h': 'Hola {nombre}, Quería saber si llegaste a ver el mensaje anterior. Cuando tengas un momento, seguimos conversando por aqui 💚',
-  '8h': 'Hola {nombre}, 👋 Te escribo solo para quedarme atenta. Si más adelante quieres continuar viendo opciones de depas, me avisas 😊'
-};
+  const horas = rows.map(r => r.cada_horas);
+  const secuencia = horas.map(h => `${h}h`);
 
-// Función para determinar tipo_recuperacion según horas
-const getTipoRecuperacion = (horas) => {
-  if (horas < 8) return '1h';
-  if (horas < 24) return '8h';
-  if (horas < 48) return '24h';
-  if (horas < 72) return '48h';
-  return '72h';
-};
+  const getTipo = (horasTranscurridas) => {
+    for (let i = horas.length - 1; i >= 0; i--) {
+      if (horasTranscurridas >= horas[i]) return `${horas[i]}h`;
+    }
+    return null;
+  };
+
+  const horasMin = horas.length > 0 ? horas[0] : 24;
+  const horasMax = horas.length > 0 ? horas[horas.length - 1] * 3 : 168;
+
+  return { secuencia, getTipo, horasMin, horasMax };
+}
 
 class N8nRecuperacionController {
 
@@ -56,7 +69,7 @@ class N8nRecuperacionController {
    */
   async getChatsSinRespuesta(req, res) {
     try {
-      const { horas_min = 1, horas_max, id_empresa, limit = 100 } = req.query;
+      const { horas_min = 24, horas_max, id_empresa, limit = 100 } = req.query;
 
       const horasMinNum = parseFloat(horas_min);
       const horasMaxNum = horas_max ? parseFloat(horas_max) : null;
@@ -149,40 +162,28 @@ class N8nRecuperacionController {
    * POST /n8n/recuperacion/marcar-visto-masivo
    *
    * WORKFLOW 1: Crea o actualiza registros de mensaje_visto según las horas transcurridas.
-   *
-   * Lógica:
-   * - Si no existe registro → CREAR con tipo correspondiente y mensaje_enviado = false
-   * - Si existe pero tipo es menor → ACTUALIZAR tipo y mensaje_enviado = false
-   *
-   * Tipos según horas:
-   * - 1-8h → '1h', 8-24h → '8h', 24-48h → '24h', 48-72h → '48h', 72+h → '72h'
+   * Los tipos y rangos se obtienen dinámicamente de la tabla periodicidad_recordatorio.
    *
    * Body:
-   * - horas_min: Mínimo de horas (default 1)
-   * - horas_max: Máximo de horas (default 72)
    * - id_empresa: Filtrar por empresa (opcional)
    * - limit: Límite por lote (default 200, max 500)
    */
   async marcarVistoMasivo(req, res) {
     try {
-      const { horas_min = 1, horas_max = 72, id_empresa, limit = 200 } = req.body;
-      const horasMinNum = parseFloat(horas_min);
-      const horasMaxNum = Math.min(parseFloat(horas_max) || 72, 72);
+      const { id_empresa, limit = 200 } = req.body;
       const limitNum = Math.min(parseInt(limit) || 200, 500);
 
-      if (isNaN(horasMinNum) || horasMinNum < 0) {
+      // Cargar periodicidades dinámicamente desde BD
+      const { secuencia, getTipo, horasMin, horasMax } = await cargarPeriodicidades(id_empresa || null);
+
+      if (secuencia.length === 0) {
         return res.status(400).json({
           success: false,
-          error: 'El parámetro horas_min debe ser un número mayor o igual a 0'
+          error: 'No hay periodicidades configuradas en la base de datos'
         });
       }
 
-      if (horasMinNum >= horasMaxNum) {
-        return res.status(400).json({
-          success: false,
-          error: 'horas_min debe ser menor que horas_max'
-        });
-      }
+      logger.info(`[n8nRecuperacion] marcarVistoMasivo: secuencia=${secuencia.join(',')}, rango=${horasMin}h-${horasMax}h`);
 
       // Query para obtener chats con su estado actual de recuperación
       let query = `
@@ -197,11 +198,11 @@ class N8nRecuperacionController {
           FROM mensaje m
           INNER JOIN chat c ON c.id = m.id_chat
           INNER JOIN prospecto p ON p.id = c.id_prospecto
-          inner join estado_prospecto ep on ep.id = p.id_estado_prospecto
+          INNER JOIN estado_prospecto ep ON ep.id = p.id_estado_prospecto
           WHERE m.estado_registro = 1
             AND c.estado_registro = 1
             AND p.estado_registro = 1
-            and ep.id <> 4
+            AND ep.id <> 4
           ORDER BY m.id_chat, m.fecha_hora DESC
         ),
         visto_actual AS (
@@ -218,6 +219,7 @@ class N8nRecuperacionController {
         SELECT
           um.id_mensaje,
           um.id_chat,
+          um.fecha_hora,
           ROUND(um.horas_transcurridas::numeric, 2) as horas,
           va.id_mensaje_visto,
           va.tipo_actual,
@@ -226,13 +228,9 @@ class N8nRecuperacionController {
         LEFT JOIN visto_actual va ON va.id_chat = um.id_chat
         WHERE um.direccion = 'out'
           AND um.horas_transcurridas >= :horas_min
-          AND um.horas_transcurridas < :horas_max
       `;
 
-      const replacements = {
-        horas_min: horasMinNum,
-        horas_max: horasMaxNum
-      };
+      const replacements = { horas_min: horasMin };
 
       if (id_empresa) {
         query += ` AND um.id_empresa = :id_empresa`;
@@ -252,24 +250,24 @@ class N8nRecuperacionController {
       const paraActualizar = [];
 
       mensajes.forEach(m => {
-        const tipoCorrespondiente = getTipoRecuperacion(m.horas);
-        const indiceTipoCorrespondiente = SECUENCIA_TIPOS.indexOf(tipoCorrespondiente);
-        const indiceTipoActual = m.tipo_actual ? SECUENCIA_TIPOS.indexOf(m.tipo_actual) : -1;
+        const tipoCorrespondiente = getTipo(m.horas);
+        if (!tipoCorrespondiente) return;
 
-        // Solo procesar si el tipo correspondiente es mayor al actual
+        const indiceTipoCorrespondiente = secuencia.indexOf(tipoCorrespondiente);
+        const indiceTipoActual = m.tipo_actual ? secuencia.indexOf(m.tipo_actual) : -1;
+
         if (indiceTipoCorrespondiente > indiceTipoActual) {
           if (m.id_mensaje_visto) {
-            // Ya existe registro, actualizar tipo y resetear mensaje_enviado
             paraActualizar.push({
               id_mensaje_visto: m.id_mensaje_visto,
               tipo_nuevo: tipoCorrespondiente,
               tipo_anterior: m.tipo_actual
             });
           } else {
-            // No existe, crear nuevo
             paraCrear.push({
               id_mensaje: m.id_mensaje,
-              tipo_recuperacion: tipoCorrespondiente
+              tipo_recuperacion: tipoCorrespondiente,
+              fecha_hora_mensaje: m.fecha_hora
             });
           }
         }
@@ -282,31 +280,27 @@ class N8nRecuperacionController {
           count: 0,
           creados: 0,
           actualizados: 0,
-          rango_horas: { min: horasMinNum, max: horasMaxNum }
+          secuencia
         });
       }
 
-      // Ejecutar en transacción
       const resultado = await sequelize.transaction(async (t) => {
         let creados = 0;
         let actualizados = 0;
 
-        // Crear nuevos registros con mensaje_enviado = false
         if (paraCrear.length > 0) {
           const registros = paraCrear.map(m => ({
             id_mensaje: m.id_mensaje,
-            fecha_visto: new Date(),
+            fecha_visto: new Date(new Date(m.fecha_hora_mensaje).toLocaleString('en-US', { timeZone: 'America/Lima' })),
             tipo_recuperacion: m.tipo_recuperacion,
             mensaje_enviado: false,
             usuario_registro: null,
             estado_registro: 1
           }));
-
           await MensajeVisto.bulkCreate(registros, { transaction: t });
           creados = registros.length;
         }
 
-        // Actualizar existentes agrupados por tipo (máx 5 queries en vez de N)
         if (paraActualizar.length > 0) {
           const gruposPorTipo = {};
           paraActualizar.forEach(item => {
@@ -333,7 +327,6 @@ class N8nRecuperacionController {
         return { creados, actualizados };
       });
 
-      // Resumen
       const resumenCreados = {};
       const resumenActualizados = {};
       paraCrear.forEach(m => {
@@ -344,7 +337,7 @@ class N8nRecuperacionController {
         resumenActualizados[key] = (resumenActualizados[key] || 0) + 1;
       });
 
-      logger.info(`[n8nRecuperacion] marcarVistoMasivo: creados=${resultado.creados}, actualizados=${resultado.actualizados}`);
+      logger.info(`[n8nRecuperacion] marcarVistoMasivo: creados=${resultado.creados}, actualizados=${resultado.actualizados}, secuencia=${secuencia.join(',')}`);
 
       return res.json({
         success: true,
@@ -352,7 +345,7 @@ class N8nRecuperacionController {
         count: resultado.creados + resultado.actualizados,
         creados: resultado.creados,
         actualizados: resultado.actualizados,
-        rango_horas: { min: horasMinNum, max: horasMaxNum },
+        secuencia,
         resumen: {
           creados_por_tipo: resumenCreados,
           actualizados: resumenActualizados
@@ -462,7 +455,7 @@ class N8nRecuperacionController {
 
         // Aplicar límite por empresa
         if (empresa.candidatos.length < limitNum) {
-          const metodoEnvio = 'directo';
+          const metodoEnvio = 'plantilla';
           empresa.candidatos.push({
             id_mensaje_visto: candidato.id_mensaje_visto,
             tipo_recuperacion: candidato.tipo_recuperacion,
@@ -547,7 +540,7 @@ class N8nRecuperacionController {
         });
       }
 
-      // Verificar que existe el registro y obtener datos del prospecto + phoneNumberId
+      // Obtener registro con datos del prospecto, chat y marca
       const [registro] = await sequelize.query(`
         SELECT
           mv.id,
@@ -557,12 +550,22 @@ class N8nRecuperacionController {
           p.id_empresa,
           p.celular,
           p.nombre_completo,
-          cw.numero_telefono_id
+          p.correo,
+          p.tipo_documento,
+          p.numero_documento,
+          c.id_marca,
+          c.id_modelo,
+          c.id_version,
+          ma.nombre AS nombre_marca,
+          ma.descripcion AS descripcion_marca,
+          mo.nombre AS nombre_modelo,
+          mo.descripcion AS descripcion_modelo
         FROM mensaje_visto mv
         INNER JOIN mensaje m ON m.id = mv.id_mensaje
         INNER JOIN chat c ON c.id = m.id_chat
         INNER JOIN prospecto p ON p.id = c.id_prospecto
-        LEFT JOIN configuracion_whatsapp cw ON cw.id_empresa = p.id_empresa AND cw.estado_registro = 1
+        LEFT JOIN marca ma ON ma.id = c.id_marca
+        LEFT JOIN modelo mo ON mo.id = c.id_modelo
         WHERE mv.id = :id_mensaje_visto
           AND mv.estado_registro = 1
       `, {
@@ -571,68 +574,194 @@ class N8nRecuperacionController {
       });
 
       if (!registro) {
-        return res.status(404).json({
-          success: false,
-          error: 'No se encontró el registro de mensaje_visto'
-        });
+        return res.status(404).json({ success: false, error: 'No se encontró el registro de mensaje_visto' });
       }
 
       if (registro.mensaje_enviado) {
         return res.status(409).json({
           success: false,
           error: 'Este registro ya fue marcado como enviado',
-          data: {
-            id_mensaje_visto: registro.id,
-            tipo_recuperacion: registro.tipo_recuperacion
+          data: { id_mensaje_visto: registro.id, tipo_recuperacion: registro.tipo_recuperacion }
+        });
+      }
+
+      // Buscar la periodicidad que matchea tipo_recuperacion + marca del chat
+      const horas = parseInt(registro.tipo_recuperacion);
+      const [periodicidad] = await sequelize.query(`
+        SELECT pr.id, pr.id_plantilla, pr.id_marca, pw.name AS nombre_plantilla
+        FROM periodicidad_recordatorio pr
+        INNER JOIN plantilla_whatsapp pw ON pw.id = pr.id_plantilla
+        WHERE pr.estado_registro = 1
+          AND pr.cada_horas = :cada_horas
+          AND (pr.id_marca = :id_marca OR pr.id_marca IS NULL)
+        ORDER BY pr.id_marca DESC NULLS LAST
+        LIMIT 1
+      `, {
+        replacements: { cada_horas: horas, id_marca: registro.id_marca },
+        type: QueryTypes.SELECT
+      });
+
+      if (!periodicidad) {
+        return res.status(400).json({
+          success: false,
+          error: `No se encontró periodicidad para tipo ${registro.tipo_recuperacion} y marca ${registro.nombre_marca || 'sin marca'}`
+        });
+      }
+
+      const nombrePlantilla = periodicidad.nombre_plantilla;
+
+      // Obtener los campos mapeados de formato_campo_plantilla para esta plantilla
+      const camposMapeados = await sequelize.query(`
+        SELECT fcp.orden, fcp.id_campo_sistema, fcp.id_formato_campo, fcp.constante,
+               cs.nombre AS campo_sistema_nombre,
+               fc.nombre_campo AS formato_campo_nombre
+        FROM formato_campo_plantilla fcp
+        LEFT JOIN campo_sistema cs ON cs.id = fcp.id_campo_sistema
+        LEFT JOIN formato_campo fc ON fc.id = fcp.id_formato_campo
+        WHERE fcp.id_plantilla = :id_plantilla
+          AND fcp.estado_registro = 1
+        ORDER BY fcp.orden ASC
+      `, {
+        replacements: { id_plantilla: periodicidad.id_plantilla },
+        type: QueryTypes.SELECT
+      });
+
+      // Obtener datos de version
+      let versionData = {};
+      let idModelo = registro.id_modelo;
+
+      if (registro.id_version) {
+        // Version definida: obtener directamente, filtrar por id_modelo si existe
+        let versionQuery = `SELECT v.*, mo.nombre AS nombre_modelo FROM version v LEFT JOIN modelo mo ON mo.id = v.id_modelo WHERE v.id = :id_version AND v.estado_registro = 1`;
+        const versionReplacements = { id_version: registro.id_version };
+        if (idModelo) {
+          versionQuery += ` AND v.id_modelo = :id_modelo`;
+          versionReplacements.id_modelo = idModelo;
+        }
+        const [version] = await sequelize.query(versionQuery, { replacements: versionReplacements, type: QueryTypes.SELECT });
+        if (version) {
+          versionData = version;
+          if (!idModelo) idModelo = version.id_modelo;
+        }
+      } else if (idModelo) {
+        // Solo modelo definido, sin version: buscar la version con precio más bajo
+        const [version] = await sequelize.query(`
+          SELECT v.*, mo.nombre AS nombre_modelo FROM version v
+          LEFT JOIN modelo mo ON mo.id = v.id_modelo
+          WHERE v.id_modelo = :id_modelo AND v.estado_registro = 1 AND v.precio_lista IS NOT NULL
+          ORDER BY v.precio_lista ASC LIMIT 1
+        `, { replacements: { id_modelo: idModelo }, type: QueryTypes.SELECT });
+        if (version) versionData = version;
+      } else if (registro.id_marca) {
+        // Ni modelo ni version: buscar la version con precio más bajo de toda la marca
+        const [version] = await sequelize.query(`
+          SELECT v.*, mo.nombre AS nombre_modelo FROM version v
+          INNER JOIN modelo mo ON mo.id = v.id_modelo
+          WHERE mo.id_marca = :id_marca AND v.estado_registro = 1 AND v.precio_lista IS NOT NULL
+          ORDER BY v.precio_lista ASC LIMIT 1
+        `, { replacements: { id_marca: registro.id_marca }, type: QueryTypes.SELECT });
+        if (version) {
+          versionData = version;
+          idModelo = version.id_modelo;
+        }
+      }
+
+      // Mapa de campos del sistema → valor del prospecto
+      const camposSistemaValores = {
+        telefono: registro.celular || '',
+        nombre: registro.nombre_completo || 'estimado/a',
+        correo: registro.correo || '',
+        tipo_documento: registro.tipo_documento || '',
+        numero_documento: registro.numero_documento || '',
+        tipo_persona: '',
+        fecha: new Date().toLocaleDateString('es-PE', { timeZone: 'America/Lima' })
+      };
+
+      // Mapa de campos de marca → valor
+      const marcaValores = {
+        nombre: registro.nombre_marca || '',
+        descripcion: registro.descripcion_marca || ''
+      };
+
+      // Mapa de campos de modelo → valor
+      const modeloValores = {
+        nombre: registro.nombre_modelo || versionData.nombre_modelo || '',
+        descripcion: registro.descripcion_modelo || ''
+      };
+
+      // Resolver cada variable en orden
+      const parameters = camposMapeados.map(campo => {
+        let valor = '';
+
+        // Prioridad 1: constante
+        if (campo.constante) {
+          valor = campo.constante;
+        }
+        // Prioridad 2: campo del sistema (prospecto)
+        else if (campo.campo_sistema_nombre) {
+          valor = camposSistemaValores[campo.campo_sistema_nombre] || '';
+        }
+        // Prioridad 3: campo del formato (version, modelo o marca según prefijo)
+        else if (campo.formato_campo_nombre) {
+          const nombre = campo.formato_campo_nombre;
+          if (nombre.startsWith('version_')) {
+            const key = nombre.replace('version_', '');
+            valor = versionData[key] != null ? String(versionData[key]) : '';
+          } else if (nombre.startsWith('modelo_')) {
+            const key = nombre.replace('modelo_', '');
+            valor = modeloValores[key] || '';
+          } else if (nombre.startsWith('marca_')) {
+            const key = nombre.replace('marca_', '');
+            valor = marcaValores[key] || '';
           }
-        });
-      }
+        }
 
-      if (!MENSAJES_RECUPERACION[registro.tipo_recuperacion]) {
-        return res.status(400).json({
-          success: false,
-          error: `tipo_recuperacion '${registro.tipo_recuperacion}' no tiene mensaje configurado. Solo dentro de ventana de 24h: ${Object.keys(MENSAJES_RECUPERACION).join(', ')}`
-        });
-      }
+        return { type: 'text', text: valor || '' };
+      });
 
-      if (!registro.numero_telefono_id) {
-        return res.status(400).json({
-          success: false,
-          error: `No se encontró numero_telefono_id en configuracion_whatsapp para empresa ${registro.id_empresa}`
-        });
-      }
+      // Construir components para Meta
+      const components = parameters.length > 0
+        ? [{ type: 'body', parameters }]
+        : [];
 
-      const nombreProspecto = registro.nombre_completo || 'estimado/a';
-      const mensajeBase = mensaje_personalizado || MENSAJES_RECUPERACION[registro.tipo_recuperacion];
-      const mensajeFinal = mensajeBase.replace(/\{nombre\}/g, nombreProspecto);
+      logger.info(`[n8nRecuperacion] registrarEnvio: marca=${registro.nombre_marca || 'N/A'}, plantilla=${nombrePlantilla}, params=${parameters.map(p => p.text).join(', ')}`);
 
-      const whatsappResult = await whatsappGraphService.enviarMensajeTexto(
+      const whatsappResult = await whatsappGraphService.enviarPlantilla(
         registro.id_empresa,
-        registro.numero_telefono_id,
         registro.celular,
-        mensajeFinal
+        nombrePlantilla,
+        'es',
+        components
       );
+
+      const wid_mensaje = whatsappResult?.response?.messages?.[0]?.id || null;
 
       const mensajeDB = await Mensaje.create({
         id_chat: registro.id_chat,
         direccion: 'out',
-        tipo_mensaje: 'texto',
-        contenido: mensajeFinal,
-        wid_mensaje: whatsappResult.wid_mensaje || null,
+        tipo_mensaje: 'plantilla',
+        contenido: `[Plantilla: ${nombrePlantilla}]`,
+        wid_mensaje,
         contenido_archivo: null,
         id_usuario: null,
-        id_plantilla_whatsapp: null,
+        id_plantilla_whatsapp: periodicidad.id_plantilla,
         fecha_hora: new Date(),
         usuario_registro: null,
         estado_registro: 1
       });
 
-      logger.info(`[n8nRecuperacion] registrarEnvio: Recuperación ${registro.tipo_recuperacion} para chat ${registro.id_chat}, celular: ${registro.celular}, wid: ${whatsappResult.wid_mensaje}`);
+      logger.info(`[n8nRecuperacion] registrarEnvio: Plantilla ${nombrePlantilla} enviada para chat ${registro.id_chat}, celular: ${registro.celular}, wid: ${wid_mensaje}`);
+
+      const esKia = registro.nombre_marca && registro.nombre_marca.toUpperCase() === 'KIA';
 
       const resultadoEnvio = {
-        metodo_envio: 'directo',
-        mensaje_enviado_texto: mensajeFinal,
-        wid_mensaje: whatsappResult.wid_mensaje,
+        metodo_envio: 'plantilla',
+        nombre_plantilla: nombrePlantilla,
+        es_kia: esKia,
+        marca: registro.nombre_marca || null,
+        modelo: versionData.nombre_modelo || versionData.nombre || null,
+        parametros: parameters.map(p => p.text),
+        wid_mensaje,
         id_mensaje_registrado: mensajeDB.id
       };
 

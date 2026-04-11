@@ -4,7 +4,8 @@ const logger = require('../config/logger/loggerClient.js');
 class FormatoController {
   async getFormatos(req, res) {
     try {
-      const formatos = await formatoRepository.findAll();
+      const idEmpresa = req.user?.idEmpresa || null;
+      const formatos = await formatoRepository.findAll(idEmpresa);
       return res.status(200).json({ data: formatos });
     } catch (error) {
       logger.error(`[formato.controller.js] Error al obtener formatos: ${error.message}`);
@@ -28,12 +29,13 @@ class FormatoController {
 
   async createFormato(req, res) {
     try {
-      const { nombre } = req.body;
+      const { nombre, descripcion } = req.body;
       const usuario_registro = req.user?.userId || null;
+      const id_empresa = req.user?.idEmpresa || null;
       if (!nombre) {
         return res.status(400).json({ msg: "El nombre es requerido" });
       }
-      const formato = await formatoRepository.create({ nombre, usuario_registro });
+      const formato = await formatoRepository.create({ nombre, descripcion, id_empresa, usuario_registro });
       return res.status(201).json({ msg: "Formato creado exitosamente", data: { id: formato.id } });
     } catch (error) {
       logger.error(`[formato.controller.js] Error al crear formato: ${error.message}`);
@@ -44,12 +46,12 @@ class FormatoController {
   async updateFormato(req, res) {
     try {
       const { id } = req.params;
-      const { nombre } = req.body;
+      const { nombre, descripcion } = req.body;
       const usuario_actualizacion = req.user?.userId || null;
       if (!nombre) {
         return res.status(400).json({ msg: "El nombre es requerido" });
       }
-      const [updated] = await formatoRepository.update(id, { nombre, usuario_actualizacion });
+      const [updated] = await formatoRepository.update(id, { nombre, descripcion, usuario_actualizacion });
       if (!updated) {
         return res.status(404).json({ msg: "Formato no encontrado" });
       }

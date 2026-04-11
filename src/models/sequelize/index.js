@@ -9,6 +9,8 @@ db.Rol = require('./rol.model')(sequelize);
 db.Modulo = require('./modulo.model')(sequelize);
 db.Formato = require('./formato.model')(sequelize);
 db.FormatoCampo = require('./formatoCampo.model')(sequelize);
+db.CampoSistema = require('./campoSistema.model')(sequelize);
+db.FormatoCampoPlantilla = require('./formatoCampoPlantilla.model')(sequelize);
 db.Speaker = require('./speaker.model')(sequelize);
 db.Voz = require('./voz.model')(sequelize);
 db.Tool = require('./tool.model')(sequelize);
@@ -16,6 +18,7 @@ db.EstadoLlamada = require('./estadoLlamada.model')(sequelize);
 db.TipoRecurso = require('./tipoRecurso.model')(sequelize);
 db.Distrito = require('./distrito.model')(sequelize);
 db.DistritoAdyacente = require('./distritoAdyacente.model')(sequelize);
+db.TablaGqmLead = require('./tablaGqmLead.model')(sequelize);
 
 // Cargar modelos - Fase 2: Dependencias de Empresa
 db.TipoCampania = require('./tipoCampania.model')(sequelize);

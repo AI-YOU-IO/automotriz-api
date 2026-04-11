@@ -10,7 +10,7 @@ class ModeloRepository {
       include: [
         { model: Version, as: 'versiones', where: { estado_registro: 1 }, required: false },
         { model: Marca, as: 'marca', attributes: ['id', 'nombre'] },
-        { model: Recurso, as: 'recursos', where: { estado_registro: 1 }, required: false, attributes: ['id', 'nombre', 'url', 'id_tipo_recurso', 'extra_fields'] }
+        { model: Recurso, as: 'recursos', where: { estado_registro: 1 }, required: false, attributes: ['id', 'nombre', 'url', 'id_tipo_recurso', 'es_principal', 'orden', 'extra_fields'] }
       ],
       order: [['nombre', 'ASC']]
     });
@@ -21,7 +21,7 @@ class ModeloRepository {
       include: [
         { model: Version, as: 'versiones', where: { estado_registro: 1 }, required: false },
         { model: Marca, as: 'marca', attributes: ['id', 'nombre'] },
-        { model: Recurso, as: 'recursos', where: { estado_registro: 1 }, required: false, attributes: ['id', 'nombre', 'url', 'id_tipo_recurso', 'extra_fields'] }
+        { model: Recurso, as: 'recursos', where: { estado_registro: 1 }, required: false, attributes: ['id', 'nombre', 'url', 'id_tipo_recurso', 'es_principal', 'orden', 'extra_fields'] }
       ]
     });
   }
