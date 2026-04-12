@@ -378,11 +378,13 @@ class N8nRecuperacionController {
       const { tipo_recuperacion, id_empresa, limit = 100 } = req.query;
       const limitNum = parseInt(limit);
 
+      const { secuencia } = await cargarPeriodicidades(id_empresa || null);
+
       // Validar tipo_recuperacion si se proporciona
-      if (tipo_recuperacion && !SECUENCIA_TIPOS.includes(tipo_recuperacion)) {
+      if (tipo_recuperacion && !secuencia.includes(tipo_recuperacion)) {
         return res.status(400).json({
           success: false,
-          error: `tipo_recuperacion debe ser uno de: ${SECUENCIA_TIPOS.join(', ')}`
+          error: `tipo_recuperacion debe ser uno de: ${secuencia.join(', ')}`
         });
       }
 
@@ -495,7 +497,7 @@ class N8nRecuperacionController {
           id_empresa: id_empresa ? parseInt(id_empresa) : null,
           limit_por_empresa: limitNum
         },
-        secuencia_tipos: SECUENCIA_TIPOS,
+        secuencia_tipos: secuencia,
         empresas
       });
 
