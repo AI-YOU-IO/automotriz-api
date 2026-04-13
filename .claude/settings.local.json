@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch:*)",
+      "Bash(git rev-list:*)",
+      "Bash(git pull:*)",
+      "Bash(node -c \"C:\\\\Users\\\\ariel\\\\Documents\\\\AI_YOU\\\\AUTOMOTRIZ\\\\automotriz-api\\\\src\\\\controllers\\\\messageProcessing.controller.js\")",
+      "Bash(node --check \"C:\\\\Users\\\\ariel\\\\Documents\\\\AI_YOU\\\\AUTOMOTRIZ\\\\automotriz-api\\\\src\\\\controllers\\\\messageProcessing.controller.js\")"
+    ]
+  }
+}

@@ -6,6 +6,7 @@ const Mensaje = require("../repositories/mensaje.repository");
 const whatsappGraphService = require("../services/whatsapp/whatsappGraph.service");
 const logger = require("../config/logger/loggerClient");
 const configuracionWhatsappRepository = require("../repositories/configuracionWhatsapp.repository");
+const { TablaGqmLead } = require("../models/sequelize");
 
 // Simple objeto en memoria para trackear errores únicos enviados
 const erroresUnicosEnviados = {};
@@ -240,6 +241,21 @@ class MessageProcessingController {
                 usuario_registro: null
             });
 
+            // 3.5. Enriquecer con datos del lead (opcional — no bloquea el flujo)
+            let lead = null;
+            try {
+                const phoneDigits = (phone || '').replace(/\D/g, '');
+                if (phoneDigits) {
+                    lead = await TablaGqmLead.findOne({
+                        where: { numero: phoneDigits },
+                        order: [['id', 'DESC']],
+                        attributes: ['n_lead', 'nombre', 'marca', 'modelo']
+                    });
+                }
+            } catch (error) {
+                logger.warn(`[messageProcessing] No se pudo enriquecer con datos de lead: ${error.message}`);
+            }
+
             // 4. Procesar con el asistente
             const bodyMessage ={
                 id_empresa,
@@ -247,6 +263,10 @@ class MessageProcessingController {
                 question,
                 phone_number_id,
                 id_chat: chat.id,
+                id_bitrix: lead?.n_lead || null,
+                nombre: lead?.nombre || null,
+                marca: lead?.marca || null,
+                modelo: lead?.modelo || null,
             }
             try{
                 await AgenteGqm.enviarMensaje(bodyMessage);
