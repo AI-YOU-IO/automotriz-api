@@ -77,7 +77,6 @@ const horarioBloqueadoRoutes = require("./routes/horarioBloqueado.route.js");
 const toolRoutes = require("./routes/tool.route.js");
 const ultravoxRoutes = require("./routes/ultravox.route.js");
 const ticketRoutes = require("./routes/ticket.route.js");
-// const webhookRoutes = require("./routes/webhook.route.js");
 const getEventWebhook = require("../webhook/getEvent.js");
 
 const app = express();
@@ -156,9 +155,6 @@ app.use('/api/ultravox', ultravoxRoutes);
 
 // Rutas WhatsApp mensaje (pública - para envío desde N8N/webhooks)
 app.use('/api/whatsapp-mensaje', whatsappMensajeRoutes);
-
-// Rutas de webhook (sin auth - para recibir mensajes de Baileys)
-// app.use('/webhook', webhookRoutes);
 
 // Webhook para recibir eventos externos
 app.use('/webhook', getEventWebhook);
