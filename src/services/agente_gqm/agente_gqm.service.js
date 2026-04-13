@@ -7,14 +7,18 @@ class AgenteGQMService {
         this.baseURL = 'https://gqm.ai-you.io/api/chat';
     }
 
-    async enviarMensaje({ id_empresa, phone_number_id, phone, question, id_chat }) {
+    async enviarMensaje({ id_empresa, phone_number_id, phone, question, id_chat, id_bitrix, nombre, marca, modelo }) {
         try {
             const response = await axios.post(this.baseURL, {
                 id_empresa,
                 phone_number_id,
                 phone,
                 question,
-                id_chat
+                id_chat,
+                id_bitrix,
+                nombre,
+                marca,
+                modelo
             }, {
                 headers: {
                     'Content-Type': 'application/json'
